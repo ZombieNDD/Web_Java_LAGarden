@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;700;800&display=swap" rel="stylesheet">
     <title>LA Restaurant</title>
 </head>
-<body style="background-image:url(/Img/MonAn/mon6.jpg); background-size: cover; height: 100%;">
+<body style="background-image:url(${pageContext.servletContext.contextPath}/Img/MonAn/mon6.jpg); background-size: cover; height: 100%;">
     <header>
         <input type="checkbox" />
         <div class="menu-icon">
@@ -25,19 +25,15 @@
                 <li><a href="~/thong-tin">Về chúng tôi</a></li>
                 <li><a href="~/Site/TinTuc">Tin tức</a></li>
                 <li><a href="~/ho-tro">Liên hệ</a></li>
-               
                 <li><a href="~/dang-nhap">Đăng nhập</a></li>
                 <li><a href="~/dang-ky">Đăng ký</a></li>
-
                 <li><a>Xin chào: </a></li>
-
             </ul>
         </div>
         <div class="header-text">
             <div style="display:block; color:#ffffff">
-                <img src="/Img/ChuLogo.png" />
+                <img src="${pageContext.servletContext.contextPath}/Img/ChuLogo.png" />
             </div>
-
             <a href="~/Site/Table">Đặt bàn</a>
             <a href="~/Site/Order">Đặt món</a>
         </div>
