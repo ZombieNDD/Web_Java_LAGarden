@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+       
+<tiles-definitions>  
+
+    <!-- Base Define -->
+    <definition name="base.definition"  
+        template="/WEB-INF/layouts/mainlayout.jsp">  
+        <put-attribute name="body" value="" />  
+    </definition>  
+    
+    <definition name="home" template="/WEB-INF/views/home.jsp">  
+
+    </definition> 
+    <!-- Tin tức  -->
+    <definition name="tintuc" extends="base.definition">  
+        <put-attribute name="body" value="/WEB-INF/views/tintuc.jsp" />
+    </definition>  
+	
+
+ 
+</tiles-definitions> 

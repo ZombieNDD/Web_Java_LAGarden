@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/1147679ae7.js" crossorigin="anonymous"></script>
-    <style><%@include file="/css/Home.css"%></style>
-    <link rel="stylesheet" href="/WEB-INF/lib/css/Home.css" />
+    <style><%@include file="/resource/css/Home.css"%></style>
+
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;700;800&display=swap" rel="stylesheet">
     <title>LA Restaurant</title>
 </head>
-<body style="background-image:url(${pageContext.servletContext.contextPath}/Img/MonAn/mon6.jpg); background-size: cover; height: 100%;">
+<body style="background-image:url(${pageContext.servletContext.contextPath}/resource/Img/MonAn/mon6.jpg); background-size: cover; height: 100%;">
     <header>
         <input type="checkbox" />
         <div class="menu-icon">
@@ -32,7 +33,7 @@
         </div>
         <div class="header-text">
             <div style="display:block; color:#ffffff">
-                <img src="${pageContext.servletContext.contextPath}/Img/ChuLogo.png" />
+                <img src="${pageContext.servletContext.contextPath}/resource/Img/ChuLogo.png" />
             </div>
             <a href="~/Site/Table">Đặt bàn</a>
             <a href="~/Site/Order">Đặt món</a>
