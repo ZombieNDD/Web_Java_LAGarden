@@ -7,16 +7,32 @@
 
     <!-- Base Define -->
     <definition name="base.definition"  
-        template="/WEB-INF/layouts/mainlayout.jsp">  
-        <put-attribute name="body" value="" />  
+        template="/WEB-INF/layouts/mainlayout.jsp">
+        <put-attribute name="head" value="" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="thongtin" value="" />
+        <put-attribute name="hotro" value="" />
+        <put-attribute name="datban" value="" />
+        <put-attribute name="datmon" value="" />
     </definition>  
+    <!-- Trang chủ -->
+    <definition name="home" template="/WEB-INF/views/Site/home.jsp">
+    </definition>
     
-    <definition name="home" template="/WEB-INF/views/home.jsp">  
-
-    </definition> 
     <!-- Tin tức  -->
     <definition name="tintuc" extends="base.definition">  
-        <put-attribute name="body" value="/WEB-INF/views/tintuc.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/Site/tintuc.jsp" />
+    </definition>
+        <!-- Tin tức  -->
+    <definition name="hotro" extends="base.definition">  
+        <put-attribute name="body" value="/WEB-INF/views/Site/hotro.jsp" />
+    </definition>
+        <definition name="thongtin" extends="base.definition">  
+        <put-attribute name="body" value="/WEB-INF/views/Site/information.jsp" />
+    </definition>
+
+        <definition name="datban" extends="base.definition">  
+        <put-attribute name="body" value="/WEB-INF/views/Site/Table.jsp" />
     </definition>  
 	
 

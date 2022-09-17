@@ -6,18 +6,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <head>
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-3.0.0.min.js"></script>
-<script src="~/Scripts/popper.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="/Public/plugins/ckfinder/ckfinder.js"></script>
-<link href="~/Public/MyCSS/MenuBar CSS/MenubarCSS.css" rel="stylesheet"
-	type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<link href="${pageContext.servletContext.contextPath}/resource/css/MenuBar CSS/MenubarCSS.css" rel="stylesheet" type="text/css" />
 <tiles:insertAttribute name="head" />
 <style>
 body {
-	background-image: url('../../Public/Img/AN1.jpg');
+	background-image: url("resource/Img/AN1.jpg");
 	background-size: cover;
 	height: 100%;
 }
@@ -37,7 +32,7 @@ footer {
 			<div class="container">
 				<!-- Brand -->
 				<a class="navbar-brand" href="~/Site/Home"> <img
-					src="~/Public/Img/logo2.png" width="220" height="50" alt="Logo" />
+					src="${pageContext.servletContext.contextPath}/resource/Img/logo2.png" width="220" height="50" alt="Logo" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
@@ -46,9 +41,9 @@ footer {
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<nav class="nav my-bar-nav">
-					<a href="/thong-tin" class="nav-item my-bar-nav-item my-bar-a"
+					<a href="thongtin" class="nav-item my-bar-nav-item my-bar-a"
 						active-color="DarkSlateBlue" id="thongtin">Thông tin</a> <a
-						href="/ho-tro" class="nav-item my-bar-nav-item my-bar-a"
+						href="hotro" class="nav-item my-bar-nav-item my-bar-a"
 						active-color="DarkKhaki" id="hotro">Hỗ trợ</a> <a href="/dat-ban"
 						class="nav-item my-bar-nav-item my-bar-a" active-color="DeepPink"
 						id="datban">Đặt bàn</a> <a href="/dat-mon"
@@ -77,6 +72,8 @@ footer {
 	<tiles:insertAttribute name="datban" />
 	<tiles:insertAttribute name="datmon" />
 
-	<script src="~/Public/MyJS/MenuBar JS/MenubarJS.js"></script>
+	
+	
+	<script src="${pageContext.servletContext.contextPath}/resource/MyJS/MenuBar JS/MenubarJS.js"></script>
 </body>
 </html>

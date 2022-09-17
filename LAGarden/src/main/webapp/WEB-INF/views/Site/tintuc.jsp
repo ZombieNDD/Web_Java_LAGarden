@@ -48,21 +48,21 @@
     <section class="section_sevice">
         <div class="row">
             <div class="col-md-4" style="left:50px;">
-                <span class="anhicon"><img src="~/Public/Img/icon1.png" /></span>
+                <span class="anhicon"><img src="${pageContext.servletContext.contextPath}/resource/Img/icon1.png" /></span>
                 <div class="contain-right">
                     <p class="title">Miễn phí giao hàng</p>
                     <p>Miễn phí vận chuyển nội thành</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <span class="anhicon"><img src="~/Public/Img/icon3.png" /></span>
+                <span class="anhicon"><img src="${pageContext.servletContext.contextPath}/resource/Img/icon3.png" /></span>
                 <div class="contain-right">
                     <p class="title">Tiết kiệm thời gian</p>
                     <p>Mua sắm dễ hơn khi online</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <span class="anhicon"><img src="~/Public/Img/icon4.png" /></span>
+                <span class="anhicon"><img src="${pageContext.servletContext.contextPath}/resource/Img/icon4.png" /></span>
                 <div class="contain-right">
                     <p class="title">Tư vấn trực tiếp</p>
                     <p>Đội ngũ tư vấn nhiệt tình</p>

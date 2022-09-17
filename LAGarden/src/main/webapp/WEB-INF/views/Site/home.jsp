@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/1147679ae7.js" crossorigin="anonymous"></script>
-    <style><%@include file="/resource/css/Home.css"%></style>
+    <style><%@include file="/resource/css/trangchu.css"%></style>
 
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;700;800&display=swap" rel="stylesheet">
     <title>LA Restaurant</title>
@@ -17,7 +17,6 @@
         <input type="checkbox" />
         <div class="menu-icon">
             <div class="menu-line">
-
             </div>
         </div>
         <div class="menu-item">
