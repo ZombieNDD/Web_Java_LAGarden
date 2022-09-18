@@ -38,6 +38,10 @@ public class WebsiteController {
 		model.addAttribute("list",list.getList());
         return "datban";
     }
+	@RequestMapping("/datmon")
+	public String datmon(ModelMap model) {
+		return "datmon";
+	}
 	
 	
 }

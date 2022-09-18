@@ -86,7 +86,7 @@
     <script language="JavaScript">window.onload = addOptionTreEm()</script>
     <script language="JavaScript">window.onload = NgayGio()</script>
     <script language="JavaScript">window.onload = addOptionNguoiLon();</script>
-    <script src="/Public/MyJS/FormTable.js"></script>
+    <script src="${pageContext.servletContext.contextPath}/resource/MyJS/FormTable.js"></script>
     <script>
         function addClass() {
             let ele = document.getElementById('datban');

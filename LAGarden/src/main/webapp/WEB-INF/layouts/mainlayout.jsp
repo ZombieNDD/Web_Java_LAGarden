@@ -44,7 +44,7 @@ footer {
 					<a href="thongtin" class="nav-item my-bar-nav-item my-bar-a"
 						active-color="DarkSlateBlue" id="thongtin">Thông tin</a> <a
 						href="hotro" class="nav-item my-bar-nav-item my-bar-a"
-						active-color="DarkKhaki" id="hotro">Hỗ trợ</a> <a href="/dat-ban"
+						active-color="DarkKhaki" id="hotro">Hỗ trợ</a> <a href="datban"
 						class="nav-item my-bar-nav-item my-bar-a" active-color="DeepPink"
 						id="datban">Đặt bàn</a> <a href="/dat-mon"
 						class="nav-item my-bar-nav-item my-bar-a" active-color="LimeGreen"
