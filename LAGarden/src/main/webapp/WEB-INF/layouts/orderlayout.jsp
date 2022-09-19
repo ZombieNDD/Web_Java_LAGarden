@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
         <link href="${pageContext.servletContext.contextPath}/resource/css/Style.css" rel="stylesheet" />
         <script src="${pageContext.servletContext.contextPath}/resource/MyJS/JavaScript.js"></script>
@@ -41,24 +41,14 @@
     </div>
     <div class="row" style="margin: unset; padding-top:40px">
         <!-- Cột trái -->
+		<div class="col-sm-4">
 
-        <div class="col-sm-4">
-
-            <div class="can-giua">
-                <ul class="mb-0 nav nav-food can-giua bo-goc my-list-menu">
-                    <li>
-                        <img src="${pageContext.servletContext.contextPath}/resource/Img/LogoMenu.png" width="200">
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
-        <hr class="d-sm-none">
-
+		<tiles:insertAttribute name="menuleft" />
+		</div>
         <!-- Kết thúc cột trái -->
         <!-- Cột phải -->
         <div class="col-sm-8">
-
+	<tiles:insertAttribute name="body" />
           
     </div>
         </div>
