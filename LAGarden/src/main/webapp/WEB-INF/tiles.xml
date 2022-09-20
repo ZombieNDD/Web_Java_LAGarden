@@ -1,24 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE tiles-definitions PUBLIC  
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
-       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
-       
-<tiles-definitions>  
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
-    <!-- Base Define -->
-    <definition name="base.definition"  
-        template="/WEB-INF/layouts/mainlayout.jsp">  
-        <put-attribute name="body" value="" />  
-    </definition>  
-    
-    <definition name="home" template="/WEB-INF/views/home.jsp">  
+<tiles-definitions>
 
-    </definition> 
-    <!-- Tin tức  -->
-    <definition name="tintuc" extends="base.definition">  
-        <put-attribute name="body" value="/WEB-INF/views/tintuc.jsp" />
-    </definition>  
-	
+	<!-- Base Define -->
+	<definition name="base.homepage"
+		template="/WEB-INF/layouts/mainlayout.jsp">
+		<put-attribute name="head" value="" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="thongtin" value="" />
+		<put-attribute name="hotro" value="" />
+		<put-attribute name="datban" value="" />
+		<put-attribute name="datmon" value="" />
+	</definition>
+	<!-- Trang chủ -->
+	<definition name="home"
+		template="/WEB-INF/views/Site/home.jsp">
+	</definition>
 
- 
+	<!-- Tin tức -->
+	<definition name="tintuc" extends="base.homepage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/tintuc.jsp" />
+	</definition>
+	<!-- Hỗ trợ -->
+	<definition name="hotro" extends="base.homepage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/hotro.jsp" />
+	</definition>
+	<!-- Thông tin -->
+	<definition name="thongtin" extends="base.homepage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/information.jsp" />
+	</definition>
+	<!-- Đặt bàn -->
+	<definition name="datban" extends="base.homepage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/Table.jsp" />
+	</definition>
+	<!-- Đặt món -->
+	<definition name="datmon" extends="base.homepage">	
+		<put-attribute name="body">
+		<definition template="/WEB-INF/layouts/orderlayout.jsp" >
+                <put-attribute name="menuleft" value="/WEB-INF/views/sub_layout/menuleft.jsp"/>
+				<put-attribute name="body" value="/WEB-INF/views/Site/order.jsp" />
+            </definition>
+		</put-attribute>
+	</definition>
+
+
+
+
 </tiles-definitions> 
