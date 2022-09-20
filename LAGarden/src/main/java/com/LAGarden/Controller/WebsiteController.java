@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.LAGarden.DAO.CTMonAnDAO;
+import com.LAGarden.DAO.DanhMucDAO;
 import com.LAGarden.DAO.ImageDatBanDAO;
 @Controller
 public class WebsiteController {
@@ -38,6 +40,15 @@ public class WebsiteController {
 		model.addAttribute("list",list.getList());
         return "datban";
     }
+	@RequestMapping("/datmon")
+	public String datmon(ModelMap model) throws ClassNotFoundException, SQLException {
+		DanhMucDAO listDanhMuc = new DanhMucDAO();
+		CTMonAnDAO listDSMonAn = new CTMonAnDAO();
+		model.addAttribute("listDanhMuc",listDanhMuc.getListDanhMuc());
+		model.addAttribute("listMonAn",listDSMonAn.getListCTMonAN());
+		return "datmon";
+	}
+	
 	
 	
 }
