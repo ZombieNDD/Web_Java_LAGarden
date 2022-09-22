@@ -2,6 +2,8 @@ package com.LAGarden.Controller;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.tiles.request.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,6 +25,7 @@ public class WebsiteController {
     {
         return "tintuc";
     }
+	
 	@RequestMapping("/hotro")
     public String hotro(ModelMap model)
     {
@@ -48,7 +51,24 @@ public class WebsiteController {
 		model.addAttribute("listMonAn",listDSMonAn.getListCTMonAN());
 		return "datmon";
 	}
+
 	
 	
 	
+	
+	
+	@RequestMapping("/infomation2")
+	public String Login(ModelMap model, HttpServletRequest request) {
+		String id = request.getParameter("tendangnhap");
+		String pw = request.getParameter("password");
+		
+		if (id.equals("hutech") && pw.equals("123")) {
+			model.addAttribute("uid", id);
+			model.addAttribute("pwd", pw);
+			
+			return "admin";
+		}
+		model.addAttribute("thongbao", "Sai thông tin đăng nhập!");
+		return "infomation2";
+	}
 }

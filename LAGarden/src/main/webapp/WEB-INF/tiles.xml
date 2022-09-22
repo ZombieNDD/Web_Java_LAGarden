@@ -33,7 +33,7 @@
 	<!-- Thông tin -->
 	<definition name="thongtin" extends="base.homepage">
 		<put-attribute name="body"
-			value="/WEB-INF/views/Site/information.jsp" />
+			value="/WEB-INF/views/Site/information2.jsp" />
 	</definition>
 	<!-- Đặt bàn -->
 	<definition name="datban" extends="base.homepage">

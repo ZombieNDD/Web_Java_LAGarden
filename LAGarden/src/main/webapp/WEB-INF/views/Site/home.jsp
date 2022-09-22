@@ -22,7 +22,7 @@
         <div class="menu-item">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li><a href=thongtin">Về chúng tôi</a></li>
+                <li><a href="thongtin">Về chúng tôi</a></li>
                 <li><a href="tinTuc">Tin tức</a></li>
                 <li><a href="hotro">Liên hệ</a></li>
                 <li><a href="dangnhap">Đăng nhập</a></li>
