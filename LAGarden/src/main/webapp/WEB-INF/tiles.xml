@@ -51,9 +51,6 @@
 		</put-attribute>
 	</definition>
 
-
-
-
 	<!-- Admin -->
 	<definition name="admin" extends="base.homepage">
 		<put-attribute name="body"

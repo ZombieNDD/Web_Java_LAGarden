@@ -56,7 +56,7 @@ public class WebsiteController {
 	
 	
 	@RequestMapping("/admin")
-	public String Login(ModelMap model, HttpServletRequest request) {
+	public String admin(ModelMap model, HttpServletRequest request) {
 		String id = request.getParameter("tendangnhap");
 		String pw = request.getParameter("password");
 		
