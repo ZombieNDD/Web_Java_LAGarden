@@ -28,7 +28,7 @@
                 <li><a href="dangnhap">Đăng nhập</a></li>
                 <li><a href="dangky">Đăng ký</a></li>
                 <li><a>Xin chào: </a></li>
-                <li><a href="admin">Admin</a></li>
+                <li><a href="quantri">Admin</a></li>
             </ul>
         </div>
         <div class="header-text">

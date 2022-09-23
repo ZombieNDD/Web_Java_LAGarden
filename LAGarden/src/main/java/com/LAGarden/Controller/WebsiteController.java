@@ -55,8 +55,8 @@ public class WebsiteController {
 	
 	
 	
-	@RequestMapping("/admin")
-	public String admin(ModelMap model, HttpServletRequest request) {
+	@RequestMapping("/quantri")
+	public String quantri(ModelMap model, HttpServletRequest request) {
 		String id = request.getParameter("tendangnhap");
 		String pw = request.getParameter("password");
 		
@@ -64,9 +64,9 @@ public class WebsiteController {
 			model.addAttribute("uid", id);
 			model.addAttribute("pwd", pw);
 			
-			return "admin";
+			return "quantri";
 		}
 		model.addAttribute("thongbao", "Sai thông tin đăng nhập!");
-		return "admin";
+		return "quantri";
 	}
 }

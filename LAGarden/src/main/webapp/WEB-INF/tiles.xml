@@ -14,7 +14,7 @@
 		<put-attribute name="hotro" value="" />
 		<put-attribute name="datban" value="" />
 		<put-attribute name="datmon" value="" />
-		<put-attribute name="admin" value="" />
+		<put-attribute name="quantri" value="" />
 	</definition>
 	<!-- Trang chủ -->
 	<definition name="home"
@@ -52,7 +52,7 @@
 	</definition>
 
 	<!-- Admin -->
-	<definition name="admin" extends="base.homepage">
+	<definition name="quantri" extends="base.homepage">
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/admin.jsp" />
 	</definition>
