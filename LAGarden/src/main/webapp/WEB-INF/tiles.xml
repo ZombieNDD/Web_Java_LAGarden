@@ -14,6 +14,7 @@
 		<put-attribute name="hotro" value="" />
 		<put-attribute name="datban" value="" />
 		<put-attribute name="datmon" value="" />
+		<put-attribute name="admin" value="" />
 	</definition>
 	<!-- Trang chủ -->
 	<definition name="home"
@@ -33,7 +34,7 @@
 	<!-- Thông tin -->
 	<definition name="thongtin" extends="base.homepage">
 		<put-attribute name="body"
-			value="/WEB-INF/views/Site/information2.jsp" />
+			value="/WEB-INF/views/Site/information.jsp" />
 	</definition>
 	<!-- Đặt bàn -->
 	<definition name="datban" extends="base.homepage">
@@ -52,5 +53,11 @@
 
 
 
+
+	<!-- Admin -->
+	<definition name="admin" extends="base.homepage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/admin.jsp" />
+	</definition>
 
 </tiles-definitions> 

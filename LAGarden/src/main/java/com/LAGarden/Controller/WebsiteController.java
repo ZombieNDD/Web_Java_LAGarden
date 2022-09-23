@@ -4,12 +4,10 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tiles.request.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.LAGarden.DAO.CTMonAnDAO;
 import com.LAGarden.DAO.DanhMucDAO;
@@ -57,7 +55,7 @@ public class WebsiteController {
 	
 	
 	
-	@RequestMapping("/infomation2")
+	@RequestMapping("/admin")
 	public String Login(ModelMap model, HttpServletRequest request) {
 		String id = request.getParameter("tendangnhap");
 		String pw = request.getParameter("password");
@@ -69,6 +67,6 @@ public class WebsiteController {
 			return "admin";
 		}
 		model.addAttribute("thongbao", "Sai thông tin đăng nhập!");
-		return "infomation2";
+		return "admin";
 	}
 }
