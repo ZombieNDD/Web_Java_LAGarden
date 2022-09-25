@@ -32,25 +32,20 @@
 			</div>
 
 			<div class="col-md-8">
-				<form action="infomation2" method="POST">
+				<form action="adminedit" method="POST">
 					<div class="form-group">
-
-						<label><strong>Tên đăng nhập (*) :</strong></label> <br> <input
-							name="tendangnhap">
-
+						<label><strong>Tên đăng nhập (*) :</strong></label><br> <input
+							name="id">  
 					</div>
 					<div class="form-group">
 						<label><strong>Mật khẩu (*): </strong></label> <br> <input
 							name="password" type="password" />
 					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-success">ĐĂNG NHẬP</button>
-
-					</div>
+					<button type="submit" class="btn btn-success">ĐĂNG NHẬP</button>
 				</form>
+				
 				<div class="form-group">
 					<p>(*) Thông tin bắt buộc phải nhập</p>
-
 				</div>
 			</div>
 

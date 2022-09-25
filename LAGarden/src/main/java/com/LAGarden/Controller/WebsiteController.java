@@ -55,18 +55,18 @@ public class WebsiteController {
 	
 	
 	
-	@RequestMapping("/quantri")
-	public String quantri(ModelMap model, HttpServletRequest request) {
-		String id = request.getParameter("tendangnhap");
-		String pw = request.getParameter("password");
-		
-		if (id.equals("hutech") && pw.equals("123")) {
-			model.addAttribute("uid", id);
-			model.addAttribute("pwd", pw);
-			
-			return "quantri";
-		}
-		model.addAttribute("thongbao", "Sai thông tin đăng nhập!");
-		return "quantri";
-	}
+//	@RequestMapping("/quantri")
+//	public String quantri(ModelMap model) {
+////		String id = request.getParameter("tendangnhap");
+////		String pw = request.getParameter("password");
+////		
+////		if (id.equals("hutech") && pw.equals("123")) {
+////			model.addAttribute("uid", id);
+////			model.addAttribute("pwd", pw);
+////			
+////			return "quantri";
+////		}
+////		model.addAttribute("thongbao", "Sai thông tin đăng nhập!");
+//		return "quantri";
+//	}
 }

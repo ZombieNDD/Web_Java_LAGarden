@@ -16,6 +16,10 @@
 		<put-attribute name="datmon" value="" />
 		<put-attribute name="quantri" value="" />
 	</definition>
+	<definition name="base.adminpage"
+		template="/WEB-INF/adminlayout/adminlayout.jsp">
+		<put-attribute name="admin" value="" />
+	</definition>
 	<!-- Trang chủ -->
 	<definition name="home"
 		template="/WEB-INF/views/Site/home.jsp">
@@ -42,19 +46,27 @@
 			value="/WEB-INF/views/Site/Table.jsp" />
 	</definition>
 	<!-- Đặt món -->
-	<definition name="datmon" extends="base.homepage">	
+	<definition name="datmon" extends="base.homepage">
 		<put-attribute name="body">
-		<definition template="/WEB-INF/layouts/orderlayout.jsp" >
-                <put-attribute name="menuleft" value="/WEB-INF/views/sub_layout/menuleft.jsp"/>
-				<put-attribute name="body" value="/WEB-INF/views/Site/order.jsp" />
-            </definition>
+			<definition template="/WEB-INF/layouts/orderlayout.jsp">
+				<put-attribute name="menuleft"
+					value="/WEB-INF/views/sub_layout/menuleft.jsp" />
+				<put-attribute name="body"
+					value="/WEB-INF/views/Site/order.jsp" />
+			</definition>
 		</put-attribute>
 	</definition>
 
-	<!-- Admin -->
-	<definition name="quantri" extends="base.homepage">
+
+
+	<definition name="admin" extends="base.adminpage">
+		<put-attribute name="title" value="Admin Login" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/admin.jsp" />
 	</definition>
-
+	<definition name="adminedit" extends="base.adminpage">
+	<put-attribute name="title" value="DashBoard" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminedit.jsp" />
+	</definition>
 </tiles-definitions> 
