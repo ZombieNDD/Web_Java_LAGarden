@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.LAGarden.DAO.ImageDatBanDAO;
+import com.LAGarden.Model.DANGKY;
 @Controller
 public class WebsiteController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
@@ -41,6 +42,13 @@ public class WebsiteController {
 	@RequestMapping("/datmon")
 	public String datmon(ModelMap model) {
 		return "datmon";
+	}
+	
+	@RequestMapping("/dangky")
+	public String dangky( ModelMap model) {
+		//String tenTaiKhoan = model.;
+		
+		return "dangky";
 	}
 	
 	
