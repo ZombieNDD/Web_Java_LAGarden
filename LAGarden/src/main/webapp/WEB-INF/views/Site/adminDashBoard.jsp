@@ -51,6 +51,7 @@
 @RenderSection("headcss",required: false) -->
 </head>
 <body class="g-sidenav-show  bg-gray-200">
+
 	<aside
 		class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
 		id="sidenav-main">
@@ -71,7 +72,7 @@
 			id="sidenav-collapse-main">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link text-white"
-					href="~/Admin/DanhMuc">
+					href="adminDanhMuc">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">menu</i>
@@ -260,6 +261,8 @@
 		</nav>
 		<!-- End Navbar -->
 		<!-- @RenderBody() -->
+		<tiles:insertAttribute name="body" />
+		<tiles:insertAttribute name="DanhMuc" />
 	</main>
 	<div class="fixed-plugin">
 		<a class="fixed-plugin-button text-dark position-fixed px-3 py-2">

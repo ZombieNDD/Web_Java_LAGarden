@@ -32,4 +32,9 @@ public class AdminController {
 //		}
 		return "adminDashBoard";
 	}
+	@RequestMapping("/adminDanhMuc")
+	public String adminDanhMuc(ModelMap model, HttpServletRequest request) {
+
+		return "adminDanhMuc";
+	}
 }

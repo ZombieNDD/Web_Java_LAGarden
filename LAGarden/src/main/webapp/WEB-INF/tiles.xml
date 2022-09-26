@@ -16,10 +16,24 @@
 		<put-attribute name="datmon" value="" />
 		<put-attribute name="quantri" value="" />
 	</definition>
+
+<!-- =========================================================================== -->
 	<definition name="base.adminpage"
 		template="/WEB-INF/adminlayout/adminlayout.jsp">
 		<put-attribute name="admin" value="" />
 	</definition>
+
+	<definition name="base.dashboard"
+		template="/WEB-INF/views/Site/adminDashBoard.jsp">
+		<put-attribute name="adminDanhMuc" value="" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+
+
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
 	<!-- Trang chủ -->
 	<definition name="home"
 		template="/WEB-INF/views/Site/home.jsp">
@@ -59,25 +73,32 @@
 
 
 
-<!-- =========================================================================== -->
-<!-- =========================================================================== -->
-<!-- =========================================================================== -->
-<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<!-- ====================================DashBoard======================================= -->
 
 	<definition name="admin" extends="base.adminpage">
 		<put-attribute name="title" value="Admin Login" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/admin.jsp" />
 	</definition>
+
 	<definition name="adminDashBoard" extends="base.adminpage">
-	<put-attribute name="title" value="DashBoard" />
+		<put-attribute name="title" value="DashBoard" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/adminDashBoard.jsp" />
 	</definition>
-	
-	
-	
-	
-	
-	
+
+	<!-- =================================BodyDashBoard========================================== -->
+
+	<definition name="adminDanhMuc" extends="base.dashboard">
+		<put-attribute name="title" value="adminDanhMuc" />
+		
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminDanhMuc.jsp" />
+	</definition>
+
+
+
 </tiles-definitions> 
