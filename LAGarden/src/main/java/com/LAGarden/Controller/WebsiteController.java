@@ -44,6 +44,20 @@ public class WebsiteController {
 		return "datmon";
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/dangky")
 	public String dangky( ModelMap model) {
 		//String tenTaiKhoan = model.;
