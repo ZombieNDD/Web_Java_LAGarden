@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.Admin.Model.LoginAdmin;
 import com.LAGarden.Config.MyConnection;
+import com.LAGarden.Model.CTMonAn;
 import com.LAGarden.Model.DanhMuc;
 
 public class AdminLoginDAO {
@@ -14,7 +16,31 @@ public class AdminLoginDAO {
 	ResultSet rs =null;
 	Statement stm = null;
 	
-	ArrayList<DanhMuc> list = new ArrayList<DanhMuc>();
+	ArrayList<LoginAdmin> list = new ArrayList<LoginAdmin>();
+	
+	
+	public ArrayList<LoginAdmin> getListCTMonAN() throws ClassNotFoundException, SQLException{
+		conn = new MyConnection().getConnection();
+
+		String query = "SELECT * FROM CTMONAN";
+		
+        try {
+		stm = conn.createStatement();
+		rs = stm.executeQuery(query);
+		while (rs.next()){
+			LoginAdmin item = new LoginAdmin();
+			item.UserID = rs.getInt("IDKH");
+			item.UserName= rs.getString("UserName");
+			item.GroupID = rs.getInt("Roles");
+			
+			list.add(item);
+			}
+		return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return null;
+	}
 	
 	
 }

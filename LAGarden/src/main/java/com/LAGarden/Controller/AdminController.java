@@ -19,18 +19,17 @@ public class AdminController {
 	@RequestMapping(value="/")
 	public String adminform(ModelMap model) {
 		return "admin";
-	}
-	
+	}	
 	
 	@RequestMapping("/adminDashBoard")
 	public String adminDashBoard(ModelMap model, HttpServletRequest request) {
-//		String id = request.getParameter("id");
-//		String pw = request.getParameter("password");
-//
-//		if (id.equals("hutech") && pw.equals("123")) {
-//			return "adminedit";
-//		}
-		return "adminDashBoard";
+		String id = request.getParameter("id");
+		String pw = request.getParameter("password");
+
+		if (id.equals("hutech") && pw.equals("123")) {
+			return "adminDashBoard";
+		}
+		return "admin";
 	}
 	
 	@RequestMapping("/adminDanhMuc")
