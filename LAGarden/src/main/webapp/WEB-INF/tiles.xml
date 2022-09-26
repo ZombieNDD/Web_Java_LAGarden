@@ -63,4 +63,7 @@
             </definition>
 		</put-attribute>
 	</definition>
-</tiles-definitions> 
+			<definition name="dangky" extends="base.homepage">  
+        <put-attribute name="body" value="/WEB-INF/views/Site/dangky.jsp" />
+    </definition> 
+</tiles-definitions>

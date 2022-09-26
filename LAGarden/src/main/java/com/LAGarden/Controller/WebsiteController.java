@@ -14,6 +14,7 @@ import com.LAGarden.DAO.CTMonAnDAO;
 import com.LAGarden.DAO.DanhMucDAO;
 import com.LAGarden.DAO.ImageDatBanDAO;
 import com.LAGarden.Model.CTMonAn;
+import com.LAGarden.Model.DANGKY;
 @Controller
 public class WebsiteController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
@@ -68,7 +69,6 @@ public class WebsiteController {
 		return "datmon";
 	}
 	
-	
 	@RequestMapping("/dangky")
     public String dangky(ModelMap model) 
     {
@@ -76,6 +76,4 @@ public class WebsiteController {
         return "dangky";
     }
 	
-	
-	
-}
+
