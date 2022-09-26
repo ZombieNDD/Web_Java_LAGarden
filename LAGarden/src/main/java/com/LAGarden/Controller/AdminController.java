@@ -32,9 +32,41 @@ public class AdminController {
 //		}
 		return "adminDashBoard";
 	}
+	
 	@RequestMapping("/adminDanhMuc")
 	public String adminDanhMuc(ModelMap model, HttpServletRequest request) {
 
 		return "adminDanhMuc";
+	}	
+	@RequestMapping("/adminMonAn")
+	public String adminMonAn(ModelMap model, HttpServletRequest request) {
+
+		return "adminMonAn";
 	}
+	@RequestMapping("/adminDatBan")
+	public String adminDatBan(ModelMap model, HttpServletRequest request) {
+
+		return "adminDatBan";
+	}
+	@RequestMapping("/adminHoTro")
+	public String adminHoTro(ModelMap model, HttpServletRequest request) {
+
+		return "adminHoTro";
+	}
+	@RequestMapping("/adminTaiKhoan")
+	public String adminTaiKhoan(ModelMap model, HttpServletRequest request) {
+
+		return "adminTaiKhoan";
+	}
+	@RequestMapping("/adminHinhAnh")
+	public String adminHinhAnh(ModelMap model, HttpServletRequest request) {
+
+		return "adminHinhAnh";
+	}
+	@RequestMapping("/adminHoaDon")
+	public String adminHoaDon(ModelMap model, HttpServletRequest request) {
+
+		return "adminHoaDon";
+	}
+	
 }

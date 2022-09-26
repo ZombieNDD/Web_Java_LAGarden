@@ -17,16 +17,18 @@
 		<put-attribute name="quantri" value="" />
 	</definition>
 
-<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
 	<definition name="base.adminpage"
 		template="/WEB-INF/adminlayout/adminlayout.jsp">
+		<put-attribute name="body" value="" />
 		<put-attribute name="admin" value="" />
 	</definition>
 
 	<definition name="base.dashboard"
 		template="/WEB-INF/views/Site/adminDashBoard.jsp">
-		<put-attribute name="adminDanhMuc" value="" />
+
 		<put-attribute name="body" value="" />
+		<put-attribute name="adminDanhMuc" value="" />
 	</definition>
 
 
@@ -84,21 +86,54 @@
 			value="/WEB-INF/views/Site/admin.jsp" />
 	</definition>
 
-	<definition name="adminDashBoard" extends="base.adminpage">
-		<put-attribute name="title" value="DashBoard" />
-		<put-attribute name="body"
-			value="/WEB-INF/views/Site/adminDashBoard.jsp" />
+	<definition name="adminDashBoard" extends="base.dashboard">
+		<put-attribute name="title" value="adminDanhMuc" />
+
 	</definition>
 
 	<!-- =================================BodyDashBoard========================================== -->
 
 	<definition name="adminDanhMuc" extends="base.dashboard">
 		<put-attribute name="title" value="adminDanhMuc" />
-		
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/adminDanhMuc.jsp" />
 	</definition>
 
+	<definition name="adminMonAn" extends="base.dashboard">
+		<put-attribute name="title" value="adminMonAn" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminMonAn.jsp" />
+	</definition>
+
+	<definition name="adminDatBan" extends="base.dashboard">
+		<put-attribute name="title" value="adminDatBan" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminDatBan.jsp" />
+	</definition>
+
+	<definition name="adminHoaDon" extends="base.dashboard">
+		<put-attribute name="title" value="adminHoaDon" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminHoaDon.jsp" />
+	</definition>
+
+	<definition name="adminTaiKhoan" extends="base.dashboard">
+		<put-attribute name="title" value="adminTaiKhoan" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminTaiKhoan.jsp" />
+	</definition>
+
+	<definition name="adminHoTro" extends="base.dashboard">
+		<put-attribute name="title" value="adminHoTro" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminHoTro.jsp" />
+	</definition>
+
+	<definition name="adminHinhAnh" extends="base.dashboard">
+		<put-attribute name="title" value="adminHinhAnh" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminHinhAnh.jsp" />
+	</definition>
 
 
 </tiles-definitions> 

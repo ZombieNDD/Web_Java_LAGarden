@@ -79,49 +79,49 @@
 						</div> <span class="nav-link-text ms-1">Danh mục</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="~/Admin/CTMONAN">
+					href="adminMonAn">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">dashboard</i>
 						</div> <span class="nav-link-text ms-1">Món ăn</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="~/Admin/DatBan">
+					href="adminDatBan">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">table_view</i>
 						</div> <span class="nav-link-text ms-1">Đặt bàn</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="~/Admin/HoaDon">
+					href="adminHoaDon">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">receipt_long</i>
 						</div> <span class="nav-link-text ms-1">Hoá đơn</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="~/Admin/TAIKHOAN">
+					href="adminTaiKhoan">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">view_in_ar</i>
 						</div> <span class="nav-link-text ms-1">Tài khoản</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="~/Admin/LIENHE">
+					href="adminHoTro">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">format_textdirection_r_to_l</i>
 						</div> <span class="nav-link-text ms-1">Hỗ trợ</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="~/Admin/ImageDatBan">
+					href="adminHinhAnh">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">image</i>
 						</div> <span class="nav-link-text ms-1">Hình ảnh</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="~/Admin/Auth/Logout">
+					href="admin">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
 							<i class="material-icons opacity-10">login</i>
@@ -262,7 +262,6 @@
 		<!-- End Navbar -->
 		<!-- @RenderBody() -->
 		<tiles:insertAttribute name="body" />
-		<tiles:insertAttribute name="DanhMuc" />
 	</main>
 	<div class="fixed-plugin">
 		<a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
