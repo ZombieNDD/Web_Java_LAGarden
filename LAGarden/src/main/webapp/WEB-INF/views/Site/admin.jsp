@@ -32,7 +32,7 @@
 			</div>
 
 			<div class="col-md-8">
-				<form action="adminedit" method="POST">
+				<form action="adminDashBoard" method="POST">
 					<div class="form-group">
 						<label><strong>Tên đăng nhập (*) :</strong></label><br> <input
 							name="id">  

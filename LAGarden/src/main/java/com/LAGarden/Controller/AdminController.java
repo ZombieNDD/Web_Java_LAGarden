@@ -22,14 +22,14 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping("/adminedit")
-	public String adminedit(ModelMap model, HttpServletRequest request) {
+	@RequestMapping("/adminDashBoard")
+	public String adminDashBoard(ModelMap model, HttpServletRequest request) {
 //		String id = request.getParameter("id");
 //		String pw = request.getParameter("password");
 //
 //		if (id.equals("hutech") && pw.equals("123")) {
 //			return "adminedit";
 //		}
-		return "adminedit";
+		return "adminDashBoard";
 	}
 }

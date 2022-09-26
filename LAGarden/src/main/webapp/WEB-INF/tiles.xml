@@ -59,14 +59,25 @@
 
 
 
+<!-- =========================================================================== -->
+<!-- =========================================================================== -->
+<!-- =========================================================================== -->
+<!-- =========================================================================== -->
+
 	<definition name="admin" extends="base.adminpage">
 		<put-attribute name="title" value="Admin Login" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/admin.jsp" />
 	</definition>
-	<definition name="adminedit" extends="base.adminpage">
+	<definition name="adminDashBoard" extends="base.adminpage">
 	<put-attribute name="title" value="DashBoard" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/Site/adminedit.jsp" />
+			value="/WEB-INF/views/Site/adminDashBoard.jsp" />
 	</definition>
+	
+	
+	
+	
+	
+	
 </tiles-definitions> 
