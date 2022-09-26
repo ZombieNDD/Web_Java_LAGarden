@@ -19,10 +19,10 @@ public class AdminLoginDAO {
 	ArrayList<LoginAdmin> list = new ArrayList<LoginAdmin>();
 	
 	
-	public ArrayList<LoginAdmin> getListCTMonAN() throws ClassNotFoundException, SQLException{
+	public ArrayList<LoginAdmin> getListTaiKhoan() throws ClassNotFoundException, SQLException{
 		conn = new MyConnection().getConnection();
 
-		String query = "SELECT * FROM CTMONAN";
+		String query = "SELECT * FROM TAIKHOAN";
 		
         try {
 		stm = conn.createStatement();

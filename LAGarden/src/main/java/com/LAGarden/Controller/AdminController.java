@@ -9,9 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.LAGarden.DAO.CTMonAnDAO;
-import com.LAGarden.DAO.DanhMucDAO;
-import com.LAGarden.DAO.ImageDatBanDAO;
+import com.Admin.DAO.AdminLoginDAO;
+
 
 @Controller
 @RequestMapping(value = "admin")
@@ -22,11 +21,14 @@ public class AdminController {
 	}	
 	
 	@RequestMapping("/adminDashBoard")
-	public String adminDashBoard(ModelMap model, HttpServletRequest request) {
+	public String adminDashBoard(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("password");
-
-		if (id.equals("hutech") && pw.equals("123")) {
+		
+		AdminLoginDAO listTK = new AdminLoginDAO();
+		model.addAttribute("listTK",listTK.getListTaiKhoan());
+		
+		if (id.equals("") && pw.equals("123")) {
 			return "adminDashBoard";
 		}
 		return "admin";
