@@ -61,5 +61,12 @@
     <artifactId>mssql-jdbc</artifactId>
     <version>11.2.0.jre11</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
+<dependency>
+    <groupId>jakarta.xml.bind</groupId>
+    <artifactId>jakarta.xml.bind-api</artifactId>
+    <version>4.0.0</version>
+</dependency>
+
 </dependencies>
 </project>

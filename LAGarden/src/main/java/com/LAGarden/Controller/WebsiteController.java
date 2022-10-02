@@ -1,20 +1,32 @@
 package com.LAGarden.Controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport;
 import org.apache.tiles.request.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.LAGarden.Common.Encryption;
 import com.LAGarden.DAO.CTMonAnDAO;
 import com.LAGarden.DAO.DanhMucDAO;
 import com.LAGarden.DAO.ImageDatBanDAO;
+import com.LAGarden.DAO.UserDAO;
 import com.LAGarden.Model.CTMonAn;
-import com.LAGarden.Model.DANGKY;
+import com.LAGarden.Model.DangKy;
 @Controller
 public class WebsiteController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
@@ -72,8 +84,51 @@ public class WebsiteController {
 	@RequestMapping("/dangky")
     public String dangky(ModelMap model) 
     {
-
         return "dangky";
     }
+	@PostMapping("/saveSignUpForm")
+	public String saveUser(ModelMap model,HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+		Date date = new Date();
+		DangKy dk = new DangKy();
+		Encryption mahoa = new Encryption();
+		dk.username = request.getParameter("UserName");
+		dk.password = mahoa.EncryptMD5(request.getParameter("Password"));
+		
+		String repeatPass = request.getParameter("ConfirmPassword");
+		if (!dk.password.equals(repeatPass)) {
+			model.addAttribute("Thông báo","Mật khẩu lặp lại bị sai!");
+			return "dangky";
+		}
+		dk.fullname = request.getParameter("Name");
+		dk.address = request.getParameter("Address");
+		dk.email = request.getParameter("Email");
+		dk.phone = request.getParameter("Phone");
+		dk.createAt = date;
+		UserDAO user = new UserDAO();
+		user.Register(dk);
+		
+		return "dangky";
+	}
+	@RequestMapping("/dangnhap")
+	public String dangnhap(ModelMap model) {
+		return "dangnhap";
+	}
+	@PostMapping("/loginuser")
+	public String login(ModelMap model,HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+		Encryption mahoa = new Encryption();
+		String username = request.getParameter("username");
+		String password = mahoa.EncryptMD5(request.getParameter("password"));
+		UserDAO dao = new UserDAO();
+		DangKy dk =new DangKy();
+		dk= dao.Login(username, password);
+		HttpSession session = request.getSession();
+		
+		if (dk !=null) {
+			session.setAttribute("Fullname", dk.fullname);
+			return "home";
+		}
+		return "false";
+	}
+}
 	
 
