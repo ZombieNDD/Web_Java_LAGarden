@@ -26,9 +26,13 @@
 			<th>Tag</th>
 			<th></th>
 		</tr>
-
-		@foreach (var item in Model) {
-		<tr>
+		
+		
+		
+		
+	<c:forEach items="${listDanhMuc}" var="item">
+		
+		<!-- <tr>
 			<td>@Html.DisplayFor(modelItem => item.DanhMucID)</td>
 			<td>@Html.DisplayFor(modelItem => item.DanhMucName)</td>
 			<td>@Html.DisplayFor(modelItem => item.ThuTu)</td>
@@ -41,12 +45,15 @@
 					style="background: #ffffff; border: 2px solid #000000;">
 					@Html.ActionLink("Delete", "Delete", new { id = item.DanhMucID })</p>
 			</td>
-		</tr>
-		}
+		</tr> -->
+	</c:forEach>
+	
+		
 	</table>
-	@Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+	
+	<!-- @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
 	new PagedListRenderOptions { LiElementClasses = new string[] {
-	"page-item" }, })
+	"page-item" }, }) -->
 
 
 </div>

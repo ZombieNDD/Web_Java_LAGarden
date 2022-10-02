@@ -1,15 +1,19 @@
 package com.LAGarden.Controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.Admin.DAO.AdminLoginDAO;
+import com.LAGarden.Common.Encryption;
+import com.LAGarden.DAO.DanhMucDAO;
+import com.LAGarden.DAO.UserDAO;
+import com.LAGarden.Model.DangKy;
 
 
 @Controller
@@ -21,24 +25,31 @@ public class AdminController {
 	}	
 	
 	@RequestMapping("/adminDashBoard")
-	public String adminDashBoard(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("password");
+	public String adminDashBoard(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 		
-		AdminLoginDAO listTK = new AdminLoginDAO();
-		model.addAttribute("listTK",listTK.getListTaiKhoan());
+		Encryption mahoa = new Encryption();
+		String username = request.getParameter("id");
+		String password = mahoa.EncryptMD5(request.getParameter("password"));
+		UserDAO dao = new UserDAO();
+		DangKy dk =new DangKy();
+		dk= dao.Login(username, password);
+		HttpSession session = request.getSession();
 		
-		if (id.equals("") && pw.equals("123")) {
+		if (dk !=null) {
+			session.setAttribute("Fullname", dk.fullname);
 			return "adminDashBoard";
 		}
 		return "admin";
 	}
 	
 	@RequestMapping("/adminDanhMuc")
-	public String adminDanhMuc(ModelMap model, HttpServletRequest request) {
-
+	public String adminDanhMuc(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		DanhMucDAO listDanhMuc = new DanhMucDAO();		
+		model.addAttribute("listDanhMuc",listDanhMuc.getListDanhMuc());
 		return "adminDanhMuc";
 	}	
+	
+	
 	@RequestMapping("/adminMonAn")
 	public String adminMonAn(ModelMap model, HttpServletRequest request) {
 
