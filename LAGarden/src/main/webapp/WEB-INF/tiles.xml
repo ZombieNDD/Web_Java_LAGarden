@@ -153,7 +153,12 @@
 		</put-attribute>
 	</definition>
 			<definition name="dangky" extends="base.homepage">  
+			<put-attribute name="title" value="Đăng ký" />	
         <put-attribute name="body" value="/WEB-INF/views/Site/dangky.jsp" />
     </definition> 
+    <definition name="dangnhap" extends="base.homepage">  
+			<put-attribute name="title" value="Đăng nhập" />	
+        <put-attribute name="body" value="/WEB-INF/views/Site/login.jsp" />
+    </definition> 
+    
 </tiles-definitions>
-
