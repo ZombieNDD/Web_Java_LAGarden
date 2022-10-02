@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+	
 <link href="${pageContext.servletContext.contextPath}/resource/css/MenuBar CSS/MenubarCSS.css" rel="stylesheet" type="text/css" />
-<tiles:insertAttribute name="head" />
+<title><tiles:getAsString name="title" /></title>
 <style>
 body {
 	background-image: url("resource/Img/AN1.jpg");
@@ -31,7 +31,7 @@ footer {
 			class="navbar navbar-expand-lg navbar-dark bg-dark w-100 my-bar-margin-nav">
 			<div class="container">
 				<!-- Brand -->
-				<a class="navbar-brand" href="~/Site/Home"> <img
+				<a class="navbar-brand" href="home"> <img
 					src="${pageContext.servletContext.contextPath}/resource/Img/logo2.png" width="220" height="50" alt="Logo" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -48,10 +48,10 @@ footer {
 						class="nav-item my-bar-nav-item my-bar-a" active-color="DeepPink"
 						id="datban">Đặt bàn</a> <a href="datmon"
 						class="nav-item my-bar-nav-item my-bar-a" active-color="LimeGreen"
-						id="datmon">Đặt món</a> <a href="/dang-nhap"
+						id="datmon">Đặt món</a> <a href="dangnhap"
 						class="nav-item my-bar-nav-item my-bar-a"
 						active-color="DarkSlateBlue" id="dangnhap">Đăng nhập</a> <a
-						href="/dang-ky" class="nav-item my-bar-nav-item my-bar-a"
+						href="dangky" class="nav-item my-bar-nav-item my-bar-a"
 						active-color="DarkKhaki" id="dangky">Đăng ký</a> <span
 						class="nav-indicator my-bar-nav-indicator"></span>
 				</nav>

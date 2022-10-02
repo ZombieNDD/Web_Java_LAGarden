@@ -44,4 +44,57 @@ public class CTMonAnDAO {
         }
 		return null;
 	}
+	public CTMonAn chiTietMonAn(String id) throws ClassNotFoundException, SQLException{
+		conn = new MyConnection().getConnection();
+		String query = "SELECT * FROM CTMONAN WHERE IDMA = "+id; 
+		
+		try {
+			stm = conn.createStatement();
+			rs = stm.executeQuery(query);
+			CTMonAn item = new CTMonAn();
+			while (rs.next()){
+				item.idMA = rs.getInt("IDMA");
+				item.tenMonAn= rs.getString("TenMonAn");
+				item.soLuong = rs.getInt("SoLuong");
+				item.chiTietMA = rs.getString("ChiTietMA");
+				item.gia = rs.getDouble("Gia");
+				item.imgMA = rs.getString("ImgMA");
+				item.giaSale = rs.getDouble("GiaSale");
+				item.slug = rs.getString("slug");
+				item.title = rs.getString("title");
+				item.danhMucID = rs.getInt("DanhMucID");
+				}
+			return item;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+			return null;
+	}
+	public ArrayList<CTMonAn> getListByDanhMuc(String id) throws ClassNotFoundException, SQLException{
+		conn = new MyConnection().getConnection();
+		String query = "SELECT * FROM CTMONAN WHERE DanhMucID = "+id; 
+		
+		try {
+			stm = conn.createStatement();
+			rs = stm.executeQuery(query);
+			while (rs.next()){
+				CTMonAn item = new CTMonAn();
+				item.idMA = rs.getInt("IDMA");
+				item.tenMonAn= rs.getString("TenMonAn");
+				item.soLuong = rs.getInt("SoLuong");
+				item.chiTietMA = rs.getString("ChiTietMA");
+				item.gia = rs.getDouble("Gia");
+				item.imgMA = rs.getString("ImgMA");
+				item.giaSale = rs.getDouble("GiaSale");
+				item.slug = rs.getString("slug");
+				item.title = rs.getString("title");
+				item.danhMucID = rs.getInt("DanhMucID");
+				list.add(item);
+				}
+			return list;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+			return null;
+	}
 }
