@@ -29,6 +29,7 @@ import com.LAGarden.Model.CTMonAn;
 import com.LAGarden.Model.DangKy;
 @Controller
 public class WebsiteController {
+	HttpSession session = null;
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String home(ModelMap model) {
 		return "home";
@@ -121,13 +122,17 @@ public class WebsiteController {
 		UserDAO dao = new UserDAO();
 		DangKy dk =new DangKy();
 		dk= dao.Login(username, password);
-		HttpSession session = request.getSession();
-		
+		if (dk.roles==0) {
+		session = request.getSession();
+
 		if (dk !=null) {
+			session.setAttribute("taikhoan", dk);
 			session.setAttribute("Fullname", dk.fullname);
 			return "home";
 		}
-		return "false";
+		}
+		model.addAttribute("message","Sai tên tài khoản hoặc mật khẩu!");
+		return "dangnhap";
 	}
 }
 	

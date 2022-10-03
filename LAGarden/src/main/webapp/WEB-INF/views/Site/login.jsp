@@ -11,9 +11,10 @@
 <form action="loginuser" method="post">
     <div class="my-swapper">
         <div class="form-horizontal">
+        
             <h4>Đăng nhập</h4>
             <hr />
-
+			<h5 class = "text-danger">${message}</h5>
             <div class="form-group">
                 <div class="row">
                     <div class="my-a-infor">Tài khoản: </div>

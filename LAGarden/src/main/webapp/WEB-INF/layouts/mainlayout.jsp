@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <link href="${pageContext.servletContext.contextPath}/resource/css/MenuBar CSS/MenubarCSS.css" rel="stylesheet" type="text/css" />
 <title><tiles:getAsString name="title" /></title>
 <style>
@@ -48,12 +49,30 @@ footer {
 						class="nav-item my-bar-nav-item my-bar-a" active-color="DeepPink"
 						id="datban">Đặt bàn</a> <a href="datmon"
 						class="nav-item my-bar-nav-item my-bar-a" active-color="LimeGreen"
-						id="datmon">Đặt món</a> <a href="dangnhap"
+						id="datmon">Đặt món</a> 
+						<%
+						String tenTK = (String) session.getAttribute("Fullname");
+						if (session.getAttribute("taikhoan") !=null){ %>
+							<div class="dropdown nav my-bar-nav my-menu-nav-ver2">
+                                <a class="nav-item my-bar-nav-item my-bar-a my-menu-nav-ver2-item" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left:20px">
+                                    Xin chào: <% out.print(tenTK); %>
+                                </a>
+                                <div class="dropdown-menu my-drop-down" aria-labelledby="dropdownMenuButton">
+                                    <div class="dropdown-item"><a href="/gio-hang/">Giỏ hàng</a></div>
+                                    <div class="dropdown-item"><a href="/thong-tin-tai-khoan/">Thông tin tài khoản</a></div>
+                                    <div class="dropdown-item"><a href="/doi-mat-khau/">Đổi mật khẩu</a></div>
+                                    <div class="dropdown-item"><a href="/dang-xuat/">Đăng xuất</a></div>
+                                </div>
+                            </div>
+						<%}else{ %>
+						<a href="dangnhap"
 						class="nav-item my-bar-nav-item my-bar-a"
 						active-color="DarkSlateBlue" id="dangnhap">Đăng nhập</a> <a
 						href="dangky" class="nav-item my-bar-nav-item my-bar-a"
 						active-color="DarkKhaki" id="dangky">Đăng ký</a> <span
 						class="nav-indicator my-bar-nav-indicator"></span>
+						<%} %>  
+
 				</nav>
 			</div>
 		</nav>
