@@ -32,13 +32,13 @@
 		<c:forEach items="${listHoaDon}" var="item">
 
 			<tr>
-				<td>${item.username }</td>
-				<td>${item.NameRecieve }</td>
-				<td>${item.AddressRecive }</td>
+				<td>${item.username}</td>
+				<td>${item.NameRecieve}</td>
+				<td>${item.AddressRecive}</td>
 				<td>${item.Phone}</td>
-				<td>${item.EmailRecieve }</td>
-				<td>${item.TongTien }</td>
-				<td>${item.NgayLap }</td>
+				<td>${item.EmailRecieve}</td>
+				<td>${item.TongTien}</td>
+				<td>${item.NgayLap}</td>
 
 				<td>
 					<p class="btn btn-sm btn-success"
