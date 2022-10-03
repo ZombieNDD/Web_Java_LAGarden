@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.LAGarden.Common.Encryption;
 import com.LAGarden.DAO.CTMonAnDAO;
 import com.LAGarden.DAO.DanhMucDAO;
+import com.LAGarden.DAO.HoaDonDAO;
 import com.LAGarden.DAO.TableDAO;
 import com.LAGarden.DAO.UserDAO;
 import com.LAGarden.Model.DangKy;
@@ -66,6 +67,13 @@ public class AdminController {
 		return "adminDatBan";
 	}
 	
+	@RequestMapping("/adminHoaDon")
+	public String adminHoaDon(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		HoaDonDAO listHoaDon = new HoaDonDAO();		
+		model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());			
+		return "adminHoaDon";
+	}
+	
 	@RequestMapping("/adminHoTro")
 	public String adminHoTro(ModelMap model, HttpServletRequest request) {
 
@@ -81,11 +89,7 @@ public class AdminController {
 
 		return "adminHinhAnh";
 	}
-	@RequestMapping("/adminHoaDon")
-	public String adminHoaDon(ModelMap model, HttpServletRequest request) {
-
-		return "adminHoaDon";
-	}
+	
 	@RequestMapping("/adminExit")
 	public String adminExit(ModelMap model, HttpServletRequest request) {
 

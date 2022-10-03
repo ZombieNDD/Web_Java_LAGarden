@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +59,6 @@
 			<i
 				class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
 				aria-hidden="true" id="iconSidenav"></i> <a class="navbar-brand m-0"
-				
 				target="_blank"> <img
 				src="${pageContext.servletContext.contextPath}/adminResource/img/logo-ct.png"
 				class="navbar-brand-img h-100" alt="main_logo"> <span
@@ -142,40 +141,37 @@
 
 				<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
 					id="navbar">
-					<div class="ms-md-auto pe-md-3 d-flex align-items-center">
-						
-						</div>
-					</div>
-					<ul class="navbar-nav  justify-content-end">
-						<li class="nav-item d-flex align-items-center"><a
-							href="javascript:;"
-							class="nav-link text-body font-weight-bold px-0"> <i
-								class="fa fa-user me-sm-1"></i> <span class="d-sm-inline d-none">Xin
-									chào: @session.UserName</span>
-						</a></li>
-						<li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-							<a href="javascript:;" class="nav-link text-body p-0"
-							id="iconNavbarSidenav">
-								<div class="sidenav-toggler-inner">
-									<i class="sidenav-toggler-line"></i> <i
-										class="sidenav-toggler-line"></i> <i
-										class="sidenav-toggler-line"></i>
-								</div>
-						</a>
-						</li>
-						
-					
-					
-					</ul>
+					<div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
 				</div>
+				<ul class="navbar-nav  justify-content-end">
+					<li class="nav-item d-flex align-items-center"><a
+						href="javascript:;"
+						class="nav-link text-body font-weight-bold px-0"> <i
+							class="fa fa-user me-sm-1"></i> <span class="d-sm-inline d-none">Xin
+								chào: @session.UserName</span>
+					</a></li>
+					<li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+						<a href="javascript:;" class="nav-link text-body p-0"
+						id="iconNavbarSidenav">
+							<div class="sidenav-toggler-inner">
+								<i class="sidenav-toggler-line"></i> <i
+									class="sidenav-toggler-line"></i> <i
+									class="sidenav-toggler-line"></i>
+							</div>
+					</a>
+					</li>
+
+
+
+				</ul>
 			</div>
 		</nav>
 		<!-- End Navbar -->
 		<!-- @RenderBody() -->
 		<tiles:insertAttribute name="body" />
 	</main>
-	
-	
+
+
 	<!--   Core JS Files   -->
 	<script
 		src="${pageContext.servletContext.contextPath}/adminResource/js/core/popper.min.js"></script>
