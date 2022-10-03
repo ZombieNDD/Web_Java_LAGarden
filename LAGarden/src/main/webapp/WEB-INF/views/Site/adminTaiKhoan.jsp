@@ -20,7 +20,7 @@
     <table class="table table-bordered table-hover table-striped">
         <tr style="text-align:center">
             <th>
-                Họ tên:
+                Họ tên
             </th>
             <th>
                 Tên tài khoản
@@ -45,32 +45,17 @@
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Roles)
-                </td>
+        <c:forEach items="${listUser}" var="item">
+		
+		 <tr>
+			<td>${item.fullname}</td>
+			<td>${item.username}</td>
+			<td>${item.password}</td>
+			<td>${item.email}</td>
+			<td>${item.phone}</td>
+			<td>${item.address}</td>
+			<td>${item.roles}</td>
+               
                 <td>
                     <p class="btn btn-sm btn-success" style="background: #ffffff; border: 2px solid #000000;">
                         @Html.ActionLink("Edit", "Edit", new { id = item.IDKH })
@@ -80,13 +65,13 @@
                     </p>
                 </td>
             </tr>
-        }
-
+        
+</c:forEach>
     </table>
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+    <!-- @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
                                         new PagedListRenderOptions
                                         {
                                             LiElementClasses = new string[] { "page-item" },
                                         })
-
+ -->
 </div>

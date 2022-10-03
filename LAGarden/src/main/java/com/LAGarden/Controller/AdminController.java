@@ -70,7 +70,7 @@ public class AdminController {
 	@RequestMapping("/adminHoaDon")
 	public String adminHoaDon(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		HoaDonDAO listHoaDon = new HoaDonDAO();		
-		model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());			
+		//model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());			
 		return "adminHoaDon";
 	}
 	
@@ -80,8 +80,9 @@ public class AdminController {
 		return "adminHoTro";
 	}
 	@RequestMapping("/adminTaiKhoan")
-	public String adminTaiKhoan(ModelMap model, HttpServletRequest request) {
-
+	public String adminTaiKhoan(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		UserDAO listUser = new UserDAO();		
+		model.addAttribute("listUser",listUser.getListUser());	
 		return "adminTaiKhoan";
 	}
 	@RequestMapping("/adminHinhAnh")
