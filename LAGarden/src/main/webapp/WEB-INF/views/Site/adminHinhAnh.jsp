@@ -1,17 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<p>asasdasdasda234534534543534534asdasd</p>
-<p>asasdasdasdas3453425345345dasdasdasdasd</p>
-<p>asasdasdasda3452345435344dasdadasdasdasdasd</p>
-<p>a34534534534534534545345345454354353453434534534</p>
-<p>37846378463472918345345344532453425345345434543535</p>
+    
+    <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-</body>
-</html>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Slug)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TableId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Slug)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TableId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDMA }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDMA }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDMA })
+        </td>
+    </tr>
+}
+
+</table>

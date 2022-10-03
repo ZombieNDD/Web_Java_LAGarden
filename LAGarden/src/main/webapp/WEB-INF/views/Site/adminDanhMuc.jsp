@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="card">
 	<div class="card-header">
@@ -32,11 +33,11 @@
 		
 	<c:forEach items="${listDanhMuc}" var="item">
 		
-		<!-- <tr>
-			<td>@Html.DisplayFor(modelItem => item.DanhMucID)</td>
-			<td>@Html.DisplayFor(modelItem => item.DanhMucName)</td>
-			<td>@Html.DisplayFor(modelItem => item.ThuTu)</td>
-			<td>@Html.DisplayFor(modelItem => item.Tags)</td>
+		 <tr>
+			<td>${item.danhMucID }</td>
+			<td>${item.danhMucName }</td>
+			<td>${item.thuTu }</td>
+			<td>${item.tags }</td>
 			<td>
 				<p class="btn btn-sm btn-success"
 					style="background: #ffffff; border: 2px solid #000000;">
@@ -45,7 +46,7 @@
 					style="background: #ffffff; border: 2px solid #000000;">
 					@Html.ActionLink("Delete", "Delete", new { id = item.DanhMucID })</p>
 			</td>
-		</tr> -->
+		</tr> 
 	</c:forEach>
 	
 		

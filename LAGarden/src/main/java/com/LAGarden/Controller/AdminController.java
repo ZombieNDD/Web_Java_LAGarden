@@ -11,7 +11,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.LAGarden.Common.Encryption;
+import com.LAGarden.DAO.CTMonAnDAO;
 import com.LAGarden.DAO.DanhMucDAO;
+import com.LAGarden.DAO.TableDAO;
 import com.LAGarden.DAO.UserDAO;
 import com.LAGarden.Model.DangKy;
 
@@ -47,19 +49,23 @@ public class AdminController {
 		DanhMucDAO listDanhMuc = new DanhMucDAO();		
 		model.addAttribute("listDanhMuc",listDanhMuc.getListDanhMuc());
 		return "adminDanhMuc";
-	}	
-	
+	}		
 	
 	@RequestMapping("/adminMonAn")
-	public String adminMonAn(ModelMap model, HttpServletRequest request) {
-
+	public String adminMonAn(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		CTMonAnDAO listMonAn = new CTMonAnDAO();		
+		model.addAttribute("listMonAn",listMonAn.getListCTMonAN());
 		return "adminMonAn";
 	}
+	
 	@RequestMapping("/adminDatBan")
-	public String adminDatBan(ModelMap model, HttpServletRequest request) {
-
+	public String adminDatBan(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		TableDAO listTable = new TableDAO();		
+		//model.addAttribute("listTable",listTable.getListTable());
+		//call data k dc? do nhieu qua nen no tran`?
 		return "adminDatBan";
 	}
+	
 	@RequestMapping("/adminHoTro")
 	public String adminHoTro(ModelMap model, HttpServletRequest request) {
 
@@ -79,6 +85,11 @@ public class AdminController {
 	public String adminHoaDon(ModelMap model, HttpServletRequest request) {
 
 		return "adminHoaDon";
+	}
+	@RequestMapping("/adminExit")
+	public String adminExit(ModelMap model, HttpServletRequest request) {
+
+		return "admin";
 	}
 	
 }
