@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.LAGarden.Common.Encryption;
 import com.LAGarden.DAO.CTMonAnDAO;
@@ -39,6 +38,7 @@ public class WebsiteController {
     {
         return "tintuc";
     }
+	
 	@RequestMapping("/hotro")
     public String hotro(ModelMap model)
     {
@@ -136,4 +136,3 @@ public class WebsiteController {
 	}
 }
 	
-

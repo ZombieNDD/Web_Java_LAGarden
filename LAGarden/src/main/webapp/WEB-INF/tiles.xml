@@ -14,7 +14,28 @@
 		<put-attribute name="hotro" value="" />
 		<put-attribute name="datban" value="" />
 		<put-attribute name="datmon" value="" />
+		<put-attribute name="quantri" value="" />
 	</definition>
+
+	<!-- =========================================================================== -->
+	<definition name="base.adminpage"
+		template="/WEB-INF/adminlayout/adminlayout.jsp">
+		<put-attribute name="body" value="" />
+		<put-attribute name="admin" value="" />
+	</definition>
+
+	<definition name="base.dashboard"
+		template="/WEB-INF/views/Site/adminDashBoard.jsp">
+
+		<put-attribute name="body" value="" />
+		<put-attribute name="adminDanhMuc" value="" />
+	</definition>
+
+
+
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
 	<!-- Trang chủ -->
 	<definition name="home"
 		template="/WEB-INF/views/Site/home.jsp">
@@ -48,12 +69,80 @@
 	<definition name="datmon" extends="base.homepage">	
 	<put-attribute name="title" value="Đặt món" />
 		<put-attribute name="body">
-		<definition template="/WEB-INF/layouts/orderlayout.jsp" >
-                <put-attribute name="menuleft" value="/WEB-INF/views/sub_layout/menuleft.jsp"/>
-				<put-attribute name="body" value="/WEB-INF/views/Site/order.jsp" />
-            </definition>
+			<definition template="/WEB-INF/layouts/orderlayout.jsp">
+				<put-attribute name="menuleft"
+					value="/WEB-INF/views/sub_layout/menuleft.jsp" />
+				<put-attribute name="body"
+					value="/WEB-INF/views/Site/order.jsp" />
+			</definition>
 		</put-attribute>
 	</definition>
+
+
+
+
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<!-- ====================================DashBoard======================================= -->
+
+	<definition name="admin" extends="base.adminpage">
+		<put-attribute name="title" value="Admin Login" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/admin.jsp" />
+	</definition>
+
+	<definition name="adminDashBoard" extends="base.dashboard">
+		<put-attribute name="title" value="adminDanhMuc" />
+
+	</definition>
+
+	<!-- =================================BodyDashBoard========================================== -->
+
+	<definition name="adminDanhMuc" extends="base.dashboard">
+		<put-attribute name="title" value="adminDanhMuc" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminDanhMuc.jsp" />
+	</definition>
+
+	<definition name="adminMonAn" extends="base.dashboard">
+		<put-attribute name="title" value="adminMonAn" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminMonAn.jsp" />
+	</definition>
+
+	<definition name="adminDatBan" extends="base.dashboard">
+		<put-attribute name="title" value="adminDatBan" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminDatBan.jsp" />
+	</definition>
+
+	<definition name="adminHoaDon" extends="base.dashboard">
+		<put-attribute name="title" value="adminHoaDon" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminHoaDon.jsp" />
+	</definition>
+
+	<definition name="adminTaiKhoan" extends="base.dashboard">
+		<put-attribute name="title" value="adminTaiKhoan" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminTaiKhoan.jsp" />
+	</definition>
+
+	<definition name="adminHoTro" extends="base.dashboard">
+		<put-attribute name="title" value="adminHoTro" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminHoTro.jsp" />
+	</definition>
+
+	<definition name="adminHinhAnh" extends="base.dashboard">
+		<put-attribute name="title" value="adminHinhAnh" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminHinhAnh.jsp" />
+	</definition>
+
+
+
 			<definition name="chitietsp" extends="base.homepage">
 			<put-attribute name="title" value="Món ăn" />	
 		<put-attribute name="body">
