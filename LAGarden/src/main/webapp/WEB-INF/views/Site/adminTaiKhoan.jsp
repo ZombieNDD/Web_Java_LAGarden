@@ -11,7 +11,7 @@
                 <strong>TÀI KHOẢN</strong>
             </div>
             <div class="col-md-6 text-right">
-                <a href="@Url.Action("Create", "TAIKHOAN")" class="btn btn-sm btn-success">Thêm Mới</a>
+                <a href="CreateTaiKhoan" class="btn btn-sm btn-success">Thêm Mới</a>
             </div>
         </div>
     </div>

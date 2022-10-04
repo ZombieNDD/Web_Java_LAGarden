@@ -103,12 +103,23 @@ public class AdminController {
 	
 	
 	
-	/* =================================================Them Xoa Sua===================================================== */
+	/* ========================Them DashBoard=============================== */
 	@RequestMapping("/CreateDanhMuc")
 	public String DanhMucCreate(ModelMap model, HttpServletRequest request) {
-//		DanhMucDAO listDanhMuc = new DanhMucDAO();		
-//		model.addAttribute("listDanhMuc",listDanhMuc.getListDanhMuc());
+
 		return "adminDanhMucCreate";
-	}	
+	}
+	
+	@RequestMapping("/CreateMonAn")
+	public String MonAnCreate(ModelMap model, HttpServletRequest request) {
+
+		return "adminMonAnCreate";
+	}
+	
+	@RequestMapping("/CreateTaiKhoan")
+	public String TaiKhoanCreate(ModelMap model, HttpServletRequest request) {
+
+		return "adminTaiKhoanCreate";
+	}
 	
 }

@@ -5,7 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-<h2>Danh mục</h2>
+<h2>Món ăn</h2>
 
 <div class="mypadding-admin">
    
@@ -19,7 +19,7 @@
             <div class="form-group">
                 <div class="row my-padding-khung">
                     <a href="CreateDanhM" class="btn btn-sm btn-success">Thêm</a>
-                    <a href="adminDanhMuc" class="btn btn-sm btn-success">Quay lại</a>
+                    <a href="adminMonAn" class="btn btn-sm btn-success">Quay lại</a>
                 </div>
             </div>
         </div>

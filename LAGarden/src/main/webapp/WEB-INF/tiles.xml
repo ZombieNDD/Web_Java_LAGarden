@@ -146,6 +146,20 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/adminDanhMucCreate.jsp" />
 	</definition>
+	
+	<definition name="adminMonAnCreate"
+		extends="base.dashboard">
+		<put-attribute name="title" value="adminMonAnCreate" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminMonAnCreate.jsp" />
+	</definition>
+	
+	<definition name="adminTaiKhoanCreate"
+		extends="base.dashboard">
+		<put-attribute name="title" value="adminTaiKhoanCreate" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminTaiKhoanCreate.jsp" />
+	</definition>
 
 
 
