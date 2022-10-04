@@ -14,7 +14,7 @@
             var ghichu = $('#txtGhichu').val();
 
             $.ajax({
-                url: '/Site/SendTable',
+                url: 'registerDatBan',
                 type: 'POST',
                 dataType: 'json',
                 data: {

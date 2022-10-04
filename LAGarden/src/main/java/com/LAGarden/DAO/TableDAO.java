@@ -28,7 +28,7 @@ public class TableDAO {
 		while (rs.next()){
 			Table item = new Table();
 			item.username = rs.getString("username");
-			item.NgayDB= rs.getTime("NgayDB").toLocalTime();
+			item.NgayDB= rs.getDate("NgayDB");
 			item.GioDB = rs.getTime("GioDB");
 			item.FullName = rs.getString("FullName");
 			item.Email = rs.getString("Email");
@@ -43,5 +43,13 @@ public class TableDAO {
             e.printStackTrace();
         }
 		return null;
+	}
+	public int addItem(Table tb,String username) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "Insert into Table values ('"+tb.NgayDB+"','"+tb.GioDB+"','"+ tb.FullName+"','"+tb.Email+"','"+tb.SLNguoiLon+"','"+tb.SLTreEm+"','"+tb.GhiChu+"','"+username+"' )";
+		stm = conn.createStatement();
+		int i = stm.executeUpdate(query);
+		return i;
 	}
 }

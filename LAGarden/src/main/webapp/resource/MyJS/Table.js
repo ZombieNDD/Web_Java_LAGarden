@@ -7,7 +7,7 @@
 function addOptionNguoiLon() {
     var i = 1;
 
-    for (i; i < 50; i++) {
+    for (i; i < 51; i++) {
         var x = document.getElementById("myOptionNL");
         var option = document.createElement("option");
         option.text = i + " người lớn";
@@ -17,7 +17,7 @@ function addOptionNguoiLon() {
 
 function addOptionTreEm() {
     var j = 0;
-    for (j; j < 50; j++) {
+    for (j; j < 51; j++) {
         var y = document.getElementById("myOptionTE");
         var option = document.createElement("option");
         option.text = j + " trẻ em";

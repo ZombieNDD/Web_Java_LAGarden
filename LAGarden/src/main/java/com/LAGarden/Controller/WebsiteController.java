@@ -1,19 +1,21 @@
 package com.LAGarden.Controller;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+
 import java.sql.SQLException;
+import java.sql.Time;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport;
-import org.apache.tiles.request.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +25,18 @@ import com.LAGarden.Common.Encryption;
 import com.LAGarden.DAO.CTMonAnDAO;
 import com.LAGarden.DAO.DanhMucDAO;
 import com.LAGarden.DAO.ImageDatBanDAO;
+import com.LAGarden.DAO.TableDAO;
 import com.LAGarden.DAO.UserDAO;
 import com.LAGarden.Model.CTMonAn;
 import com.LAGarden.Model.DangKy;
+import com.LAGarden.Model.Table;
+import com.google.gson.Gson;
+import com.nimbusds.jose.shaded.json.JSONObject;
+
 @Controller
 public class WebsiteController {
 	HttpSession session = null;
+	DangKy sessionUser = new DangKy();
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String home(ModelMap model) {
 		return "home";
@@ -122,6 +130,8 @@ public class WebsiteController {
 		UserDAO dao = new UserDAO();
 		DangKy dk =new DangKy();
 		dk= dao.Login(username, password);
+		this.sessionUser = dk;
+		
 		if (dk.roles==0) {
 		session = request.getSession();
 
@@ -134,5 +144,55 @@ public class WebsiteController {
 		model.addAttribute("message","Sai tên tài khoản hoặc mật khẩu!");
 		return "dangnhap";
 	}
+	@PostMapping("/registerDatBan")
+	public String formDatBan(ModelMap model,HttpServletRequest request,HttpServletResponse respone) throws ParseException, IOException, ClassNotFoundException, SQLException {
+		Table tb = new Table();
+		Map<String,Object> map = new HashMap<String, Object>();
+		boolean status = false;
+		String message = null;
+		if (session != null)
+		{
+			tb.FullName = sessionUser.fullname;
+			tb.Phone = sessionUser.phone;
+			tb.Email = sessionUser.email;
+			String sDate1 = request.getParameter("date");
+			Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
+			tb.NgayDB = date1;
+			DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+			Date date =dateFormat.parse(request.getParameter("time"));
+			Time time = new Time(date.getTime());
+			tb.GioDB =time;
+			tb.SLNguoiLon = request.getParameter("slnl");
+			tb.SLTreEm = request.getParameter("slte");
+			tb.GhiChu = request.getParameter("ghichu");
+			
+			TableDAO dao = new TableDAO();
+			int i = dao.addItem(tb, sessionUser.username);
+			if (i>0) {
+				status = true;
+			}else {
+				message = "Đăng ký thất bại, vui lòng thử lại sau";
+			}
+		}
+		else {
+			status = false;
+			message = "Vui lòng đăng nhập";
+		}
+		map.put("status",status);
+		map.put("message",message);
+		write(respone,map);
+		return null;
+	}
+	@PostMapping("/formhotro")
+	public String FormHoTro(ModelMap model,HttpServletRequest request,HttpServletResponse respone) {
+		
+		return null;
+	}
+	private void write(HttpServletResponse respone, Map<String, Object> map) throws IOException {
+		respone.setContentType("application/json");
+		respone.setCharacterEncoding("UTF-8");
+		respone.getWriter().write(new Gson().toJson(map));
+	}
+	
 }
 	

@@ -2,12 +2,13 @@ package com.LAGarden.Model;
 
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.Date;
 
 public class Table {
-	public LocalTime getNgayDB() {
+	public Date getNgayDB() {
 		return NgayDB;
 	}
-	public void setNgayDB(LocalTime ngayDB) {
+	public void setNgayDB(Date ngayDB) {
 		NgayDB = ngayDB;
 	}
 	public Time getGioDB() {
@@ -58,7 +59,7 @@ public class Table {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public LocalTime NgayDB;
+	public Date NgayDB;
 	public Time GioDB;
 	public String FullName;
 	public String Email;
