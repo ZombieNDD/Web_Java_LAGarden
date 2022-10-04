@@ -17,7 +17,6 @@
 		<put-attribute name="quantri" value="" />
 	</definition>
 
-	<!-- =========================================================================== -->
 	<definition name="base.adminpage"
 		template="/WEB-INF/adminlayout/adminlayout.jsp">
 		<put-attribute name="body" value="" />
@@ -35,39 +34,38 @@
 
 	<!-- =========================================================================== -->
 	<!-- =========================================================================== -->
-	<!-- =========================================================================== -->
-	<!-- Trang chủ -->
+	<!-- ===================================Trang chủ=============================== -->
 	<definition name="home"
 		template="/WEB-INF/views/Site/home.jsp">
 	</definition>
 
 	<!-- Tin tức -->
 	<definition name="tintuc" extends="base.homepage">
-	<put-attribute name="title" value="Tin tức" />
+		<put-attribute name="title" value="Tin tức" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/tintuc.jsp" />
 	</definition>
 	<!-- Hỗ trợ -->
 	<definition name="hotro" extends="base.homepage">
-	<put-attribute name="title" value="Hỗ trợ" />
+		<put-attribute name="title" value="Hỗ trợ" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/hotro.jsp" />
 	</definition>
 	<!-- Thông tin -->
 	<definition name="thongtin" extends="base.homepage">
-	<put-attribute name="title" value="Thông tin" />
+		<put-attribute name="title" value="Thông tin" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/information.jsp" />
 	</definition>
 	<!-- Đặt bàn -->
 	<definition name="datban" extends="base.homepage">
-	<put-attribute name="title" value="Đặt bàn" />
+		<put-attribute name="title" value="Đặt bàn" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/Table.jsp" />
 	</definition>
 	<!-- Đặt món -->
-	<definition name="datmon" extends="base.homepage">	
-	<put-attribute name="title" value="Đặt món" />
+	<definition name="datmon" extends="base.homepage">
+		<put-attribute name="title" value="Đặt món" />
 		<put-attribute name="body">
 			<definition template="/WEB-INF/layouts/orderlayout.jsp">
 				<put-attribute name="menuleft"
@@ -84,7 +82,7 @@
 	<!-- =========================================================================== -->
 	<!-- =========================================================================== -->
 	<!-- =========================================================================== -->
-	<!-- ====================================DashBoard======================================= -->
+	<!-- ====================================DashBoard================================= -->
 
 	<definition name="admin" extends="base.adminpage">
 		<put-attribute name="title" value="Admin Login" />
@@ -93,11 +91,11 @@
 	</definition>
 
 	<definition name="adminDashBoard" extends="base.dashboard">
-		<put-attribute name="title" value="adminDanhMuc" />
+		<put-attribute name="title" value="adminDashBoard" />
 
 	</definition>
 
-	<!-- =================================BodyDashBoard========================================== -->
+	<!-- =================================BodyDashBoard=============================== -->
 
 	<definition name="adminDanhMuc" extends="base.dashboard">
 		<put-attribute name="title" value="adminDanhMuc" />
@@ -141,24 +139,62 @@
 			value="/WEB-INF/views/Site/adminHinhAnh.jsp" />
 	</definition>
 
+	<!-- ==========================BodyDashBoard Them Xoa Sua================================== -->
+	<definition name="adminDanhMucCreate"
+		extends="base.dashboard">
+		<put-attribute name="title" value="adminDanhMucCreate" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminDanhMucCreate.jsp" />
+	</definition>
+	
+	<definition name="adminMonAnCreate"
+		extends="base.dashboard">
+		<put-attribute name="title" value="adminMonAnCreate" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminMonAnCreate.jsp" />
+	</definition>
+	
+	<definition name="adminTaiKhoanCreate"
+		extends="base.dashboard">
+		<put-attribute name="title" value="adminTaiKhoanCreate" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/adminTaiKhoanCreate.jsp" />
+	</definition>
 
 
-			<definition name="chitietsp" extends="base.homepage">
-			<put-attribute name="title" value="Món ăn" />	
+
+
+
+
+
+
+
+
+
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<!-- =========================================================================== -->
+	<definition name="chitietsp" extends="base.homepage">
+		<put-attribute name="title" value="Món ăn" />
 		<put-attribute name="body">
-		<definition template="/WEB-INF/layouts/orderlayout.jsp" >
-                <put-attribute name="menuleft" value="/WEB-INF/views/sub_layout/menuleft.jsp"/>
-				<put-attribute name="body" value="/WEB-INF/views/Site/chitietmonan.jsp" />
-            </definition>
+			<definition template="/WEB-INF/layouts/orderlayout.jsp">
+				<put-attribute name="menuleft"
+					value="/WEB-INF/views/sub_layout/menuleft.jsp" />
+				<put-attribute name="body"
+					value="/WEB-INF/views/Site/chitietmonan.jsp" />
+			</definition>
 		</put-attribute>
 	</definition>
-			<definition name="dangky" extends="base.homepage">  
-			<put-attribute name="title" value="Đăng ký" />	
-        <put-attribute name="body" value="/WEB-INF/views/Site/dangky.jsp" />
-    </definition> 
-    <definition name="dangnhap" extends="base.homepage">  
-			<put-attribute name="title" value="Đăng nhập" />	
-        <put-attribute name="body" value="/WEB-INF/views/Site/login.jsp" />
-    </definition> 
-    
+	<definition name="dangky" extends="base.homepage">
+		<put-attribute name="title" value="Đăng ký" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/dangky.jsp" />
+	</definition>
+	<definition name="dangnhap" extends="base.homepage">
+		<put-attribute name="title" value="Đăng nhập" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/login.jsp" />
+	</definition>
+
 </tiles-definitions>

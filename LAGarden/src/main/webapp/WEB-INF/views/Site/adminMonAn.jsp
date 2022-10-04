@@ -12,7 +12,7 @@
                 <strong>TẤT CẢ SẢN PHẨM</strong>
             </div>
             <div class="col-md-6 text-right">
-                <a href="@Url.Action(("Create"),("DSMONAN"))" class="btn btn-sm btn-success">Thêm Mới</a>
+                <a href="CreateMonAn" class="btn btn-sm btn-success">Thêm Mới</a>
             </div>
         </div>
     </div>

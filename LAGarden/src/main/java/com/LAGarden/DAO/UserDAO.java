@@ -32,6 +32,7 @@ public class UserDAO {
 		
 		return result;
 	}
+	
 	public DangKy Login(String user,String password) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
 		String query = "Select * from taikhoan where username = '"+user+"' and password = '"+password+"'";
@@ -49,7 +50,32 @@ public class UserDAO {
 			return item;
 		}else {
 			return null;
-		}
+		}		
+	}
+	
+	public ArrayList<DangKy> getListUser() throws ClassNotFoundException, SQLException{
+		conn = new MyConnection().getConnection();
+
+		String query = "SELECT * FROM taikhoan";
 		
+        try {
+		stm = conn.createStatement();
+		rs = stm.executeQuery(query);
+		while (rs.next()){
+			DangKy item = new DangKy();
+			item.fullname = rs.getString("FullName");
+			item.username = rs.getString("UserName");
+			item.password = rs.getString("Password");
+			item.email = rs.getString("Email");
+			item.phone = rs.getString("Phone");
+			item.address = rs.getString("Address");
+			item.roles =rs.getInt("Roles");
+			list.add(item);
+			}
+		return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return null;
 	}
 }

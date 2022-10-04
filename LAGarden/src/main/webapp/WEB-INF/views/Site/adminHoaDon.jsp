@@ -1,91 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+	pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <div class="card">
-    <div class="card-header">
-        <div class="row">
-            <div clas="col-md-6">
-                <strong>HOÁ ĐƠN</strong>
-            </div>
+	<div class="card-header">
+		<div class="row">
+			<div clas="col-md-6">
+				<strong>HOÁ ĐƠN</strong>
+			</div>
 
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
 
 <div class="card-body">
-    <table class="table table-bordered table-hover table-striped">
-        <tr style="text-align:center">
-            <th>
-                Tên TK
-            </th>
-            <th>
-                Tên nhận hàng
-            </th>
-            <th>
-                Địa chỉ nhận
-            </th>
-            <th>
-                Số điện thoại
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Tổng tiền
-            </th>
-            <th>
-                Ngày lập
-            </th>
-            <th></th>
-        </tr>
+	<table class="table table-bordered table-hover table-striped">
+		<tr style="text-align: center">
+			<th>Tên TK</th>
+			<th>Tên nhận hàng</th>
+			<th>Địa chỉ nhận</th>
+			<th>Số điện thoại</th>
+			<th>Email</th>
+			<th>Tổng tiền</th>
+			<th>Ngày lập</th>
+			<th></th>
+		</tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.username)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NameRecieve)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AddressRecive)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmailRecieve)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TongTien)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgayLap)
-                </td>
-                <td>
-                    <p class="btn btn-sm btn-success" style="background: #ffffff; border: 2px solid #000000;">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    </p>
-                    <p class="btn btn-sm btn-success" style="background: #ffffff; border: 2px solid #000000;">
-                        @Html.ActionLink("Details", "Details", new { id = item.ID })
-                    </p>
-                    <p class="btn btn-sm btn-success" style="background: #ffffff; border: 2px solid #000000;">
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                    </p>
-                </td>
-            </tr>
-        }
+		<c:forEach items="${listHoaDon}" var="item">
 
-    </table>
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+			<tr>
+				<td>${item.username}</td>
+				<td>${item.NameRecieve}</td>
+				<td>${item.AddressRecive}</td>
+				<td>${item.Phone}</td>
+				<td>${item.EmailRecieve}</td>
+				<td>${item.TongTien}</td>
+				<td>${item.NgayLap}</td>
+
+				<td>
+					<p class="btn btn-sm btn-success"
+						style="background: #ffffff; border: 2px solid #000000;">
+						@Html.ActionLink("Edit", "Edit", new { id = item.ID })</p>
+					<p class="btn btn-sm btn-success"
+						style="background: #ffffff; border: 2px solid #000000;">
+						@Html.ActionLink("Details", "Details", new { id = item.ID })</p>
+					<p class="btn btn-sm btn-success"
+						style="background: #ffffff; border: 2px solid #000000;">
+						@Html.ActionLink("Delete", "Delete", new { id = item.ID })</p>
+				</td>
+			</tr>
+		</c:forEach>
+
+
+	</table>
+	<!--  @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
                                        new PagedListRenderOptions
                                        {
                                            LiElementClasses = new string[] { "page-item" },
                                        })
-
+ -->
 </div>

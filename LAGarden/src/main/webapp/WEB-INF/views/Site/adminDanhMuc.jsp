@@ -11,8 +11,7 @@
 				<strong>DANH MỤC</strong>
 			</div>
 			<div class="col-md-6 text-right">
-				<a href="@Url.Action(("
-					Create"),("DanhMuc"))" class="btn btn-sm btn-success">Thêm Mới</a>
+				<a href="CreateDanhMuc" class="btn btn-sm btn-success">Thêm Mới</a>
 			</div>
 		</div>
 	</div>

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.LAGarden.Common.Encryption;
 import com.LAGarden.DAO.CTMonAnDAO;
 import com.LAGarden.DAO.DanhMucDAO;
+import com.LAGarden.DAO.HoTroDAO;
+import com.LAGarden.DAO.HoaDonDAO;
 import com.LAGarden.DAO.TableDAO;
 import com.LAGarden.DAO.UserDAO;
 import com.LAGarden.Model.DangKy;
@@ -66,30 +68,68 @@ public class AdminController {
 		return "adminDatBan";
 	}
 	
+	@RequestMapping("/adminHoaDon")
+	public String adminHoaDon(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		HoaDonDAO listHoaDon = new HoaDonDAO();		
+		//model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());			
+		return "adminHoaDon";
+	}
+	
 	@RequestMapping("/adminHoTro")
-	public String adminHoTro(ModelMap model, HttpServletRequest request) {
-
+	public String adminHoTro(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		HoTroDAO listHoTro = new HoTroDAO();		
+		//model.addAttribute("listHoTro",listHoTro.getListHoTro());
 		return "adminHoTro";
 	}
 	@RequestMapping("/adminTaiKhoan")
-	public String adminTaiKhoan(ModelMap model, HttpServletRequest request) {
-
+	public String adminTaiKhoan(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		UserDAO listUser = new UserDAO();		
+		model.addAttribute("listUser",listUser.getListUser());	
 		return "adminTaiKhoan";
 	}
+	
 	@RequestMapping("/adminHinhAnh")
 	public String adminHinhAnh(ModelMap model, HttpServletRequest request) {
 
 		return "adminHinhAnh";
 	}
-	@RequestMapping("/adminHoaDon")
-	public String adminHoaDon(ModelMap model, HttpServletRequest request) {
-
-		return "adminHoaDon";
-	}
+	
 	@RequestMapping("/adminExit")
 	public String adminExit(ModelMap model, HttpServletRequest request) {
 
 		return "admin";
+	}
+	
+	
+	
+	
+	/* ========================Them DashBoard=============================== */
+	@RequestMapping("/CreateDanhMuc")
+	public String DanhMucCreate(ModelMap model, HttpServletRequest request) {
+		return "adminDanhMucCreate";
+	}
+	@RequestMapping("/CreateDanhMucSuccess")
+	public String DanhMucCreate2(ModelMap model, HttpServletRequest request) {
+		String iddanhmuc = request.getParameter("input1");
+		String tendanhmuc = request.getParameter("input2");
+		String thutu = request.getParameter("input3");
+		String tags = request.getParameter("input4");
+		if(iddanhmuc =="")
+			return "admin";
+		return "adminDanhMucCreate";
+	}
+	
+	
+	@RequestMapping("/CreateMonAn")
+	public String MonAnCreate(ModelMap model, HttpServletRequest request) {
+
+		return "adminMonAnCreate";
+	}
+	
+	@RequestMapping("/CreateTaiKhoan")
+	public String TaiKhoanCreate(ModelMap model, HttpServletRequest request) {
+
+		return "adminTaiKhoanCreate";
 	}
 	
 }

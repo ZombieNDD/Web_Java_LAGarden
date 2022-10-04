@@ -2,9 +2,8 @@ package com.LAGarden.Model;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.text.DecimalFormat;
 
-public class CTHoaDon {
+public class HoaDon {
 
 	public int getId() {
 		return id;

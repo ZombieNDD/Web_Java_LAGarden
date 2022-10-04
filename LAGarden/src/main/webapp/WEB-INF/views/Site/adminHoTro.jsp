@@ -33,21 +33,14 @@
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TenKH)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ChiTiet)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.status)
-                </td>
+       <c:forEach items="${listHoTro}" var="item">
+		
+		 <tr>
+			<td>${item.TenKH}</td>
+			<td>${item.Email}</td>
+			<td>${item.ChiTiet}</td>
+			<td>${item.status}</td>
+               
                 <td>
                     <p class="btn btn-sm btn-success" style="background: #ffffff; border: 2px solid #000000;">
                         @Html.ActionLink("Edit", "Edit", new { id = item.id })
@@ -57,13 +50,12 @@
                     </p>
                 </td>
             </tr>
-        }
-
+</c:forEach>
     </table>
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+   <!--  @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
                                             new PagedListRenderOptions
                                             {
                                                 LiElementClasses = new string[] { "page-item" },
-                                            })
+                                            }) -->
 
 </div>
