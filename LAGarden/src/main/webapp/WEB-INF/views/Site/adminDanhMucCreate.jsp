@@ -16,21 +16,28 @@
 
 
 		<div class="col-md-8">
-			<form action="adminDashBoard" method="POST">
+			<form action="CreateDanhMucSuccess" method="POST">
 				<div class="form-group">
-					<label><strong>Tên đăng nhập (*) :</strong></label><br> <input
-						name="id">
+					<label><strong>ID Danh Mục:</strong> </label> <input name="input1">
 				</div>
-				
+
 				<div class="form-group">
-					<label><strong>Mật khẩu (*): </strong></label> <br> <input
-						name="password" type="password" />
+					<label><strong>Tên danh mục: </strong></label> <input name="input2" />
 				</div>
+
+				<div class="form-group">
+					<label><strong>Thứ tự: </strong></label> <input name="input3" />
+				</div>
+
+				<div class="form-group">
+					<label><strong>Tags: </strong></label> <input name="input4" />
+				</div>
+
 				<button type="submit" class="btn btn-sm btn-success">Thêm</button>
 				<a href="adminDanhMuc" class="btn btn-sm btn-success">Quay lại</a>
 			</form>
-			</div>
 		</div>
+	</div>
 
 
 </div>

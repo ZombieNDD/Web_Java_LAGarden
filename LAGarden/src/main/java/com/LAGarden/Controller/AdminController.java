@@ -106,9 +106,19 @@ public class AdminController {
 	/* ========================Them DashBoard=============================== */
 	@RequestMapping("/CreateDanhMuc")
 	public String DanhMucCreate(ModelMap model, HttpServletRequest request) {
-
 		return "adminDanhMucCreate";
 	}
+	@RequestMapping("/CreateDanhMucSuccess")
+	public String DanhMucCreate2(ModelMap model, HttpServletRequest request) {
+		String iddanhmuc = request.getParameter("input1");
+		String tendanhmuc = request.getParameter("input2");
+		String thutu = request.getParameter("input3");
+		String tags = request.getParameter("input4");
+		if(iddanhmuc =="")
+			return "admin";
+		return "adminDanhMucCreate";
+	}
+	
 	
 	@RequestMapping("/CreateMonAn")
 	public String MonAnCreate(ModelMap model, HttpServletRequest request) {

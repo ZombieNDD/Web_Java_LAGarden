@@ -91,7 +91,7 @@
 	</definition>
 
 	<definition name="adminDashBoard" extends="base.dashboard">
-		<!-- <put-attribute name="title" value="adminDanhMuc" /> -->
+		<put-attribute name="title" value="adminDashBoard" />
 
 	</definition>
 
