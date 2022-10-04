@@ -8,20 +8,29 @@
 <h2>Danh mục</h2>
 
 <div class="mypadding-admin">
-   
-        
 
-        <div class="form-horizontal">
-            <h4>Thêm mới</h4>
-            
-            
 
-            <div class="form-group">
-                <div class="row my-padding-khung">
-                    <a href="CreateDanhM" class="btn btn-sm btn-success">Thêm</a>
-                    <a href="adminDanhMuc" class="btn btn-sm btn-success">Quay lại</a>
-                </div>
-            </div>
-        </div>
-    
+
+	<div class="form-horizontal">
+		<h4>Thêm mới</h4>
+
+
+		<div class="col-md-8">
+			<form action="adminDashBoard" method="POST">
+				<div class="form-group">
+					<label><strong>Tên đăng nhập (*) :</strong></label><br> <input
+						name="id">
+				</div>
+				
+				<div class="form-group">
+					<label><strong>Mật khẩu (*): </strong></label> <br> <input
+						name="password" type="password" />
+				</div>
+				<button type="submit" class="btn btn-sm btn-success">Thêm</button>
+				<a href="adminDanhMuc" class="btn btn-sm btn-success">Quay lại</a>
+			</form>
+			</div>
+		</div>
+
+
 </div>
