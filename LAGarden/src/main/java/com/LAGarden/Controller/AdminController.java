@@ -100,4 +100,15 @@ public class AdminController {
 		return "admin";
 	}
 	
+	
+	
+	
+	/* =================================================Them Xoa Sua===================================================== */
+	@RequestMapping("/adminDanhMuc/Create")
+	public String adminDanhMucCreate(ModelMap model, HttpServletRequest request) {
+//		DanhMucDAO listDanhMuc = new DanhMucDAO();		
+//		model.addAttribute("listDanhMuc",listDanhMuc.getListDanhMuc());
+		return "adminDanhMucCreate";
+	}	
+	
 }
