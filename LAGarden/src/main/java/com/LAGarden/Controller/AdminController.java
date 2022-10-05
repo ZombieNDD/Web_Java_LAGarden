@@ -18,118 +18,132 @@ import com.LAGarden.DAO.HoaDonDAO;
 import com.LAGarden.DAO.TableDAO;
 import com.LAGarden.DAO.UserDAO;
 import com.LAGarden.Model.DangKy;
-
+import com.LAGarden.Model.DanhMuc;
 
 @Controller
 @RequestMapping(value = "admin")
 public class AdminController {
-	@RequestMapping(value="/")
+	@RequestMapping(value = "/")
 	public String adminform(ModelMap model) {
 		return "admin";
-	}	
-	
+	}
+
 	@RequestMapping("/adminDashBoard")
-	public String adminDashBoard(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
-		
+	public String adminDashBoard(ModelMap model, HttpServletRequest request)
+			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+
 		Encryption mahoa = new Encryption();
 		String username = request.getParameter("id");
 		String password = mahoa.EncryptMD5(request.getParameter("password"));
 		UserDAO dao = new UserDAO();
-		DangKy dk =new DangKy();
-		dk= dao.Login(username, password);
+		DangKy dk = new DangKy();
+		dk = dao.Login(username, password);
 		HttpSession session = request.getSession();
-		
-		if (dk !=null) {
+
+		if (dk != null) {
 			session.setAttribute("Fullname", dk.fullname);
 			return "adminDashBoard";
 		}
 		return "admin";
 	}
-	
+
 	@RequestMapping("/adminDanhMuc")
 	public String adminDanhMuc(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		DanhMucDAO listDanhMuc = new DanhMucDAO();		
-		model.addAttribute("listDanhMuc",listDanhMuc.getListDanhMuc());
+		DanhMucDAO listDanhMuc = new DanhMucDAO();
+		model.addAttribute("listDanhMuc", listDanhMuc.getListDanhMuc());
 		return "adminDanhMuc";
-	}		
-	
+	}
+
 	@RequestMapping("/adminMonAn")
 	public String adminMonAn(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		CTMonAnDAO listMonAn = new CTMonAnDAO();		
-		model.addAttribute("listMonAn",listMonAn.getListCTMonAN());
+		CTMonAnDAO listMonAn = new CTMonAnDAO();
+		model.addAttribute("listMonAn", listMonAn.getListCTMonAN());
 		return "adminMonAn";
 	}
-	
+
 	@RequestMapping("/adminDatBan")
 	public String adminDatBan(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		TableDAO listTable = new TableDAO();		
-		//model.addAttribute("listTable",listTable.getListTable());
-		//call data k dc? do nhieu qua nen no tran`?
+		TableDAO listTable = new TableDAO();
+		// model.addAttribute("listTable",listTable.getListTable());
+		// call data k dc? do nhieu qua nen no tran`?
 		return "adminDatBan";
 	}
-	
+
 	@RequestMapping("/adminHoaDon")
 	public String adminHoaDon(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		HoaDonDAO listHoaDon = new HoaDonDAO();		
-		//model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());			
+		HoaDonDAO listHoaDon = new HoaDonDAO();
+		// model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());
 		return "adminHoaDon";
 	}
-	
+
 	@RequestMapping("/adminHoTro")
 	public String adminHoTro(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		HoTroDAO listHoTro = new HoTroDAO();		
-		//model.addAttribute("listHoTro",listHoTro.getListHoTro());
+		HoTroDAO listHoTro = new HoTroDAO();
+		// model.addAttribute("listHoTro",listHoTro.getListHoTro());
 		return "adminHoTro";
 	}
+
 	@RequestMapping("/adminTaiKhoan")
-	public String adminTaiKhoan(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-		UserDAO listUser = new UserDAO();		
-		model.addAttribute("listUser",listUser.getListUser());	
+	public String adminTaiKhoan(ModelMap model, HttpServletRequest request)
+			throws ClassNotFoundException, SQLException {
+		UserDAO listUser = new UserDAO();
+		model.addAttribute("listUser", listUser.getListUser());
 		return "adminTaiKhoan";
 	}
-	
+
 	@RequestMapping("/adminHinhAnh")
 	public String adminHinhAnh(ModelMap model, HttpServletRequest request) {
 
 		return "adminHinhAnh";
 	}
-	
+
 	@RequestMapping("/adminExit")
 	public String adminExit(ModelMap model, HttpServletRequest request) {
 
 		return "admin";
 	}
-	
-	
-	
-	
+
 	/* ========================Them DashBoard=============================== */
 	@RequestMapping("/CreateDanhMuc")
 	public String DanhMucCreate(ModelMap model, HttpServletRequest request) {
 		return "adminDanhMucCreate";
 	}
+
 	@RequestMapping("/CreateDanhMucSuccess")
-	public String DanhMucCreate2(ModelMap model, HttpServletRequest request) {
-		String iddanhmuc = request.getParameter("input1");
-		String tendanhmuc = request.getParameter("input2");
-		String thutu = request.getParameter("input3");
-		String tags = request.getParameter("input4");
-		if(iddanhmuc =="")
-			return "admin";
+	public String DanhMucCreate2(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+					
+		DanhMuc dk = new DanhMuc();	
+				
+		if (request.getParameter("input1")==""||
+			request.getParameter("input2")==""||
+			request.getParameter("input3")==""||
+			request.getParameter("input4")=="")
+				{
+			model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
+			return "adminDanhMucCreate";
+				}
+		dk.danhMucID = Integer.parseInt(request.getParameter("input1"));
+		dk.danhMucName = request.getParameter("input2");
+		dk.thuTu = Integer.parseInt(request.getParameter("input3"));
+		dk.tags = request.getParameter("input4");
+		
+		DanhMucDAO danhmuc = new DanhMucDAO();
+		danhmuc.ADD(dk);
+
+		
 		return "adminDanhMucCreate";
 	}
-	
-	
+
 	@RequestMapping("/CreateMonAn")
 	public String MonAnCreate(ModelMap model, HttpServletRequest request) {
 
 		return "adminMonAnCreate";
 	}
-	
+
 	@RequestMapping("/CreateTaiKhoan")
 	public String TaiKhoanCreate(ModelMap model, HttpServletRequest request) {
 
 		return "adminTaiKhoanCreate";
 	}
-	
+
 }
