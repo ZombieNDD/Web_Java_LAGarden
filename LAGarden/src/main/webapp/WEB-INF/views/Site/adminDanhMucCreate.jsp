@@ -17,9 +17,7 @@
 		${thongbao}
 		<div class="col-md-8">
 			<form action="CreateDanhMucSuccess" method="POST">
-				<div class="form-group">
-					<label><strong>ID Danh Mục:</strong> </label> <input name="input1">
-				</div>
+				
 
 				<div class="form-group">
 					<label><strong>Tên danh mục: </strong></label> <input name="input2" />

@@ -114,7 +114,7 @@ public class AdminController {
 					
 		DanhMuc dk = new DanhMuc();	
 				
-		if (request.getParameter("input1")==""||
+		if (
 			request.getParameter("input2")==""||
 			request.getParameter("input3")==""||
 			request.getParameter("input4")=="")
@@ -122,7 +122,6 @@ public class AdminController {
 			model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
 			return "adminDanhMucCreate";
 				}
-		dk.danhMucID = Integer.parseInt(request.getParameter("input1"));
 		dk.danhMucName = request.getParameter("input2");
 		dk.thuTu = Integer.parseInt(request.getParameter("input3"));
 		dk.tags = request.getParameter("input4");

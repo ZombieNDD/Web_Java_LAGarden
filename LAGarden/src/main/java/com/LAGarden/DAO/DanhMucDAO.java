@@ -42,7 +42,7 @@ public class DanhMucDAO {
 	public int ADD(DanhMuc resgister) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
 
-		String query = "Insert into  DanhMuc (" + resgister.danhMucID + ",'" + resgister.danhMucName + "',"
+		String query = "Insert into  DanhMuc ('" + resgister.danhMucName + "',"
 				+ resgister.thuTu + ",'" + resgister.tags + "')" ;
 
 		stm = conn.createStatement();
