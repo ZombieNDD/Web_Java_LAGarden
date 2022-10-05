@@ -183,7 +183,6 @@ public class AdminController {
 	@RequestMapping("/CreateTaiKhoanSuccess")
 	public String taiKhoanCreate2(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
-		Date date = new Date();
 		DangKy dk = new DangKy();		
 		Encryption mahoa = new Encryption();
 		
@@ -206,7 +205,6 @@ public class AdminController {
 		dk.address = request.getParameter("input6");
 		dk.roles = Integer.parseInt(request.getParameter("input7"));
 		
-		dk.createAt = date;
 		UserDAO user = new UserDAO();
 		user.Register(dk);		
 		
