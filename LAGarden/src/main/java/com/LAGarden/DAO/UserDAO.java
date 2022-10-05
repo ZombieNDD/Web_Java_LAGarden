@@ -32,6 +32,7 @@ public class UserDAO {
 		
 		return result;
 	}
+
 	
 	public DangKy Login(String user,String password) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();

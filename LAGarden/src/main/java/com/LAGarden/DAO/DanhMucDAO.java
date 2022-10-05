@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.LAGarden.Config.MyConnection;
+import com.LAGarden.Model.DangKy;
 import com.LAGarden.Model.DanhMuc;
 
 public class DanhMucDAO {
@@ -42,7 +43,7 @@ public class DanhMucDAO {
 	public int ADD(DanhMuc resgister) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
 
-		String query = "Insert into  DanhMuc ('" + resgister.danhMucName + "',"
+		String query = "Insert into DanhMuc values (" + resgister.danhMucID + ",'" + resgister.danhMucName + "',"
 				+ resgister.thuTu + ",'" + resgister.tags + "')" ;
 
 		stm = conn.createStatement();

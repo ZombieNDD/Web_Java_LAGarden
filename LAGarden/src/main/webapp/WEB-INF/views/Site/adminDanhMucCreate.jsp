@@ -14,10 +14,12 @@
 	<div class="form-horizontal">
 		<h4>Thêm mới</h4>
 
-		${thongbao}
+		
 		<div class="col-md-8">
 			<form action="CreateDanhMucSuccess" method="POST">
-				
+				<div class="form-group">
+					<label><strong>ID Danh Mục:</strong> </label> <input name="input1">
+				</div>
 
 				<div class="form-group">
 					<label><strong>Tên danh mục: </strong></label> <input name="input2" />
@@ -33,6 +35,9 @@
 
 				<button type="submit" class="btn btn-sm btn-success">Thêm</button>
 				<a href="adminDanhMuc" class="btn btn-sm btn-success">Quay lại</a>
+				<br>
+				${thongbao}
+				${thongbao2}
 			</form>
 		</div>
 	</div>

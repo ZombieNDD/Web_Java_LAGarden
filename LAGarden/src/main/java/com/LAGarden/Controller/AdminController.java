@@ -2,6 +2,7 @@ package com.LAGarden.Controller;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import com.LAGarden.DAO.HoTroDAO;
 import com.LAGarden.DAO.HoaDonDAO;
 import com.LAGarden.DAO.TableDAO;
 import com.LAGarden.DAO.UserDAO;
+import com.LAGarden.Model.CTMonAn;
 import com.LAGarden.Model.DangKy;
 import com.LAGarden.Model.DanhMuc;
 
@@ -108,13 +110,11 @@ public class AdminController {
 	public String DanhMucCreate(ModelMap model, HttpServletRequest request) {
 		return "adminDanhMucCreate";
 	}
-
 	@RequestMapping("/CreateDanhMucSuccess")
 	public String DanhMucCreate2(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
 					
-		DanhMuc dk = new DanhMuc();	
-				
-		if (
+		DanhMuc dk = new DanhMuc();					
+		if (request.getParameter("input1")==""||
 			request.getParameter("input2")==""||
 			request.getParameter("input3")==""||
 			request.getParameter("input4")=="")
@@ -122,26 +122,95 @@ public class AdminController {
 			model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
 			return "adminDanhMucCreate";
 				}
+		dk.danhMucID = Integer.parseInt(request.getParameter("input1"));
 		dk.danhMucName = request.getParameter("input2");
 		dk.thuTu = Integer.parseInt(request.getParameter("input3"));
-		dk.tags = request.getParameter("input4");
-		
+		dk.tags = request.getParameter("input4");		
 		DanhMucDAO danhmuc = new DanhMucDAO();
 		danhmuc.ADD(dk);
-
-		
+		model.addAttribute("thongbao2","Thêm thành công!");
 		return "adminDanhMucCreate";
 	}
 
+	
+	
+	
+	
 	@RequestMapping("/CreateMonAn")
 	public String MonAnCreate(ModelMap model, HttpServletRequest request) {
-
+		return "adminMonAnCreate";
+	}
+	@RequestMapping("/CreateMonAnSuccess")
+	public String MonAnCreate2(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		CTMonAn dk = new CTMonAn();			
+		if (request.getParameter("input1")==""||
+			request.getParameter("input2")==""||
+			request.getParameter("input3")==""||
+			request.getParameter("input4")==""||
+			request.getParameter("input5")==""||
+			request.getParameter("input6")==""||
+			request.getParameter("input7")==""||
+			request.getParameter("input8")==""||
+			request.getParameter("input9")=="")
+				{
+			model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
+			return "adminMonAnCreate";
+				}		
+		dk.danhMucID = Integer.parseInt(request.getParameter("input1"));
+		dk.tenMonAn = request.getParameter("input2");
+		dk.soLuong = Integer.parseInt(request.getParameter("input3"));
+		dk.chiTietMA = request.getParameter("input4");
+		dk.gia = Double.parseDouble(request.getParameter("input5"));
+		dk.giaSale = Double.parseDouble(request.getParameter("input6"));
+		dk.imgMA = request.getParameter("input7");
+		dk.slug = request.getParameter("input8");
+		dk.title = request.getParameter("input9");		
+		CTMonAnDAO monan = new CTMonAnDAO();
+		monan.ADD(dk);
+		model.addAttribute("thongbao2","Thêm thành công!");
 		return "adminMonAnCreate";
 	}
 
+	
+	
+	
+	
+	
 	@RequestMapping("/CreateTaiKhoan")
 	public String TaiKhoanCreate(ModelMap model, HttpServletRequest request) {
+		return "adminTaiKhoanCreate";
+	}
+	@RequestMapping("/CreateTaiKhoanSuccess")
+	public String taiKhoanCreate2(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 
+		Date date = new Date();
+		DangKy dk = new DangKy();		
+		Encryption mahoa = new Encryption();
+		
+		if (request.getParameter("input1")==""||
+				request.getParameter("input2")==""||
+				request.getParameter("input3")==""||
+				request.getParameter("input4")==""||
+				request.getParameter("input5")==""||
+				request.getParameter("input6")==""||
+				request.getParameter("input7")=="")
+					{
+				model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
+				return "adminTaiKhoanCreate";
+					}						
+		dk.fullname = request.getParameter("input1");
+		dk.username = request.getParameter("input2");
+		dk.password = mahoa.EncryptMD5(request.getParameter("input3"));
+		dk.email = request.getParameter("input4");
+		dk.phone = request.getParameter("input5");
+		dk.address = request.getParameter("input6");
+		dk.roles = Integer.parseInt(request.getParameter("input7"));
+		
+		dk.createAt = date;
+		UserDAO user = new UserDAO();
+		user.Register(dk);		
+		
+		model.addAttribute("thongbao2","Thêm thành công!");
 		return "adminTaiKhoanCreate";
 	}
 
