@@ -9,9 +9,12 @@
 		<div class="row">
 			<div clas="col-md-6">
 				<strong>DANH MỤC</strong>
+				<br>${thongbao3}
 			</div>
 			<div class="col-md-6 text-right">
 				<a href="CreateDanhMuc" class="btn btn-sm btn-success">Thêm Mới</a>
+				
+				
 			</div>
 		</div>
 	</div>
@@ -26,34 +29,26 @@
 			<th>Tag</th>
 			<th></th>
 		</tr>
-		
-		
-		
-		
-	<c:forEach items="${listDanhMuc}" var="item">
-		
-		 <tr>
-			<td>${item.danhMucID }</td>
-			<td>${item.danhMucName }</td>
-			<td>${item.thuTu }</td>
-			<td>${item.tags }</td>
-			<td>
-				<p class="btn btn-sm btn-success"
-					style="background: #ffffff; border: 2px solid #000000;">
-					@Html.ActionLink("Edit", "Edit", new { id = item.DanhMucID })</p>
-				<p class="btn btn-sm btn-success"
-					style="background: #ffffff; border: 2px solid #000000;">
-					@Html.ActionLink("Delete", "Delete", new { id = item.DanhMucID })</p>
-			</td>
-		</tr> 
-	</c:forEach>
-	
-		
+
+
+
+
+		<c:forEach items="${listDanhMuc}" var="item">
+			
+			<tr>
+			<form action="adminDeleteDanhMuc" method="POST">
+				<td>${item.danhMucID }</td>
+				<td>${item.danhMucName }</td>
+				<td>${item.thuTu }</td>
+				<td>${item.tags }</td>
+				<td>
+					
+					<button type="submit" class="btn btn-sm btn-success" name="dele"
+						value=${item.danhMucID }>Delete</button>
+				</td>
+				</form>
+			</tr>
+			
+		</c:forEach>
 	</table>
-	
-	<!-- @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
-	new PagedListRenderOptions { LiElementClasses = new string[] {
-	"page-item" }, }) -->
-
-
 </div>

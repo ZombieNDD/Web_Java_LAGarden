@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.LAGarden.Config.MyConnection;
+import com.LAGarden.Model.DanhMuc;
 import com.LAGarden.Model.HoaDon;
 
 public class HoaDonDAO {
@@ -42,4 +43,14 @@ public class HoaDonDAO {
 		return null;
 	}
 	
+	
+	public int DELETE(HoaDon dele) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "DELETE FROM HoaDon Where Phone =" + dele.Phone ;
+		stm = conn.createStatement();
+		int result = stm.executeUpdate(query);
+
+		return result;
+	}
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.LAGarden.Config.MyConnection;
 import com.LAGarden.Model.CTMonAn;
+import com.LAGarden.Model.DanhMuc;
 
 public class CTMonAnDAO {
 	Connection conn = null;
@@ -107,6 +108,15 @@ public class CTMonAnDAO {
 				+ resgister.soLuong + ",'" + resgister.chiTietMA + "'," + resgister.gia + ",'" 
 				+ resgister.imgMA + "','" + resgister.slug + "','" + resgister.title + "','" + resgister.giaSale +  "')";
 
+		stm = conn.createStatement();
+		int result = stm.executeUpdate(query);
+
+		return result;
+	}
+	public int DELETE(CTMonAn dele) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "DELETE FROM CTMONAN Where DanhMucID =" + dele.danhMucID ;
 		stm = conn.createStatement();
 		int result = stm.executeUpdate(query);
 

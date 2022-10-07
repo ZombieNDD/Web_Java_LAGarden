@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.LAGarden.Config.MyConnection;
+import com.LAGarden.Model.DanhMuc;
 import com.LAGarden.Model.HoTro;
 import com.LAGarden.Model.Table;
 
@@ -40,5 +41,15 @@ public class HoTroDAO {
             e.printStackTrace();
         }
 		return null;
+	}
+	
+	public int DELETE(HoTro dele) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "DELETE FROM LIENHE Where Email =" + dele.Email ;
+		stm = conn.createStatement();
+		int result = stm.executeUpdate(query);
+
+		return result;
 	}
 }

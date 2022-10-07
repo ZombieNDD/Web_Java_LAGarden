@@ -51,4 +51,14 @@ public class DanhMucDAO {
 
 		return result;
 	}
+	
+	public int DELETE(DanhMuc dele) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "DELETE FROM DanhMuc Where DanhMucID =" + dele.danhMucID ;
+		stm = conn.createStatement();
+		int result = stm.executeUpdate(query);
+
+		return result;
+	}
 }

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.LAGarden.Config.MyConnection;
+import com.LAGarden.Model.CTMonAn;
 import com.LAGarden.Model.DangKy;
 import com.LAGarden.Model.DanhMuc;
 
@@ -74,5 +75,16 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	
+	public int DELETE(DangKy dele) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "DELETE FROM TAIKHOAN Where UserName="+dele.username;
+		stm = conn.createStatement();
+		int result = stm.executeUpdate(query);
+
+		return result;
 	}
 }

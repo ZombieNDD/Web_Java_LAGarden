@@ -10,6 +10,8 @@
 		<div class="row">
 			<div clas="col-md-6">
 				<strong>HOÁ ĐƠN</strong>
+				<br>
+				${thongbao3}
 			</div>
 
 		</div>
@@ -32,6 +34,7 @@
 		<c:forEach items="${listHoaDon}" var="item">
 
 			<tr>
+			 <form action="adminDeleteHoaDon" method="POST">
 				<td>${item.username}</td>
 				<td>${item.NameRecieve}</td>
 				<td>${item.AddressRecive}</td>
@@ -41,25 +44,14 @@
 				<td>${item.NgayLap}</td>
 
 				<td>
-					<p class="btn btn-sm btn-success"
-						style="background: #ffffff; border: 2px solid #000000;">
-						@Html.ActionLink("Edit", "Edit", new { id = item.ID })</p>
-					<p class="btn btn-sm btn-success"
-						style="background: #ffffff; border: 2px solid #000000;">
-						@Html.ActionLink("Details", "Details", new { id = item.ID })</p>
-					<p class="btn btn-sm btn-success"
-						style="background: #ffffff; border: 2px solid #000000;">
-						@Html.ActionLink("Delete", "Delete", new { id = item.ID })</p>
+					<button type="submit" class="btn btn-sm btn-success" name="dele"
+						value=${item.Phone }>Delete</button>
 				</td>
+				</form>
 			</tr>
 		</c:forEach>
 
 
 	</table>
-	<!--  @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
-                                       new PagedListRenderOptions
-                                       {
-                                           LiElementClasses = new string[] { "page-item" },
-                                       })
- -->
+	
 </div>

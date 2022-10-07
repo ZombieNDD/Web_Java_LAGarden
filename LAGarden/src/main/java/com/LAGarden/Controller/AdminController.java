@@ -2,7 +2,6 @@ package com.LAGarden.Controller;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +20,9 @@ import com.LAGarden.DAO.UserDAO;
 import com.LAGarden.Model.CTMonAn;
 import com.LAGarden.Model.DangKy;
 import com.LAGarden.Model.DanhMuc;
+import com.LAGarden.Model.HoTro;
+import com.LAGarden.Model.HoaDon;
+import com.LAGarden.Model.Table;
 
 @Controller
 @RequestMapping(value = "admin")
@@ -210,6 +212,101 @@ public class AdminController {
 		
 		model.addAttribute("thongbao2","Thêm thành công!");
 		return "adminTaiKhoanCreate";
+	}
+	
+	/* ========================Xoa DashBoard=============================== */
+	
+	@RequestMapping("adminDeleteDanhMuc")
+	public String DanhMucDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+			
+		DanhMuc dk = new DanhMuc();			
+		dk.danhMucID = Integer.parseInt(request.getParameter("dele"));			
+		DanhMucDAO danhmuc = new DanhMucDAO();
+		danhmuc.DELETE(dk);		
+		
+		model.addAttribute("thongbao3","Xóa thành công!");
+
+		DanhMucDAO listDanhMuc = new DanhMucDAO();
+		model.addAttribute("listDanhMuc", listDanhMuc.getListDanhMuc());
+		return "adminDanhMuc";
+	}
+	
+	@RequestMapping("adminDeleteMonAn")
+	public String MonAnDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+			
+		CTMonAn dk = new CTMonAn();			
+		dk.danhMucID = Integer.parseInt(request.getParameter("dele"));			
+		CTMonAnDAO danhmuc = new CTMonAnDAO();
+		danhmuc.DELETE(dk);		
+		
+		model.addAttribute("thongbao3","Xóa thành công!");
+
+		CTMonAnDAO listMonAn = new CTMonAnDAO();
+		model.addAttribute("listMonAn", listMonAn.getListCTMonAN());
+		return "adminMonAn";
+	}
+	
+	@RequestMapping("adminDeleteTaiKhoan")
+	public String TKDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+			
+		DangKy dk = new DangKy();			
+		dk.username = request.getParameter("dele").toString().trim();			
+		UserDAO danhmuc = new UserDAO();
+		danhmuc.DELETE(dk);		
+		
+		model.addAttribute("thongbao3","Xóa thành công!");
+
+		UserDAO listUser = new UserDAO();
+		model.addAttribute("listUser", listUser.getListUser());
+		return "adminTaiKhoan";
+		
+	}
+	
+	@RequestMapping("adminDeleteDatBan")
+	public String DatBanDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+			
+		Table dk = new Table();			
+		dk.Phone = request.getParameter("dele").toString().trim();			
+		TableDAO danhmuc = new TableDAO();
+		danhmuc.DELETE(dk);		
+		
+		model.addAttribute("thongbao3","Xóa thành công!");
+
+		
+		TableDAO listTable = new TableDAO();
+		// model.addAttribute("listTable",listTable.getListTable());
+		// call data k dc? do nhieu qua nen no tran`?
+		return "adminDatBan";
+	}
+	
+	@RequestMapping("adminDeleteHoaDon")
+	public String HoaDonDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+			
+		HoaDon dk = new HoaDon();			
+		dk.Phone = request.getParameter("dele").toString().trim();			
+		HoaDonDAO danhmuc = new HoaDonDAO();
+		danhmuc.DELETE(dk);		
+		
+		model.addAttribute("thongbao3","Xóa thành công!");
+
+		HoaDonDAO listHoaDon = new HoaDonDAO();
+		// model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());
+		return "adminHoaDon";
+	}
+	
+	@RequestMapping("adminDeleteHoTro")
+	public String HoTroDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+			
+		HoTro dk = new HoTro();			
+		dk.Email = request.getParameter("dele").toString().trim();			
+		HoTroDAO danhmuc = new HoTroDAO();
+		danhmuc.DELETE(dk);		
+		
+		model.addAttribute("thongbao3","Xóa thành công!");
+
+		HoTroDAO listHoTro = new HoTroDAO();
+		// model.addAttribute("listHoTro",listHoTro.getListHoTro());
+		return "adminHoTro";		
 	}
 
 }
