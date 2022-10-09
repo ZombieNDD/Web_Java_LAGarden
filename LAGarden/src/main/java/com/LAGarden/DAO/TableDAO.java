@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.LAGarden.Config.MyConnection;
+import com.LAGarden.Model.DanhMuc;
 import com.LAGarden.Model.Table;
 
 public class TableDAO {
@@ -44,6 +45,7 @@ public class TableDAO {
         }
 		return null;
 	}
+
 	public int addItem(Table tb,String username) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
 
@@ -51,5 +53,17 @@ public class TableDAO {
 		stm = conn.createStatement();
 		int i = stm.executeUpdate(query);
 		return i;
+
+	
+	
+	public int DELETE(Table dele) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "DELETE FROM DatBan Where Phone =" + dele.Phone ;
+		stm = conn.createStatement();
+		int result = stm.executeUpdate(query);
+
+		return result;
+
 	}
 }
