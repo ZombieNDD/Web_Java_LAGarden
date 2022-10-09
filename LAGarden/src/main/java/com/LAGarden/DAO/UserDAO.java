@@ -24,7 +24,7 @@ public class UserDAO {
 		String query = "Insert into TAIKHOAN values ('" + resgister.fullname + "','" + resgister.username + "','"
 				+ resgister.password + "','" + resgister.email + "','" + resgister.phone + "','" + resgister.address
 				+ "',null,null," + resgister.roles + ",null,null,null,null,null)";
-
+		System.out.println(query);
 		stm = conn.createStatement();
 		int result = stm.executeUpdate(query);
 

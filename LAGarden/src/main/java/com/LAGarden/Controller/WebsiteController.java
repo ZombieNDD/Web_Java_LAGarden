@@ -105,6 +105,7 @@ public class WebsiteController {
     }
 	@PostMapping("/saveSignUpForm")
 	public String saveUser(ModelMap model,HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+		
 		Date date = new Date();
 		DangKy dk = new DangKy();
 		Encryption mahoa = new Encryption();
@@ -112,17 +113,21 @@ public class WebsiteController {
 		dk.password = mahoa.EncryptMD5(request.getParameter("Password"));
 		
 		String repeatPass = request.getParameter("ConfirmPassword");
-		if (!dk.password.equals(repeatPass)) {
-			model.addAttribute("Thông báo","Mật khẩu lặp lại bị sai!");
+		if (!dk.password.equals(mahoa.EncryptMD5(repeatPass))) {
+			model.addAttribute("message","Mật khẩu lặp lại bị sai!");
 			return "dangky";
 		}
+		
 		dk.fullname = request.getParameter("Name");
 		dk.address = request.getParameter("Address");
 		dk.email = request.getParameter("email");
 		dk.phone = request.getParameter("Phone");
-		dk.createAt = date;
+		dk.roles = 0;
 		UserDAO user = new UserDAO();
-		user.Register(dk);
+		int i = user.Register(dk);
+		if (i<0) {
+			model.addAttribute("message","Đăng ký thất bại!");
+		}
 		
 		return "dangky";
 	}
@@ -139,7 +144,10 @@ public class WebsiteController {
 		DangKy dk =new DangKy();
 		dk= dao.Login(username, password);
 		this.sessionUser = dk;
-		
+		if (dk==null) {
+			model.addAttribute("message","Đăng nhập không thành công");
+			return "dangnhap";
+		}
 		if (dk.roles==0) {
 		session = request.getSession();
 

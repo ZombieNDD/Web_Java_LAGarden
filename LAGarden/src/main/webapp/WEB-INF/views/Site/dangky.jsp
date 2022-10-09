@@ -17,12 +17,13 @@
 					<h4
 						style="text-align: center; font-size: 30px; font-weight: bold; margin-top: 20px">Đăng
 						ký thành viên</h4>
+						${message}
 					<hr />
 					<div class="form-group">
-						<div class="validation-summary-valid text-danger"
+						<div class="validation-summary-valid text-danger" 
 							data-valmsg-summary="true">
 							<ul>
-								<li style="display: none"></li>
+								<li style="display: none"> </li>
 							</ul>
 						</div>
 					</div>
