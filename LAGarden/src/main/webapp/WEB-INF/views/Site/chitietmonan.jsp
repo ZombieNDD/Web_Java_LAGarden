@@ -14,9 +14,8 @@
             <h1 class="text-primary">Món ăn</h1>
             <h1>${ monAn.tenMonAn}</h1>
             <h3>Giá: ${ monAn.gia}</h3>
-            
             <p>${monAn.chiTietMA }</p>
-            <a class="btn btn-outline-primary" href="/them-gio-hang?idma=@Model.IDMA&quantity=1">Đặt món</a>
+            <a class="btn btn-outline-primary" href="them-gio-hang-${monAn.idMA}">Đặt món</a>
         </div>
     </div>
 </body>

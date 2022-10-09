@@ -10,7 +10,7 @@ var contact = {
             var content = $('#txtContent').val();
 
             $.ajax({
-                url: '/Site/Send',
+                url: 'formhotro',
                 type: 'POST',
                 dataType: 'json',
                 data: {

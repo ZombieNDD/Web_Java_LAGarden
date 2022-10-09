@@ -9,7 +9,7 @@
             var content = $('#txtContent').val();
 
             $.ajax({
-                url: '/Site/Send',
+                url: 'formhotro',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -18,10 +18,11 @@
                     content: content
                 },
                 success: function (res) {
-                    if (res.status != true) {
+                    if (res.status == true) {
                         window.alert('Gửi thành công');
                         contact.resetForm();
                     }
+					else window.alert(res.message);
                 }
             });
         });

@@ -161,16 +161,6 @@
 			value="/WEB-INF/views/Site/adminTaiKhoanCreate.jsp" />
 	</definition>
 
-
-
-
-
-
-
-
-
-
-
 	<!-- =========================================================================== -->
 	<!-- =========================================================================== -->
 	<!-- =========================================================================== -->
@@ -196,5 +186,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/login.jsp" />
 	</definition>
-
+	<definition name="giohang" extends="base.homepage">
+		<put-attribute name="title" value="Giỏ hàng" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/giohang.jsp" />
+	</definition>
 </tiles-definitions>

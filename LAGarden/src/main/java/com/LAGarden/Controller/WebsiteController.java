@@ -24,19 +24,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.LAGarden.Common.Encryption;
 import com.LAGarden.DAO.CTMonAnDAO;
 import com.LAGarden.DAO.DanhMucDAO;
+import com.LAGarden.DAO.HoTroDAO;
 import com.LAGarden.DAO.ImageDatBanDAO;
 import com.LAGarden.DAO.TableDAO;
 import com.LAGarden.DAO.UserDAO;
 import com.LAGarden.Model.CTMonAn;
+import com.LAGarden.Model.CartItem;
 import com.LAGarden.Model.DangKy;
+import com.LAGarden.Model.HoTro;
 import com.LAGarden.Model.Table;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.nimbusds.jose.shaded.json.JSONObject;
 
 @Controller
 public class WebsiteController {
+
 	HttpSession session = null;
 	DangKy sessionUser = new DangKy();
+	List<CartItem> sessionCart = null;
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String home(ModelMap model) {
 		return "home";
@@ -73,12 +83,13 @@ public class WebsiteController {
 		return "datmon";
 	}
 	@RequestMapping(value = "/sanpham-{tensp}-{idsp}",method = RequestMethod.GET)
-	public String viewProduct(ModelMap model, @PathVariable("tensp") String tensp, @PathVariable("idsp") String idsp) throws ClassNotFoundException, SQLException{
+	public String viewProduct(ModelMap model, @PathVariable("tensp") String tensp, @PathVariable("idsp") int idsp) throws ClassNotFoundException, SQLException{
 		DanhMucDAO listDanhMuc = new DanhMucDAO();
 		model.addAttribute("listDanhMuc",listDanhMuc.getListDanhMuc());
 		CTMonAnDAO ct = new CTMonAnDAO();
 		CTMonAn monAn = ct.chiTietMonAn(idsp);
 		model.addAttribute("monAn",monAn);
+
 		return "chitietsp";
 	}
 	@RequestMapping(value = "/danhmuc-{tenDanhMuc}-{danhMucID}",method = RequestMethod.GET)
@@ -183,16 +194,160 @@ public class WebsiteController {
 		write(respone,map);
 		return null;
 	}
+	
+	
 	@PostMapping("/formhotro")
-	public String FormHoTro(ModelMap model,HttpServletRequest request,HttpServletResponse respone) {
-		
-		return null;
+	public void FormHoTro(ModelMap model,HttpServletRequest request,HttpServletResponse respone) throws IOException, ClassNotFoundException, SQLException {
+		HoTro hotro = new HoTro();
+		HoTroDAO dao = new HoTroDAO();
+		Map<String,Object> map = new HashMap<String, Object>();
+		boolean status = false;
+		String message = null;
+		if (session != null)
+		{
+			hotro.TenKH = request.getParameter("name");
+			hotro.Email = request.getParameter("email");
+			hotro.ChiTiet = request.getParameter("content");
+			if (hotro.ChiTiet=="" || hotro.TenKH==""||hotro.Email=="") {
+				status = false;
+				message = "Thiếu thông tin, vui lòng điền đầy đủ";
+			}else {
+				int i = dao.formHoTro(hotro);
+				if (i>0) {
+					status = true;
+				}else {
+					message = "Đăng ký thất bại, vui lòng thử lại sau";
+				}
+			}
+			
+		}
+		else {
+			status = false;
+			message = "Vui lòng đăng nhập";
+		}
+		map.put("status",status);
+		map.put("message",message);
+		write(respone,map);
 	}
+	//=======================================THANH TOÁN============================================//
+	@RequestMapping(value="/them-gio-hang-{idma}",method = RequestMethod.GET)
+	 public String AddItem(ModelMap model,HttpServletRequest request,HttpServletResponse respone,@PathVariable("idma") int idma) throws ClassNotFoundException, SQLException {
+		if (session == null) {
+			return "dangnhap";
+		}
+		int quantity = 1;
+		List<CartItem> list;
+		CTMonAn ctma = new CTMonAnDAO().chiTietMonAn(idma);
+		List<CartItem> sessionCart = (List<CartItem>) session.getAttribute("GioHang");
+		if (sessionCart!=null) {
+			list = (List<CartItem>)sessionCart;
+			boolean check = checkContains(list,ctma);
+            if (check)
+            {
+                for (CartItem item : list)
+                {
+                    if (item.ctMA.idMA == idma)
+                    {
+                        item.quantity += quantity;
+                    }
+                }
+            }
+            else
+            {
+            	CartItem item = new CartItem();
+                item.ctMA = ctma;
+                item.quantity = quantity;
+                list.add(item);
+            }
+            session.setAttribute("GioHang",list);
+        }
+        else
+        {
+            //tạo mới
+        	CartItem item = new CartItem();
+            item.ctMA = ctma;
+            item.quantity = quantity;
+            list = new ArrayList<CartItem>();
+            list.add(item);
+            //gán
+            session.setAttribute("GioHang",list);
+        }
+		model.addAttribute("listGioHang",list);
+		System.out.println(list);
+		return "giohang";
+	}
+	@PostMapping("/capnhat")
+    public void Update(ModelMap model,HttpServletRequest request,HttpServletResponse respone,String cartModel) throws IOException
+    {
+    	ObjectMapper mapper = new ObjectMapper();
+    	List<CartItem> jsonCart = mapper.readValue(cartModel, new TypeReference<List<CartItem>>(){});
+        sessionCart = (List<CartItem>) session.getAttribute("GioHang");
+        Map<String,Object> map = new HashMap<String, Object>();
+        for (CartItem item : sessionCart)
+        {
+        	CartItem jsonItem = getItem(jsonCart,item.ctMA.idMA);
+            if (jsonItem != null)
+            {
+                item.quantity = jsonItem.quantity;
+            }
+        }
+        session.setAttribute("GioHang",sessionCart);
+
+        boolean status = true;
+        map.put("status",status);
+        write(respone,map);
+    }
+	@PostMapping("/deleteall")
+    public void DeleteAll(ModelMap model,HttpServletRequest request,HttpServletResponse respone) throws IOException
+    {
+		Map<String,Object> map = new HashMap<String, Object>();
+		session.setAttribute("GioHang",null);
+		boolean status = true;
+        map.put("status", status);
+        write(respone,map);
+    }
+	@PostMapping("/delete")
+    public void Delete(ModelMap model,HttpServletRequest request,HttpServletResponse respone) throws IOException
+    {
+		int id =  Integer.parseInt( request.getParameter("id"));
+		boolean status = false;
+		Map<String,Object> map = new HashMap<String, Object>();
+        List<CartItem> sessionCart = (List<CartItem>) session.getAttribute("GioHang");
+        
+        CartItem item = getItem(sessionCart, id);
+        sessionCart.remove(item);
+        session.setAttribute("GioHang",sessionCart);
+        status = true;
+        map.put("status", status);
+        write(respone,map);
+        
+    }
+	@RequestMapping("/giohang")
+	public String giohang(ModelMap model,HttpServletRequest request,HttpServletResponse respone) {
+		List<CartItem> sessionCart = (List<CartItem>) session.getAttribute("GioHang");
+		model.addAttribute("listGioHang",sessionCart);
+		return "giohang";
+	}
+    //============================== KHÁC ================================//
 	private void write(HttpServletResponse respone, Map<String, Object> map) throws IOException {
 		respone.setContentType("application/json");
 		respone.setCharacterEncoding("UTF-8");
 		respone.getWriter().write(new Gson().toJson(map));
 	}
+	private boolean checkContains(List<CartItem> list,CTMonAn cart) {
+		for(CartItem item: list) {
+			if (item.ctMA.idMA == cart.idMA) return true;
+		}
+		return false;
+	}
+	
+	private CartItem getItem(List<CartItem> list,int id) {
+		for(CartItem item: list) {
+			if (item.ctMA.idMA ==id) return item;
+		}
+		return null;
+	}
+	
 	
 }
 	

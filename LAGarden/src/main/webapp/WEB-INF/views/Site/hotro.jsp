@@ -30,7 +30,7 @@
             <button class="btn btn-success" id="btnSend" style="margin-top:20px">Gửi liên hệ</button>
         </form>
     </section>
-    <script src="${pageContext.servletContext.contextPath}/resource/MyJS/Contact.js"></script>
+    <script src="${pageContext.servletContext.contextPath}/resource/MyJS/HoTroController.js"></script>
     <script>
         function addClass() {
             let ele = document.getElementById('hotro');

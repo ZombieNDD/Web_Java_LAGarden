@@ -41,4 +41,11 @@ public class HoTroDAO {
         }
 		return null;
 	}
+	public int formHoTro(HoTro ht) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+		String query = "Insert into Table values ('"+ht.TenKH+"','"+ht.Email+"',,'"+ht.ChiTiet+")";
+		stm = conn.createStatement();
+		int i = stm.executeUpdate(query);
+		return i;
+	}
 }

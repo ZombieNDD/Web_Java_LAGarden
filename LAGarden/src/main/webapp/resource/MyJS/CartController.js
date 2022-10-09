@@ -4,28 +4,28 @@
     },
     regEvents: function () {
         $('#btnContinue').off('click').on('click', function () {
-            window.location.href = "/dat-mon";
+            window.location.href = "datmon";
         });
         $('#btnUpdate').off('click').on('click', function () {
             var listProduct = $('.txtQuantity');
             var cartList = [];
             $.each(listProduct, function (i, item) {
                 cartList.push({
-                    Quantity: $(item).val(),
-                    CTMA: {
-                        IDMA: $(item).data('id')
+                    quantity: $(item).val(),
+                    ctMA: {
+                        idMA: $(item).data('id')
                     }
                 });
             });
 
             $.ajax({
-                url: '/Cart/Update',
+                url: 'capnhat',
                 data: { cartModel: JSON.stringify(cartList) },
                 dataType: 'json',
                 type: 'POST',
                 success: function (res) {
                     if (res.status == true) {
-                        window.location.href = "/gio-hang";
+                        window.location.href = "giohang";
                     }
                 }
             })
@@ -35,12 +35,12 @@
 
 
             $.ajax({
-                url: '/Cart/DeleteAll',
+                url: 'deleteall',
                 dataType: 'json',
                 type: 'POST',
                 success: function (res) {
                     if (res.status == true) {
-                        window.location.href = "/gio-hang";
+                        window.location.href = "giohang";
                     }
                 }
             })
@@ -50,12 +50,12 @@
             e.preventDefault();
             $.ajax({
                 data: { id: $(this).data('id') },
-                url: '/Cart/Delete',
+                url: 'delete',
                 dataType: 'json',
                 type: 'POST',
                 success: function (res) {
                     if (res.status == true) {
-                        window.location.href = "/gio-hang";
+                        window.location.href = "giohang";
                     }
                 }
             })
