@@ -27,7 +27,7 @@ public class ImageDatBanDAO {
 		rs = stm.executeQuery(query);
 		while (rs.next()){
 			ImageDatBan item = new ImageDatBan();
-			item.ID = rs.getInt("ID");
+			item.ID = rs.getInt("id");
 			item.imgsource= rs.getString("imgsource");
 			list.add(item);
 			}

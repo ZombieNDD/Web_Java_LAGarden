@@ -45,7 +45,7 @@ public class CTMonAnDAO {
         }
 		return null;
 	}
-	public CTMonAn chiTietMonAn(String id) throws ClassNotFoundException, SQLException {
+	public CTMonAn chiTietMonAn(int id) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
 		String query = "SELECT * FROM CTMONAN WHERE IDMA = " + id;
 

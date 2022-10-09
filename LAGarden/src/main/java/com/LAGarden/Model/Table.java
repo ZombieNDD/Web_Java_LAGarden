@@ -5,53 +5,54 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public class Table {
+
 	public Date getNgayDB() {
-		return NgayDB;
+		return ngayDB;
 	}
 	public void setNgayDB(Date ngayDB) {
-		NgayDB = ngayDB;
+		this.ngayDB = ngayDB;
 	}
 	public Time getGioDB() {
-		return GioDB;
+		return gioDB;
 	}
 	public void setGioDB(Time gioDB) {
-		GioDB = gioDB;
+		this.gioDB = gioDB;
 	}
 	public String getFullName() {
-		return FullName;
+		return fullName;
 	}
 	public void setFullName(String fullName) {
-		FullName = fullName;
+		this.fullName = fullName;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	public String getPhone() {
-		return Phone;
+		return phone;
 	}
 	public void setPhone(String phone) {
-		Phone = phone;
+		this.phone = phone;
 	}
-	public String getSLNguoiLon() {
-		return SLNguoiLon;
+	public String getsLNguoiLon() {
+		return sLNguoiLon;
 	}
-	public void setSLNguoiLon(String sLNguoiLon) {
-		SLNguoiLon = sLNguoiLon;
+	public void setsLNguoiLon(String sLNguoiLon) {
+		this.sLNguoiLon = sLNguoiLon;
 	}
-	public String getSLTreEm() {
-		return SLTreEm;
+	public String getsLTreEm() {
+		return sLTreEm;
 	}
-	public void setSLTreEm(String sLTreEm) {
-		SLTreEm = sLTreEm;
+	public void setsLTreEm(String sLTreEm) {
+		this.sLTreEm = sLTreEm;
 	}
 	public String getGhiChu() {
-		return GhiChu;
+		return ghiChu;
 	}
 	public void setGhiChu(String ghiChu) {
-		GhiChu = ghiChu;
+		this.ghiChu = ghiChu;
 	}
 	public String getUsername() {
 		return username;
@@ -59,13 +60,20 @@ public class Table {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Date NgayDB;
-	public Time GioDB;
-	public String FullName;
-	public String Email;
-	public String Phone;
-	public String SLNguoiLon;
-	public String SLTreEm;
-	public String GhiChu;
+	public Date ngayDB;
+	public Time gioDB;
+	public String fullName;
+	public String email;
+	public String phone;
+	public String sLNguoiLon;
+	public String sLTreEm;
+	public String ghiChu;
 	public String username;
+	public int id;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 }

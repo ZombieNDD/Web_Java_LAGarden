@@ -41,7 +41,7 @@ public class UserDAO {
 			item.fullname = rs.getString("FullName");
 			item.username = rs.getString("UserName");
 			item.password = rs.getString("Password");
-			item.email = rs.getString("Email");
+			item.email = rs.getString("email");
 			item.phone = rs.getString("Phone");
 			item.address = rs.getString("Address");
 			item.roles = rs.getInt("Roles");
@@ -64,7 +64,7 @@ public class UserDAO {
 				item.fullname = rs.getString("FullName");
 				item.username = rs.getString("UserName");
 				item.password = rs.getString("Password");
-				item.email = rs.getString("Email");
+				item.email = rs.getString("email");
 				item.phone = rs.getString("Phone");
 				item.address = rs.getString("Address");
 				item.roles = rs.getInt("Roles");
@@ -81,7 +81,7 @@ public class UserDAO {
 	public int DELETE(DangKy dele) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
 
-		String query = "DELETE FROM TAIKHOAN Where UserName="+dele.username;
+		String query = "DELETE FROM TAIKHOAN Where UserName='"+dele.username+"'";
 		stm = conn.createStatement();
 		int result = stm.executeUpdate(query);
 

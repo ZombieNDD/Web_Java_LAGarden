@@ -5,31 +5,31 @@ import java.util.BitSet;
 public class HoTro {
 
 	public int getID() {
-		return ID;
+		return id;
 	}
 	public void setDID(int ID) {
-		this.ID = ID;
+		this.id = ID;
 	}
 	
 	public String getTenKH() {
-		return TenKH;
+		return tenKH;
 	}
 	public void setTenKH(String TenKH) {
-		this.TenKH = TenKH;
+		this.tenKH = TenKH;
 	}
 	
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String Email) {
-		this.Email = Email;
+		this.email = Email;
 	}
 	
 	public String getChiTiet() {
-		return ChiTiet;
+		return chiTiet;
 	}
 	public void setChiTiet(String ChiTiet) {
-		this.ChiTiet = ChiTiet;
+		this.chiTiet = ChiTiet;
 	}
 	public boolean getStatus() {
 		return status;
@@ -37,9 +37,9 @@ public class HoTro {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	public int ID;
-	public String TenKH;
-	public String Email;
-	public String ChiTiet;
+	public int id;
+	public String tenKH;
+	public String email;
+	public String chiTiet;
 	public boolean status;
 }

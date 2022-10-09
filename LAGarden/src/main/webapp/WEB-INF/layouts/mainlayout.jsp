@@ -59,10 +59,8 @@ footer {
                                     Xin chào: <% out.print(tenTK); %>
                                 </a>
                                 <div class="dropdown-menu my-drop-down" aria-labelledby="dropdownMenuButton">
-                                    <div class="dropdown-item"><a href="/gio-hang/">Giỏ hàng</a></div>
-                                    <div class="dropdown-item"><a href="/thong-tin-tai-khoan/">Thông tin tài khoản</a></div>
-                                    <div class="dropdown-item"><a href="/doi-mat-khau/">Đổi mật khẩu</a></div>
-                                    <div class="dropdown-item"><a href="/dang-xuat/">Đăng xuất</a></div>
+                                    <div class="dropdown-item"><a href="giohang">Giỏ hàng</a></div>
+                                    <div class="dropdown-item"><a href="logout">Đăng xuất</a></div>
                                 </div>
                             </div>
 						<%}else{ %>
