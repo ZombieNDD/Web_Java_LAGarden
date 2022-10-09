@@ -54,18 +54,18 @@
 		 <tr>
 		 <form action="adminDeleteDatBan" method="POST">
 			<td>${item.username }</td>
-			<td>${item.NgayBD }</td>
-			<td>${item.GioBD }</td>
-			<td>${item.Fullname }</td>
-			<td>${item.Email }</td>
-			<td>${item.Phone }</td>
-			<td>${item.SLNguoiLon }</td>
-			<td>${item.SLTreEm }</td>
-			<td>${item.GhiChu }</td>
+			<td>${item.ngayDB }</td>
+			<td>${item.gioDB }</td>
+			<td>${item.fullName }</td>
+			<td>${item.email }</td>
+			<td>${item.phone }</td>
+			<td>${item.sLNguoiLon }</td>
+			<td>${item.sLTreEm }</td>
+			<td>${item.ghiChu }</td>
                 
                 <td>
                    <button type="submit" class="btn btn-sm btn-success" name="dele"
-						value=${item.Phone }>Delete</button>
+						value=${item.id }>Delete</button>
                 </td>
                 </form>
             </tr>

@@ -31,14 +31,14 @@
 
 			<tr>
 			<form action="adminDeleteHoTro" method="POST">
-				<td>${item.TenKH}</td>
-				<td>${item.Email}</td>
-				<td>${item.ChiTiet}</td>
+				<td>${item.tenKH}</td>
+				<td>${item.email}</td>
+				<td>${item.chiTiet}</td>
 				<td>${item.status}</td>
 
 				<td>
 					<button type="submit" class="btn btn-sm btn-success" name="dele"
-						value=${item.Email }>Delete</button>
+						value=${item.email }>Delete</button>
 				</td>
 				</form>
 			</tr>

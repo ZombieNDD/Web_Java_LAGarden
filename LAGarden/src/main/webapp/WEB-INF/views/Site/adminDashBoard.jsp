@@ -92,13 +92,6 @@
 						</div> <span class="nav-link-text ms-1">Đặt bàn</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link text-white "
-					href="adminHoaDon">
-						<div
-							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-							<i class="material-icons opacity-10">receipt_long</i>
-						</div> <span class="nav-link-text ms-1">Hoá đơn</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link text-white "
 					href="adminTaiKhoan">
 						<div
 							class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -148,7 +141,7 @@
 						href="javascript:;"
 						class="nav-link text-body font-weight-bold px-0"> <i
 							class="fa fa-user me-sm-1"></i> <span class="d-sm-inline d-none">Xin
-								chào: @session.UserName</span>
+								chào: ${Fullname}</span>
 					</a></li>
 					<li class="nav-item d-xl-none ps-3 d-flex align-items-center">
 						<a href="javascript:;" class="nav-link text-body p-0"

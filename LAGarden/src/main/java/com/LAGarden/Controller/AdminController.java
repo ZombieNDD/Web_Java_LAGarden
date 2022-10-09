@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.LAGarden.Common.Encryption;
@@ -27,11 +28,12 @@ import com.LAGarden.Model.Table;
 @Controller
 @RequestMapping(value = "admin")
 public class AdminController {
+	HttpSession session=null;
 	@RequestMapping(value = "/")
 	public String adminform(ModelMap model) {
 		return "admin";
 	}
-
+	
 	@RequestMapping("/adminDashBoard")
 	public String adminDashBoard(ModelMap model, HttpServletRequest request)
 			throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
@@ -42,9 +44,9 @@ public class AdminController {
 		UserDAO dao = new UserDAO();
 		DangKy dk = new DangKy();
 		dk = dao.Login(username, password);
-		HttpSession session = request.getSession();
-
-		if (dk != null) {
+		session = request.getSession();
+		
+		if (dk != null && dk.roles == 1) {
 			session.setAttribute("Fullname", dk.fullname);
 			return "adminDashBoard";
 		}
@@ -53,6 +55,9 @@ public class AdminController {
 
 	@RequestMapping("/adminDanhMuc")
 	public String adminDanhMuc(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		if (session == null) {
+			return "admin";
+		}
 		DanhMucDAO listDanhMuc = new DanhMucDAO();
 		model.addAttribute("listDanhMuc", listDanhMuc.getListDanhMuc());
 		return "adminDanhMuc";
@@ -60,6 +65,9 @@ public class AdminController {
 
 	@RequestMapping("/adminMonAn")
 	public String adminMonAn(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		if (session == null) {
+			return "admin";
+		}
 		CTMonAnDAO listMonAn = new CTMonAnDAO();
 		model.addAttribute("listMonAn", listMonAn.getListCTMonAN());
 		return "adminMonAn";
@@ -67,29 +75,41 @@ public class AdminController {
 
 	@RequestMapping("/adminDatBan")
 	public String adminDatBan(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		if (session == null) {
+			return "admin";
+		}
 		TableDAO listTable = new TableDAO();
-		// model.addAttribute("listTable",listTable.getListTable());
+		model.addAttribute("listTable",listTable.getListTable());
 		// call data k dc? do nhieu qua nen no tran`?
 		return "adminDatBan";
 	}
 
 	@RequestMapping("/adminHoaDon")
 	public String adminHoaDon(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		if (session == null) {
+			return "admin";
+		}
 		HoaDonDAO listHoaDon = new HoaDonDAO();
-		// model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());
+		 model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());
 		return "adminHoaDon";
 	}
 
 	@RequestMapping("/adminHoTro")
 	public String adminHoTro(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		if (session == null) {
+			return "admin";
+		}
 		HoTroDAO listHoTro = new HoTroDAO();
-		// model.addAttribute("listHoTro",listHoTro.getListHoTro());
+		model.addAttribute("listHoTro",listHoTro.getListHoTro());
 		return "adminHoTro";
 	}
 
 	@RequestMapping("/adminTaiKhoan")
 	public String adminTaiKhoan(ModelMap model, HttpServletRequest request)
 			throws ClassNotFoundException, SQLException {
+		if (session == null) {
+			return "admin";
+		}
 		UserDAO listUser = new UserDAO();
 		model.addAttribute("listUser", listUser.getListUser());
 		return "adminTaiKhoan";
@@ -97,23 +117,32 @@ public class AdminController {
 
 	@RequestMapping("/adminHinhAnh")
 	public String adminHinhAnh(ModelMap model, HttpServletRequest request) {
+		if (session == null) {
+			return "admin";
+		}
 
 		return "adminHinhAnh";
 	}
 
 	@RequestMapping("/adminExit")
 	public String adminExit(ModelMap model, HttpServletRequest request) {
-
+		session.invalidate();
 		return "admin";
 	}
 
 	/* ========================Them DashBoard=============================== */
 	@RequestMapping("/CreateDanhMuc")
 	public String DanhMucCreate(ModelMap model, HttpServletRequest request) {
+		if (session == null) {
+			return "admin";
+		}
 		return "adminDanhMucCreate";
 	}
 	@RequestMapping("/CreateDanhMucSuccess")
 	public String DanhMucCreate2(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		if (session == null) {
+			return "admin";
+		}
 					
 		DanhMuc dk = new DanhMuc();					
 		if (request.getParameter("input1")==""||
@@ -134,16 +163,18 @@ public class AdminController {
 		return "adminDanhMucCreate";
 	}
 
-	
-	
-	
-	
 	@RequestMapping("/CreateMonAn")
 	public String MonAnCreate(ModelMap model, HttpServletRequest request) {
+		if (session == null) {
+			return "admin";
+		}
 		return "adminMonAnCreate";
 	}
-	@RequestMapping("/CreateMonAnSuccess")
+	@PostMapping("/CreateMonAnSuccess")
 	public String MonAnCreate2(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		if (session == null) {
+			return "admin";
+		}
 		CTMonAn dk = new CTMonAn();			
 		if (request.getParameter("input1")==""||
 			request.getParameter("input2")==""||
@@ -180,11 +211,16 @@ public class AdminController {
 	
 	@RequestMapping("/CreateTaiKhoan")
 	public String TaiKhoanCreate(ModelMap model, HttpServletRequest request) {
+		if (session == null) {
+			return "admin";
+		}
 		return "adminTaiKhoanCreate";
 	}
 	@RequestMapping("/CreateTaiKhoanSuccess")
 	public String taiKhoanCreate2(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
-
+		if (session == null) {
+			return "admin";
+		}
 		DangKy dk = new DangKy();		
 		Encryption mahoa = new Encryption();
 		
@@ -218,7 +254,9 @@ public class AdminController {
 	
 	@RequestMapping("adminDeleteDanhMuc")
 	public String DanhMucDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-			
+		if (session == null) {
+			return "admin";
+		}
 		DanhMuc dk = new DanhMuc();			
 		dk.danhMucID = Integer.parseInt(request.getParameter("dele"));			
 		DanhMucDAO danhmuc = new DanhMucDAO();
@@ -233,7 +271,9 @@ public class AdminController {
 	
 	@RequestMapping("adminDeleteMonAn")
 	public String MonAnDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-			
+		if (session == null) {
+			return "admin";
+		}
 		CTMonAn dk = new CTMonAn();			
 		dk.danhMucID = Integer.parseInt(request.getParameter("dele"));			
 		CTMonAnDAO danhmuc = new CTMonAnDAO();
@@ -248,7 +288,9 @@ public class AdminController {
 	
 	@RequestMapping("adminDeleteTaiKhoan")
 	public String TKDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-			
+		if (session == null) {
+			return "admin";
+		}
 		DangKy dk = new DangKy();			
 		dk.username = request.getParameter("dele").toString().trim();			
 		UserDAO danhmuc = new UserDAO();
@@ -264,9 +306,11 @@ public class AdminController {
 	
 	@RequestMapping("adminDeleteDatBan")
 	public String DatBanDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-			
+		if (session == null) {
+			return "admin";
+		}
 		Table dk = new Table();			
-		dk.Phone = request.getParameter("dele").toString().trim();			
+		dk.id = Integer.parseInt(request.getParameter("dele"));			
 		TableDAO danhmuc = new TableDAO();
 		danhmuc.DELETE(dk);		
 		
@@ -274,14 +318,16 @@ public class AdminController {
 
 		
 		TableDAO listTable = new TableDAO();
-		// model.addAttribute("listTable",listTable.getListTable());
+		model.addAttribute("listTable",listTable.getListTable());
 		// call data k dc? do nhieu qua nen no tran`?
 		return "adminDatBan";
 	}
 	
 	@RequestMapping("adminDeleteHoaDon")
 	public String HoaDonDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-			
+		if (session == null) {
+			return "admin";
+		}
 		HoaDon dk = new HoaDon();			
 		dk.Phone = request.getParameter("dele").toString().trim();			
 		HoaDonDAO danhmuc = new HoaDonDAO();
@@ -290,22 +336,24 @@ public class AdminController {
 		model.addAttribute("thongbao3","Xóa thành công!");
 
 		HoaDonDAO listHoaDon = new HoaDonDAO();
-		// model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());
+		model.addAttribute("listHoaDon",listHoaDon.getListHoaDon());
 		return "adminHoaDon";
 	}
 	
 	@RequestMapping("adminDeleteHoTro")
 	public String HoTroDelete(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-			
+		if (session == null) {
+			return "admin";
+		}
 		HoTro dk = new HoTro();			
-		dk.Email = request.getParameter("dele").toString().trim();			
+		dk.email = request.getParameter("dele").toString().trim();			
 		HoTroDAO danhmuc = new HoTroDAO();
 		danhmuc.DELETE(dk);		
 		
 		model.addAttribute("thongbao3","Xóa thành công!");
 
 		HoTroDAO listHoTro = new HoTroDAO();
-		// model.addAttribute("listHoTro",listHoTro.getListHoTro());
+		model.addAttribute("listHoTro",listHoTro.getListHoTro());
 		return "adminHoTro";		
 	}
 

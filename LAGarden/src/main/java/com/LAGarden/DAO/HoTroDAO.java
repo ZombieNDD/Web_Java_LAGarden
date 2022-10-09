@@ -29,10 +29,10 @@ public class HoTroDAO {
 		rs = stm.executeQuery(query);
 		while (rs.next()){
 			HoTro item = new HoTro();
-			item.TenKH = rs.getString("TenKH");
+			item.tenKH = rs.getString("tenKH");
 			
-			item.Email = rs.getString("Email");
-			item.ChiTiet = rs.getString("ChiTiet");
+			item.email = rs.getString("email");
+			item.chiTiet = rs.getString("chiTiet");
 			item.status = rs.getBoolean("status");
 			list.add(item);
 			}
@@ -44,16 +44,16 @@ public class HoTroDAO {
 	}
 	public int formHoTro(HoTro ht) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
-		String query = "Insert into Table values ('"+ht.TenKH+"','"+ht.Email+"',,'"+ht.ChiTiet+")";
+		String query = "Insert into Table values ('"+ht.tenKH+"','"+ht.email+"',,'"+ht.chiTiet+")";
 		stm = conn.createStatement();
 		int i = stm.executeUpdate(query);
 		return i;
-
+	}
 	
 	public int DELETE(HoTro dele) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
-
-		String query = "DELETE FROM LIENHE Where Email =" + dele.Email ;
+		
+		String query = "DELETE FROM LIENHE Where email ='" + dele.email+"'" ;
 		stm = conn.createStatement();
 		int result = stm.executeUpdate(query);
 

@@ -33,13 +33,10 @@ import com.LAGarden.Model.CartItem;
 import com.LAGarden.Model.DangKy;
 import com.LAGarden.Model.HoTro;
 import com.LAGarden.Model.Table;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.nimbusds.jose.shaded.json.JSONObject;
+
 
 @Controller
 public class WebsiteController {
@@ -108,6 +105,7 @@ public class WebsiteController {
     }
 	@PostMapping("/saveSignUpForm")
 	public String saveUser(ModelMap model,HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+		
 		Date date = new Date();
 		DangKy dk = new DangKy();
 		Encryption mahoa = new Encryption();
@@ -115,17 +113,21 @@ public class WebsiteController {
 		dk.password = mahoa.EncryptMD5(request.getParameter("Password"));
 		
 		String repeatPass = request.getParameter("ConfirmPassword");
-		if (!dk.password.equals(repeatPass)) {
-			model.addAttribute("Thông báo","Mật khẩu lặp lại bị sai!");
+		if (!dk.password.equals(mahoa.EncryptMD5(repeatPass))) {
+			model.addAttribute("message","Mật khẩu lặp lại bị sai!");
 			return "dangky";
 		}
+		
 		dk.fullname = request.getParameter("Name");
 		dk.address = request.getParameter("Address");
-		dk.email = request.getParameter("Email");
+		dk.email = request.getParameter("email");
 		dk.phone = request.getParameter("Phone");
-		dk.createAt = date;
+		dk.roles = 0;
 		UserDAO user = new UserDAO();
-		user.Register(dk);
+		int i = user.Register(dk);
+		if (i<0) {
+			model.addAttribute("message","Đăng ký thất bại!");
+		}
 		
 		return "dangky";
 	}
@@ -142,7 +144,10 @@ public class WebsiteController {
 		DangKy dk =new DangKy();
 		dk= dao.Login(username, password);
 		this.sessionUser = dk;
-		
+		if (dk==null) {
+			model.addAttribute("message","Đăng nhập không thành công");
+			return "dangnhap";
+		}
 		if (dk.roles==0) {
 		session = request.getSession();
 
@@ -163,19 +168,19 @@ public class WebsiteController {
 		String message = null;
 		if (session != null)
 		{
-			tb.FullName = sessionUser.fullname;
-			tb.Phone = sessionUser.phone;
-			tb.Email = sessionUser.email;
+			tb.fullName = sessionUser.fullname;
+			tb.phone = sessionUser.phone;
+			tb.email = sessionUser.email;
 			String sDate1 = request.getParameter("date");
 			Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
-			tb.NgayDB = date1;
+			tb.ngayDB = date1;
 			DateFormat dateFormat = new SimpleDateFormat("hh:mm");
 			Date date =dateFormat.parse(request.getParameter("time"));
 			Time time = new Time(date.getTime());
-			tb.GioDB =time;
-			tb.SLNguoiLon = request.getParameter("slnl");
-			tb.SLTreEm = request.getParameter("slte");
-			tb.GhiChu = request.getParameter("ghichu");
+			tb.gioDB =time;
+			tb.sLNguoiLon = request.getParameter("slnl");
+			tb.sLTreEm = request.getParameter("slte");
+			tb.ghiChu = request.getParameter("ghichu");
 			
 			TableDAO dao = new TableDAO();
 			int i = dao.addItem(tb, sessionUser.username);
@@ -205,10 +210,10 @@ public class WebsiteController {
 		String message = null;
 		if (session != null)
 		{
-			hotro.TenKH = request.getParameter("name");
-			hotro.Email = request.getParameter("email");
-			hotro.ChiTiet = request.getParameter("content");
-			if (hotro.ChiTiet=="" || hotro.TenKH==""||hotro.Email=="") {
+			hotro.tenKH = request.getParameter("name");
+			hotro.email = request.getParameter("email");
+			hotro.chiTiet = request.getParameter("content");
+			if (hotro.chiTiet=="" || hotro.tenKH==""||hotro.email=="") {
 				status = false;
 				message = "Thiếu thông tin, vui lòng điền đầy đủ";
 			}else {
@@ -327,6 +332,12 @@ public class WebsiteController {
 		List<CartItem> sessionCart = (List<CartItem>) session.getAttribute("GioHang");
 		model.addAttribute("listGioHang",sessionCart);
 		return "giohang";
+	}
+	@RequestMapping("/logout")
+	public String logout(ModelMap model,HttpServletRequest request,HttpServletResponse respone) {
+		session.invalidate();
+		sessionUser=null;
+		return "dangnhap";
 	}
     //============================== KHÁC ================================//
 	private void write(HttpServletResponse respone, Map<String, Object> map) throws IOException {

@@ -29,14 +29,15 @@ public class TableDAO {
 		while (rs.next()){
 			Table item = new Table();
 			item.username = rs.getString("username");
-			item.NgayDB= rs.getDate("NgayDB");
-			item.GioDB = rs.getTime("GioDB");
-			item.FullName = rs.getString("FullName");
-			item.Email = rs.getString("Email");
-			item.Phone = rs.getString("Phone");
-			item.SLNguoiLon = rs.getString("SLNguoiLon");
-			item.SLTreEm = rs.getString("SLTreEm");
-			item.GhiChu = rs.getString("GhiChu");
+			item.ngayDB= rs.getDate("NgayDB");
+			item.gioDB = rs.getTime("GioDB");
+			item.fullName = rs.getString("FullName");
+			item.email = rs.getString("email");
+			item.phone = rs.getString("Phone");
+			item.sLNguoiLon = rs.getString("SLNguoiLon");
+			item.sLTreEm = rs.getString("SLTreEm");
+			item.ghiChu = rs.getString("GhiChu");
+			item.id = rs.getInt("DatBanID");
 			list.add(item);
 			}
 		return list;
@@ -49,17 +50,17 @@ public class TableDAO {
 	public int addItem(Table tb,String username) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
 
-		String query = "Insert into Table values ('"+tb.NgayDB+"','"+tb.GioDB+"','"+ tb.FullName+"','"+tb.Email+"','"+tb.SLNguoiLon+"','"+tb.SLTreEm+"','"+tb.GhiChu+"','"+username+"' )";
+		String query = "Insert into Table values ('"+tb.ngayDB+"','"+tb.gioDB+"','"+ tb.fullName+"','"+tb.email+"','"+tb.sLNguoiLon+"','"+tb.sLTreEm+"','"+tb.ghiChu+"','"+username+"' )";
 		stm = conn.createStatement();
 		int i = stm.executeUpdate(query);
 		return i;
-
+	}
 	
 	
 	public int DELETE(Table dele) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
 
-		String query = "DELETE FROM DatBan Where Phone =" + dele.Phone ;
+		String query = "DELETE FROM DatBan Where DatBanID =" + dele.id ;
 		stm = conn.createStatement();
 		int result = stm.executeUpdate(query);
 
