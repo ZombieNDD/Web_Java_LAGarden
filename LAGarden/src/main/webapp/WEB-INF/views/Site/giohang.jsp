@@ -44,7 +44,7 @@
             <button id="btnContinue" class="btn btn-outline-primary">Tiếp tục mua hàng</button>
             <button id="btnUpdate" class="btn btn-outline-secondary" >Cập nhật giỏ hàng</button>
             <button id="btnDeleteAll" class="btn btn-outline-danger">Xoá giỏ hàng</button>
-            <a class="btn btn-outline-primary" href="/thanh-toan/">Thanh toán</a>
+            <a class="btn btn-outline-primary" href="thanhtoan">Thanh toán</a>
         </c:when>
         <c:otherwise>
             <div class="mt-5">

@@ -1,6 +1,7 @@
 package com.LAGarden.DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -120,5 +121,94 @@ public class CTMonAnDAO {
 		int result = stm.executeUpdate(query);
 
 		return result;
+	}
+	//============================== PHÂN TRANG ==============================//
+	public ArrayList<CTMonAn> getListPhanTrang(int a, int b) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "SELECT * FROM CTMONAN ORDER BY IDMA OFFSET  "+a+" ROWS FETCH NEXT "+b+" ROWS ONLY";
+		
+        try {
+        stm = conn.createStatement();
+		
+		rs = stm.executeQuery(query);
+		while (rs.next()){
+			CTMonAn item = new CTMonAn();
+			item.idMA = rs.getInt("IDMA");
+			item.tenMonAn= rs.getString("TenMonAn");
+			item.soLuong = rs.getInt("SoLuong");
+			item.chiTietMA = rs.getString("ChiTietMA");
+			item.gia = rs.getDouble("Gia");
+			item.imgMA = rs.getString("ImgMA");
+			item.giaSale = rs.getDouble("GiaSale");
+			item.slug = rs.getString("slug");
+			item.title = rs.getString("title");
+			item.danhMucID = rs.getInt("DanhMucID");
+			list.add(item);
+			}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+	}
+	public int getListCount() throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "SELECT count(idMA) FROM CTMONAN";
+		int count = 0;
+        try {
+        stm = conn.createStatement();
+        rs = stm.executeQuery(query);
+		while (rs.next()){
+			count =rs.getInt(1);
+			}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+	}
+	
+	public ArrayList<CTMonAn> getListByDanhMucPhanTrang(String id,int a,int b) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+		String query = "SELECT * FROM CTMONAN WHERE DanhMucID = " + id+"ORDER BY IDMA OFFSET  "+a+" ROWS FETCH NEXT "+b+" ROWS ONLY";
+
+		try {
+			stm = conn.createStatement();
+			rs = stm.executeQuery(query);
+			while (rs.next()) {
+				CTMonAn item = new CTMonAn();
+				item.idMA = rs.getInt("IDMA");
+				item.tenMonAn = rs.getString("TenMonAn");
+				item.soLuong = rs.getInt("SoLuong");
+				item.chiTietMA = rs.getString("ChiTietMA");
+				item.gia = rs.getDouble("Gia");
+				item.imgMA = rs.getString("ImgMA");
+				item.giaSale = rs.getDouble("GiaSale");
+				item.slug = rs.getString("slug");
+				item.title = rs.getString("title");
+				item.danhMucID = rs.getInt("DanhMucID");
+				list.add(item);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public int getListCountDanhMuc(String id) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+
+		String query = "SELECT count(idMA) FROM CTMONAN Where DanhMucID="+id;
+		int count = 0;
+        try {
+        stm = conn.createStatement();
+        rs = stm.executeQuery(query);
+		while (rs.next()){
+			count =rs.getInt(1);
+			}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
 	}
 }

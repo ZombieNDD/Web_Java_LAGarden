@@ -191,4 +191,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/Site/giohang.jsp" />
 	</definition>
+		<definition name="thanhtoan" extends="base.homepage">
+		<put-attribute name="title" value="Thanh toán" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Site/thanhtoan.jsp" />
+	</definition>
 </tiles-definitions>
