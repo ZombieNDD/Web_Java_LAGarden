@@ -72,11 +72,36 @@ public class WebsiteController {
         return "datban";
     }
 	@RequestMapping("/datmon")
-	public String datmon(ModelMap model) throws ClassNotFoundException, SQLException {
+	public void datmon(ModelMap model,HttpServletRequest request,HttpServletResponse respone) throws ClassNotFoundException, SQLException, IOException {
+		respone.sendRedirect("datmon-1");
+		
+	}
+	// ==========================PHÂN TRANG========================//
+	@RequestMapping(value = "/datmon-{page}",method = RequestMethod.GET)
+	public String datmonPhanTrang(ModelMap model, @PathVariable("page") int page) throws ClassNotFoundException, SQLException {
+		
 		DanhMucDAO listDanhMuc = new DanhMucDAO();
 		CTMonAnDAO listDSMonAn = new CTMonAnDAO();
+		int totalRecord = listDSMonAn.getListCount();
+		// Số lượng số trang trong 1 trang web
+		int maxPage = 5;
+		int totalPage = 0;
+		// Số lượng item trong 1 trang web
+		int pageSize =3;
+		double pagesize = pageSize;
+		totalPage = (int) Math.ceil(totalRecord/pagesize);
+		
+		model.addAttribute("url","datmon");
+		model.addAttribute("page",page);
+		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("maxPage",maxPage);
+		model.addAttribute("first",1);
+		model.addAttribute("last",totalPage);
+		model.addAttribute("next",page+1);
+		model.addAttribute("prev",page-1);
+		model.addAttribute("listMonAn",listDSMonAn.getListPhanTrang(page+pageSize, pageSize));
 		model.addAttribute("listDanhMuc",listDanhMuc.getListDanhMuc());
-		model.addAttribute("listMonAn",listDSMonAn.getListCTMonAN());
+
 		return "datmon";
 	}
 	@RequestMapping(value = "/sanpham-{tensp}-{idsp}",method = RequestMethod.GET)
@@ -89,12 +114,30 @@ public class WebsiteController {
 
 		return "chitietsp";
 	}
-	@RequestMapping(value = "/danhmuc-{tenDanhMuc}-{danhMucID}",method = RequestMethod.GET)
-	public String listDanhMuc(ModelMap model, @PathVariable("tenDanhMuc") String tenDanhMuc, @PathVariable("danhMucID") String danhMucID) throws ClassNotFoundException, SQLException{
+	//================================PHÂN TRANG===============================//
+	@RequestMapping(value = "/danhmuc-{tenDanhMuc}-{danhMucID}-{page}",method = RequestMethod.GET)	
+	public String listDanhMucPhanTrang(ModelMap model, @PathVariable("tenDanhMuc") String tenDanhMuc, @PathVariable("danhMucID") String danhMucID,@PathVariable("page") int page) throws ClassNotFoundException, SQLException{
 		DanhMucDAO list = new DanhMucDAO();
-		CTMonAnDAO listMonAn = new  CTMonAnDAO();
+		CTMonAnDAO listMonAn = new CTMonAnDAO();
+		int totalRecord = listMonAn.getListCountDanhMuc(danhMucID);
+		// Số lượng số trang trong 1 trang web
+		int maxPage = 5;
+		int totalPage = 0;
+		// Số lượng item trong 1 trang web
+		int pageSize =3;
+		double pagesize = pageSize;
+		totalPage = (int) Math.ceil(totalRecord/pagesize);
+		
+		model.addAttribute("url","datmon");
+		model.addAttribute("page",page);
+		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("maxPage",maxPage);
+		model.addAttribute("first",1);
+		model.addAttribute("last",totalPage);
+		model.addAttribute("next",page+1);
+		model.addAttribute("prev",page-1);
 		model.addAttribute("listDanhMuc",list.getListDanhMuc());
-		model.addAttribute("listMonAn",listMonAn.getListByDanhMuc(danhMucID));
+		model.addAttribute("listMonAn",listMonAn.getListByDanhMucPhanTrang(danhMucID,page+pageSize, pageSize));
 		return "datmon";
 	}
 	
@@ -338,6 +381,75 @@ public class WebsiteController {
 		session.invalidate();
 		sessionUser=null;
 		return "dangnhap";
+	}
+	
+	//============================== THANH TOÁN ================================//
+	@RequestMapping("/thanhtoan")
+	public String thanhtoan(ModelMap model,HttpServletRequest request,HttpServletResponse respone) {
+		sessionCart = (List<CartItem>) session.getAttribute("GioHang");
+		model.addAttribute("listThanhToan",sessionCart);
+        long tienInRa = 0;
+        for (CartItem item : sessionCart)
+        {
+            tienInRa += item.ctMA.gia * item.quantity;
+        }
+        model.addAttribute("tongtien",tienInRa);
+
+		return "thanhtoan";
+	}
+	@RequestMapping("/formThanhToan")
+	public String formThanhtoan(ModelMap model,HttpServletRequest request,HttpServletResponse respone) {
+		DangKy tk = (DangKy) session.getAttribute("taikhoan");
+		List<CartItem> sessionCart = (List<CartItem>) session.getAttribute("GioHang");
+		long TongTien = 0;
+		String NameRecieve = request.getParameter("text1");
+		String AddressRecive = request.getParameter("text2");
+		String EmailRecieve = request.getParameter("text3");
+		String PhoneRecive = request.getParameter("text4");
+		
+        for (CartItem item : sessionCart)
+        {
+            TongTien += item.ctMA.gia * item.quantity;
+        }
+//        if ( NameRecieve=="")
+//        {
+//            hoadon.NameRecieve = userTK.FullName;
+//        }
+//        else
+//        {
+//            hoadon.NameRecieve = thanhtoan.NameRecieve;
+//        }
+//        hoadon.TongTien = TongTien;
+//        hoadon.username = userLogin.UserName;
+//        if (AddressRecive=="")
+//        {
+//            hoadon.AddressRecive = userTK.Address;
+//        }
+//        else
+//        {
+//            hoadon.AddressRecive = thanhtoan.AddressRecive;
+//        }
+//        if (EmailRecieve=="")
+//        {
+//            hoadon.EmailRecieve = userTK.Email;
+//        }
+//        else
+//        {
+//            hoadon.EmailRecieve = thanhtoan.EmailRecieve;
+//
+//        }
+//        if(PhoneRecive="")
+//        {
+//            hoadon.Phone = userTK.Phone;
+//        }
+//        else
+//        {
+//            hoadon.Phone = thanhtoan.PhoneRecive;
+//        }
+        model.addAttribute("listThanhToan",sessionCart);
+        
+        session.setAttribute("GioHang", null);
+		return "thanhtoan";
 	}
     //============================== KHÁC ================================//
 	private void write(HttpServletResponse respone, Map<String, Object> map) throws IOException {

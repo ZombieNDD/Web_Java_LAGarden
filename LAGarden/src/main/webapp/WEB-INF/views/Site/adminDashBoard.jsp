@@ -16,6 +16,8 @@
 	href="${pageContext.servletContext.contextPath}/adminResource/img/apple-icon.png">
 <link rel="icon" type="image/png"
 	href="${pageContext.servletContext.contextPath}/adminResource/img/favicon.png">
+	<link href="${pageContext.servletContext.contextPath}/adminResource/Public/MyCSS/KhungHinhCSS.css" rel="stylesheet" />
+    <link href="${pageContext.servletContext.contextPath}/adminResource/Public/MyCSS/CangiuaCss.css" rel="stylesheet" />
 <title>Admin</title>
 <!--     Fonts and icons     -->
 <link rel="stylesheet" type="text/css"

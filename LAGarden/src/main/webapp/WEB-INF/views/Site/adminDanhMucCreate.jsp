@@ -4,7 +4,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
+	
+    
 <h2>Danh mục</h2>
 
 <div class="mypadding-admin">
@@ -18,19 +19,19 @@
 		<div class="col-md-8">
 			<form action="CreateDanhMucSuccess" method="POST">
 				<div class="form-group">
-					<label><strong>ID Danh Mục:</strong> </label> <input name="input1">
+					<label><strong>ID Danh Mục:</strong> </label> <input class="form-control  my-background boderText" name="input1">
 				</div>
 
 				<div class="form-group">
-					<label><strong>Tên danh mục: </strong></label> <input name="input2" />
+					<label><strong>Tên danh mục: </strong></label> <input class="form-control  my-background boderText" name="input2" />
 				</div>
 
 				<div class="form-group">
-					<label><strong>Thứ tự: </strong></label> <input name="input3" />
+					<label><strong>Thứ tự: </strong></label> <input class="form-control  my-background boderText" name="input3" />
 				</div>
 
 				<div class="form-group">
-					<label><strong>Tags: </strong></label> <input name="input4" />
+					<label><strong>Tags: </strong></label> <input class="form-control  my-background boderText" name="input4" />
 				</div>
 
 				<button type="submit" class="btn btn-sm btn-success">Thêm</button>

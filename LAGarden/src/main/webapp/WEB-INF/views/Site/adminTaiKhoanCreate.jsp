@@ -18,15 +18,15 @@
 		<div class="col-md-8">
 			<form action="CreateTaiKhoanSuccess" method="POST">
 				<div class="form-group">
-					<label><strong>Họ và Tên:</strong> </label> <input name="input1">
+					<label><strong>Họ và Tên:</strong> </label> <input class="form-control  my-background boderText" name="input1">
 				</div>
 
 				<div class="form-group">
-					<label><strong>Tên Tài Khoản: </strong></label> <input name="input2" />
+					<label><strong>Tên Tài Khoản: </strong></label> <input class="form-control  my-background boderText" name="input2" />
 				</div>
 
 				<div class="form-group">
-					<label><strong>Mật Khẩu: </strong></label> <input name="input3" />
+					<label><strong>Mật Khẩu: </strong></label> <input class="form-control  my-background boderText" name="input3" />
 				</div>
 
 				<div class="form-group">
@@ -35,15 +35,15 @@
 				</div>
 
 				<div class="form-group">
-					<label><strong>Số Điện Thoại: </strong></label> <input name="input5" />
+					<label><strong>Số Điện Thoại: </strong></label> <input class="form-control  my-background boderText" name="input5" />
 				</div>
 
 				<div class="form-group">
-					<label><strong>Địa Chỉ: </strong></label> <input name="input6" />
+					<label><strong>Địa Chỉ: </strong></label> <input class="form-control  my-background boderText" name="input6" />
 				</div>
 
 				<div class="form-group">
-					<label><strong>Roles: </strong></label> <input name="input7" />
+					<label><strong>Roles: </strong></label> <input class="form-control  my-background boderText" name="input7" />
 				</div>
 
 

@@ -20,3 +20,27 @@
 		</div>
 	</div>
 </c:forEach>
+<!-- =========================================PHÂN TRANG========================================= -->
+<nav aria-label="...">
+  <ul class="pagination">
+  <c:if test = "${page> first}">
+    <li class="page-item">
+      <a class="page-link" href="${url}-${prev}" tabindex="-1">Previous</a>
+    </li>
+    </c:if>
+    <%
+    int currentPage = (Integer)(request.getAttribute("page"));
+    int pageDisplay = (Integer)(request.getAttribute("maxPage"));
+    int totalPage = (Integer)(request.getAttribute("last"));
+    int startPageIndex = Math.max(1, currentPage - pageDisplay / 2);
+    int endPageIndex = Math.min(totalPage, currentPage + pageDisplay / 2);
+    for (int i = startPageIndex; i <= endPageIndex; i++) { %>
+    <li class="page-item"><a class="page-link" href="${url}-<%=i%>"><%=i%></a></li>
+     <% } %>
+    <c:if test = "${page < totalPage}">
+    <li class="page-item">
+      <a class="page-link" href="${url}-${next}">Next</a>
+    </li>
+    </c:if>
+  </ul>
+</nav>
