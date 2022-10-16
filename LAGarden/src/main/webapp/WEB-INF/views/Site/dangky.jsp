@@ -17,7 +17,14 @@
 					<h4
 						style="text-align: center; font-size: 30px; font-weight: bold; margin-top: 20px">Đăng
 						ký thành viên</h4>
-						${message}
+						<c:forEach items="${message }" var="item"> 
+							<div class="validation-summary-valid text-danger" 
+							data-valmsg-summary="true">
+							<ul>
+								<li> ${item}</li>
+							</ul>
+						</div>
+						</c:forEach>
 					<hr />
 					<div class="form-group">
 						<div class="validation-summary-valid text-danger" 

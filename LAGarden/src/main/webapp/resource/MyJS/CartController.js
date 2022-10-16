@@ -27,6 +27,7 @@
                     if (res.status == true) {
                         window.location.href = "giohang";
                     }
+					else window.alert(res.message);
                 }
             })
         });

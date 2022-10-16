@@ -68,9 +68,9 @@ footer {
 						class="nav-item my-bar-nav-item my-bar-a"
 						active-color="DarkSlateBlue" id="dangnhap">Đăng nhập</a> <a
 						href="dangky" class="nav-item my-bar-nav-item my-bar-a"
-						active-color="DarkKhaki" id="dangky">Đăng ký</a> <span
+						active-color="DarkKhaki" id="dangky">Đăng ký</a> 
+						<%} %>  <span
 						class="nav-indicator my-bar-nav-indicator"></span>
-						<%} %>  
 
 				</nav>
 			</div>

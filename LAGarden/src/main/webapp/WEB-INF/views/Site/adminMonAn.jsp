@@ -24,7 +24,6 @@
 		<tr style="text-align: center">
 			<th>Tên Món Ăn</th>
 			<th>Giá</th>
-			<th>Số lượng</th>
 			<th>Trạng Thái</th>
 			<th>Hình Ảnh</th>
 			<th>ID Danh Mục</th>
@@ -36,7 +35,6 @@
 				<form action="adminDeleteMonAn" method="POST">
 				<td>${item.tenMonAn }</td>
 				<td>${item.gia }</td>
-				<td>${item.soLuong }</td>
 				<td>${item.giaSale }</td>
 				<td>${item.imgMA }</td>
 				<td>${item.danhMucID }</td>

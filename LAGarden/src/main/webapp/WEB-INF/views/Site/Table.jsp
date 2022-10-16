@@ -28,9 +28,7 @@
             <div class="col-md-6 pl-0 "><img class="my-padding" src="${pageContext.servletContext.contextPath}/resource/Img/MonAn/mon5.jpg" width="674" height="500" id="main-Img" /></div>
             <div class="col-md-3">
                 <div class="DatBan">
-                    <h2 class="fontDatBan">Đặt chỗ LAGarden kèm ưu đãi</h2>
-                    <p>Nên đặt trước khi đến từ 24h</p>
-                    <div class="fontKM">Giảm tới 30%</div>
+                    <h2 class="fontDatBan">Đặt chỗ LAGarden</h2>
                     <form>
                         <div class="form-row">
                             <input type="text" class="form-control" cols="70" id="txtten" placeholder="Họ và tên" rows="1" width="287" />

@@ -21,8 +21,8 @@ public class UserDAO {
 	public int Register(DangKy resgister) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
 
-		String query = "Insert into TAIKHOAN values ('" + resgister.fullname + "','" + resgister.username + "','"
-				+ resgister.password + "','" + resgister.email + "','" + resgister.phone + "','" + resgister.address
+		String query = "Insert into TAIKHOAN values (N'" + resgister.fullname + "',N'" + resgister.username + "','"
+				+ resgister.password + "',N'" + resgister.email + "',N'" + resgister.phone + "',N'" + resgister.address
 				+ "',null,null," + resgister.roles + ",null,null,null,null,null)";
 		System.out.println(query);
 		stm = conn.createStatement();
@@ -77,14 +77,26 @@ public class UserDAO {
 		return null;
 	}
 	
-	
+	public int Check(String userName) throws ClassNotFoundException, SQLException {
+		conn = new MyConnection().getConnection();
+		String query = "SELECT count(username) FROM TAIKHOAN Where UserName='"+userName+'"';
+		int count = 0;
+        try {
+        stm = conn.createStatement();
+        rs = stm.executeQuery(query);
+		while (rs.next()){
+			count =rs.getInt(1);
+			}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return count;
+	}
 	public int DELETE(DangKy dele) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
-
 		String query = "DELETE FROM TAIKHOAN Where UserName='"+dele.username+"'";
 		stm = conn.createStatement();
 		int result = stm.executeUpdate(query);
-
 		return result;
 	}
 }

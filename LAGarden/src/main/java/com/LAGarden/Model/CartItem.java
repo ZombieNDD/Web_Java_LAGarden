@@ -1,6 +1,8 @@
 package com.LAGarden.Model;
 
-public class CartItem {
+import java.io.Serializable;
+
+public class CartItem implements Serializable{
 	public CTMonAn getCtMA() {
 		return ctMA;
 	}

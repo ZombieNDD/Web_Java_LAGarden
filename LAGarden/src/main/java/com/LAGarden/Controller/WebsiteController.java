@@ -148,31 +148,60 @@ public class WebsiteController {
     }
 	@PostMapping("/saveSignUpForm")
 	public String saveUser(ModelMap model,HttpServletRequest request) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
-		
+		List<String> message = new ArrayList<String>();
 		Date date = new Date();
 		DangKy dk = new DangKy();
+		UserDAO user = new UserDAO();
+		try {
+		boolean check = false;
 		Encryption mahoa = new Encryption();
-		dk.username = request.getParameter("UserName");
-		dk.password = mahoa.EncryptMD5(request.getParameter("Password"));
+		if (user.Check(request.getParameter("UserName"))>0){
+			message.add("Bị trùng tên tài khoản");
+		}else {
+			dk.username = request.getParameter("UserName");
+		}	
+		if (countString(request.getParameter("Password"))<7) {
+			message.add("Mật khẩu phải >6 kí tự");
+			check=false;
+		}else {
+			dk.password = mahoa.EncryptMD5(request.getParameter("Password"));
+			check = true;
+		}
 		
 		String repeatPass = request.getParameter("ConfirmPassword");
 		if (!dk.password.equals(mahoa.EncryptMD5(repeatPass))) {
-			model.addAttribute("message","Mật khẩu lặp lại bị sai!");
-			return "dangky";
+			message.add("Mật khẩu lặp lại bị sai!");
+			check = false;
 		}
-		
+		if (check) {
 		dk.fullname = request.getParameter("Name");
 		dk.address = request.getParameter("Address");
 		dk.email = request.getParameter("email");
 		dk.phone = request.getParameter("Phone");
 		dk.roles = 0;
-		UserDAO user = new UserDAO();
+		
 		int i = user.Register(dk);
 		if (i<0) {
-			model.addAttribute("message","Đăng ký thất bại!");
+			message.add("Đăng ký thất bại!");
+		}else {
+			message.add("Đăng ký thành công!");
 		}
-		
+		}
+		} catch (Exception e) {
+			message.add("Lỗi dữ liệu, không thể đăng ký!");
+		}
+		model.addAttribute("message",message);
 		return "dangky";
+	}
+	public int countString(String s) {
+        int count = 0;    
+            
+        //Counts each character except space    
+        for(int i = 0; i < s.length(); i++) {    
+            if(s.charAt(i) != ' ')    
+                count++;    
+        }
+        return count;
 	}
 	@RequestMapping("/dangnhap")
 	public String dangnhap(ModelMap model) {
@@ -209,6 +238,7 @@ public class WebsiteController {
 		Map<String,Object> map = new HashMap<String, Object>();
 		boolean status = false;
 		String message = null;
+		try {
 		if (session != null)
 		{
 			tb.fullName = sessionUser.fullname;
@@ -237,6 +267,9 @@ public class WebsiteController {
 			status = false;
 			message = "Vui lòng đăng nhập";
 		}
+		}catch (Exception e) {
+			message = "Đăng ký thất bại, vui lòng thử lại sau";
+		}
 		map.put("status",status);
 		map.put("message",message);
 		write(respone,map);
@@ -251,6 +284,7 @@ public class WebsiteController {
 		Map<String,Object> map = new HashMap<String, Object>();
 		boolean status = false;
 		String message = null;
+		try {
 		if (session != null)
 		{
 			hotro.tenKH = request.getParameter("name");
@@ -272,6 +306,9 @@ public class WebsiteController {
 		else {
 			status = false;
 			message = "Vui lòng đăng nhập";
+		}
+		}catch(Exception e){
+			message = "Đăng ký thất bại, vui lòng thử lại sau";
 		}
 		map.put("status",status);
 		map.put("message",message);
@@ -321,27 +358,38 @@ public class WebsiteController {
             session.setAttribute("GioHang",list);
         }
 		model.addAttribute("listGioHang",list);
-		System.out.println(list);
 		return "giohang";
 	}
 	@PostMapping("/capnhat")
     public void Update(ModelMap model,HttpServletRequest request,HttpServletResponse respone,String cartModel) throws IOException
     {
-    	ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper();
+    Map<String,Object> map = new HashMap<String, Object>();
+    String message = null;
+    boolean status = false;
+		try {
     	List<CartItem> jsonCart = mapper.readValue(cartModel, new TypeReference<List<CartItem>>(){});
         sessionCart = (List<CartItem>) session.getAttribute("GioHang");
-        Map<String,Object> map = new HashMap<String, Object>();
         for (CartItem item : sessionCart)
         {
         	CartItem jsonItem = getItem(jsonCart,item.ctMA.idMA);
             if (jsonItem != null)
             {
-                item.quantity = jsonItem.quantity;
+            	if (jsonItem.quantity>0) {
+            		item.quantity = jsonItem.quantity;
+            		 status = true;
+            	}
+            	else {
+            		  status = false;
+            		  message = "Vui lòng nhập đúng số lượng!!";
+            	}
             }
         }
         session.setAttribute("GioHang",sessionCart);
-
-        boolean status = true;
+		}catch (Exception e) {
+			message = "Vui lòng nhập đúng số lượng!!";
+		}
+		map.put("message",message);
         map.put("status",status);
         write(respone,map);
     }

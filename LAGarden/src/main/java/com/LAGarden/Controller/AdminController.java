@@ -178,7 +178,6 @@ public class AdminController {
 		CTMonAn dk = new CTMonAn();			
 		if (request.getParameter("input1")==""||
 			request.getParameter("input2")==""||
-			request.getParameter("input3")==""||
 			request.getParameter("input4")==""||
 			request.getParameter("input5")==""||
 			request.getParameter("input6")==""||
@@ -191,7 +190,7 @@ public class AdminController {
 				}		
 		dk.danhMucID = Integer.parseInt(request.getParameter("input1"));
 		dk.tenMonAn = request.getParameter("input2");
-		dk.soLuong = Integer.parseInt(request.getParameter("input3"));
+		dk.soLuong = 999;
 		dk.chiTietMA = request.getParameter("input4");
 		dk.gia = Double.parseDouble(request.getParameter("input5"));
 		dk.giaSale = Double.parseDouble(request.getParameter("input6"));
