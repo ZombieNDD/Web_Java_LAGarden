@@ -33,7 +33,7 @@ footer {
 			class="navbar navbar-expand-lg navbar-dark bg-dark w-100 my-bar-margin-nav">
 			<div class="container">
 				<!-- Brand -->
-				<a class="navbar-brand" href="home"> <img
+				<a class="navbar-brand" href="/LAGarden/"> <img
 					src="${pageContext.servletContext.contextPath}/resource/Img/logo2.png" width="220" height="50" alt="Logo" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"

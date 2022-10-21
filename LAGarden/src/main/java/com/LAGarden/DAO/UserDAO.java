@@ -79,7 +79,7 @@ public class UserDAO {
 	
 	public int Check(String userName) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
-		String query = "SELECT count(username) FROM TAIKHOAN Where UserName='"+userName+'"';
+		String query = "SELECT count(username) FROM TAIKHOAN Where UserName=N'"+userName+"'";
 		int count = 0;
         try {
         stm = conn.createStatement();

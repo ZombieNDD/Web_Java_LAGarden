@@ -31,13 +31,13 @@
                     <h2 class="fontDatBan">Đặt chỗ LAGarden</h2>
                     <form>
                         <div class="form-row">
-                            <input type="text" class="form-control" cols="70" id="txtten" placeholder="Họ và tên" rows="1" width="287" />
+                            <input type="text" class="form-control" cols="70" id="txtten" placeholder="Họ và tên (Để trống nếu đặt mặc định)" rows="1" width="287" />
                         </div>
                         <div class="form-row">
-                            <input type="text" class="form-control" cols="70" id="txtsdt" placeholder="Số điện thoại" rows="1" width="287" />
+                            <input type="text" class="form-control" cols="70" id="txtsdt" placeholder="Số điện thoại (Để trống nếu đặt mặc định)" rows="1" width="287" />
                         </div>
                         <div class="form-row">
-                            <input type="text" class="form-control" cols="70" id="txtemail" placeholder="E-mail" rows="1" width="287" />
+                            <input type="text" class="form-control" cols="70" id="txtemail" placeholder="E-mail (Để trống nếu đặt mặc định)" rows="1" width="287" type="email" />
                         </div>
                         <div class="form-row">
                             <div class="col">

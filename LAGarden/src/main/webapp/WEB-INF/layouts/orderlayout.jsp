@@ -41,13 +41,12 @@
     </div>
     <div class="row" style="margin: unset; padding-top:40px">
         <!-- Cột trái -->
-		<div class="col-sm-4">
-
+		<div class="col-md-3">
 		<tiles:insertAttribute name="menuleft" />
 		</div>
         <!-- Kết thúc cột trái -->
         <!-- Cột phải -->
-        <div class="col-sm-8">
+        <div class="col-md-9"style="padding-left:120px">
 	<tiles:insertAttribute name="body" />
           
     </div>

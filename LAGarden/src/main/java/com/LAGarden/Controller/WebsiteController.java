@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -127,8 +128,8 @@ public class WebsiteController {
 		int pageSize =3;
 		double pagesize = pageSize;
 		totalPage = (int) Math.ceil(totalRecord/pagesize);
-		
-		model.addAttribute("url","datmon");
+		String url = "danhmuc-"+tenDanhMuc+"-"+danhMucID;
+		model.addAttribute("url",url);
 		model.addAttribute("page",page);
 		model.addAttribute("totalPage",totalPage);
 		model.addAttribute("maxPage",maxPage);
@@ -137,7 +138,7 @@ public class WebsiteController {
 		model.addAttribute("next",page+1);
 		model.addAttribute("prev",page-1);
 		model.addAttribute("listDanhMuc",list.getListDanhMuc());
-		model.addAttribute("listMonAn",listMonAn.getListByDanhMucPhanTrang(danhMucID,page+pageSize, pageSize));
+		model.addAttribute("listMonAn",listMonAn.getListByDanhMucPhanTrang(danhMucID,(page-1)*pageSize, pageSize));
 		return "datmon";
 	}
 	
@@ -153,7 +154,7 @@ public class WebsiteController {
 		DangKy dk = new DangKy();
 		UserDAO user = new UserDAO();
 		try {
-		boolean check = false;
+		boolean check = true;
 		Encryption mahoa = new Encryption();
 		if (user.Check(request.getParameter("UserName"))>0){
 			message.add("Bị trùng tên tài khoản");
@@ -165,15 +166,42 @@ public class WebsiteController {
 			check=false;
 		}else {
 			dk.password = mahoa.EncryptMD5(request.getParameter("Password"));
-			check = true;
+		}
+		try {
+			 Double.parseDouble(request.getParameter("Phone"));
+		}catch (Exception e) {
+			check = false;
+			message.add("Vui lòng điền đúng số điện thoại!");
+		}
+		String s = request.getParameter("Phone").trim();
+		if (s.length()!=11) {
+			message.add("Số điện thoại phải là 11 ký tự");
+			check=false;
 		}
 		
+		if (s.indexOf(0)!='0') {
+			message.add("Số điện thoại phải bắt đầu là 0");
+			check=false;
+		}
 		String repeatPass = request.getParameter("ConfirmPassword");
 		if (!dk.password.equals(mahoa.EncryptMD5(repeatPass))) {
 			message.add("Mật khẩu lặp lại bị sai!");
 			check = false;
 		}
-		if (check) {
+		
+		if(request.getParameter("Address")==""||
+				request.getParameter("Name")==""||
+				request.getParameter("Address")==""||
+				request.getParameter("email")==""||
+				request.getParameter("Phone")==""||
+				request.getParameter("UserName")==""||
+				request.getParameter("Password")==""||
+				request.getParameter("ConfirmPassword")=="")
+		{
+			check = false;
+			message.add("Vui lòng điền đầy đủ thông tin");
+		}
+		if (check==true) {
 		dk.fullname = request.getParameter("Name");
 		dk.address = request.getParameter("Address");
 		dk.email = request.getParameter("email");
@@ -195,8 +223,6 @@ public class WebsiteController {
 	}
 	public int countString(String s) {
         int count = 0;    
-            
-        //Counts each character except space    
         for(int i = 0; i < s.length(); i++) {    
             if(s.charAt(i) != ' ')    
                 count++;    
@@ -232,25 +258,81 @@ public class WebsiteController {
 		model.addAttribute("message","Sai tên tài khoản hoặc mật khẩu!");
 		return "dangnhap";
 	}
+	
+	
 	@PostMapping("/registerDatBan")
 	public String formDatBan(ModelMap model,HttpServletRequest request,HttpServletResponse respone) throws ParseException, IOException, ClassNotFoundException, SQLException {
 		Table tb = new Table();
 		Map<String,Object> map = new HashMap<String, Object>();
 		boolean status = false;
 		String message = null;
+		List<String> listMess = new ArrayList<String>();
+		boolean check = true;
+
 		try {
 		if (session != null)
 		{
-			tb.fullName = sessionUser.fullname;
-			tb.phone = sessionUser.phone;
-			tb.email = sessionUser.email;
+			if (request.getParameter("name") != "") {
+				tb.fullName = request.getParameter("name");
+
+			}else {
+				tb.fullName = sessionUser.fullname;
+			}
+			String s = request.getParameter("phone").trim();
+			if (s != "") {
+				tb.phone = s;
+				try {
+					 Double.parseDouble(request.getParameter("phone"));
+				}catch (Exception e) {
+					check = false;
+					message = ("Vui lòng điền đúng số điện thoại!\n");
+					listMess.add(message);
+				}
+				if (s.length()!=11 && s.indexOf(0)!='0') {
+					check = false;
+					message = "Số điện thoại phải 11 số và bắt đầu từ số 0\n";
+					listMess.add(message);
+				}
+			}else {
+				tb.phone = sessionUser.phone;
+			}
+			if (request.getParameter("email") != "") {
+				tb.email = request.getParameter("email");
+				if (!(request.getParameter("email").contains("@"))){
+					message = "Nhập đúng định dạng email\n";
+					listMess.add(message);
+					check = false;
+				}
+			}else {
+				tb.email = sessionUser.email;
+			}
+			LocalDateTime ldt = LocalDateTime.now();
+			String dateNow = ldt.toString();
 			String sDate1 = request.getParameter("date");
 			Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
-			tb.ngayDB = date1;
+			Date date2=new SimpleDateFormat("yyyy-MM-dd").parse(dateNow);  
+			 //Chỉnh sửa
 			DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+			Time timeNow = new Time(date2.getTime());
 			Date date =dateFormat.parse(request.getParameter("time"));
 			Time time = new Time(date.getTime());
-			tb.gioDB =time;
+
+			if (date1.compareTo(date2)<0) {
+				check=false;
+				message = "Ngày phải lớn hơn ngày hiện tại";
+				listMess.add(message);
+			}else {
+				tb.ngayDB = date1.toString();
+			}
+
+			if (date1.compareTo(date2)==0 && time.compareTo(timeNow)<=0) {
+				check=false;
+				message = "Giờ phải lớn hơn giờ hiện tại";
+				listMess.add(message);
+			}else {
+				tb.gioDB =time.toString();
+			}
+			if (check==true) {
 			tb.sLNguoiLon = request.getParameter("slnl");
 			tb.sLTreEm = request.getParameter("slte");
 			tb.ghiChu = request.getParameter("ghichu");
@@ -260,18 +342,22 @@ public class WebsiteController {
 			if (i>0) {
 				status = true;
 			}else {
-				message = "Đăng ký thất bại, vui lòng thử lại sau";
+				message = "Đăng ký thất bại, vui lòng thử lại sau\n";
+				listMess.add(message);
+			}
 			}
 		}
 		else {
 			status = false;
 			message = "Vui lòng đăng nhập";
+			listMess.add(message);
 		}
 		}catch (Exception e) {
-			message = "Đăng ký thất bại, vui lòng thử lại sau";
+			message = "Đăng ký thất bại, vui lòng thử lại sau\n";
+			listMess.add(message);
 		}
 		map.put("status",status);
-		map.put("message",message);
+		map.put("message",listMess);
 		write(respone,map);
 		return null;
 	}

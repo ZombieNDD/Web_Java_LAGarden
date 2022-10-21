@@ -51,8 +51,8 @@
 				<a href="adminTaiKhoan" class="btn btn-sm btn-success">Quay lại</a>
 				
 				<br>
-				${thongbao}
-				${thongbao2}
+				${message }
+				${thongbao2 }
 			</form>
 		</div>
 	</div>

@@ -36,7 +36,7 @@
                     <a style="padding: 5px 20px 0px 20px">
                         <b>Hoặc</b>
                     </a>
-                    <div class="btn btn-primary"><a class="my-a-btn" href="/dang-ky/">Đăng ký thành viên</a></div>
+                    <div class="btn btn-primary"><a class="my-a-btn" href="dangky">Đăng ký thành viên</a></div>
                 </div>
             </div>
         </div>

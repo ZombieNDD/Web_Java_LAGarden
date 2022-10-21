@@ -2,6 +2,8 @@ package com.LAGarden.Controller;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -49,6 +51,8 @@ public class AdminController {
 		if (dk != null && dk.roles == 1) {
 			session.setAttribute("Fullname", dk.fullname);
 			return "adminDashBoard";
+		}else {
+			model.addAttribute("message","Sai tên tài khoản hoặc mật khẩu!");
 		}
 		return "admin";
 	}
@@ -143,23 +147,26 @@ public class AdminController {
 		if (session == null) {
 			return "admin";
 		}
-					
-		DanhMuc dk = new DanhMuc();					
-		if (request.getParameter("input1")==""||
-			request.getParameter("input2")==""||
-			request.getParameter("input3")==""||
-			request.getParameter("input4")=="")
-				{
-			model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
-			return "adminDanhMucCreate";
-				}
-		dk.danhMucID = Integer.parseInt(request.getParameter("input1"));
-		dk.danhMucName = request.getParameter("input2");
-		dk.thuTu = Integer.parseInt(request.getParameter("input3"));
-		dk.tags = request.getParameter("input4");		
-		DanhMucDAO danhmuc = new DanhMucDAO();
-		danhmuc.ADD(dk);
-		model.addAttribute("thongbao2","Thêm thành công!");
+		try {
+			DanhMuc dk = new DanhMuc();					
+			if (request.getParameter("input1")==""||
+				request.getParameter("input2")==""||
+				request.getParameter("input3")==""||
+				request.getParameter("input4")=="")
+					{
+				model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
+				return "adminDanhMucCreate";
+					}
+			dk.danhMucID = Integer.parseInt(request.getParameter("input1"));
+			dk.danhMucName = request.getParameter("input2");
+			dk.thuTu = Integer.parseInt(request.getParameter("input3"));
+			dk.tags = request.getParameter("input4");		
+			DanhMucDAO danhmuc = new DanhMucDAO();
+			danhmuc.ADD(dk);
+			model.addAttribute("thongbao2","Thêm thành công!");
+		} catch (Exception e) {
+			model.addAttribute("thongbao2","Lỗi dữ liệu!");
+		}		
 		return "adminDanhMucCreate";
 	}
 
@@ -175,31 +182,41 @@ public class AdminController {
 		if (session == null) {
 			return "admin";
 		}
-		CTMonAn dk = new CTMonAn();			
-		if (request.getParameter("input1")==""||
-			request.getParameter("input2")==""||
-			request.getParameter("input4")==""||
-			request.getParameter("input5")==""||
-			request.getParameter("input6")==""||
-			request.getParameter("input7")==""||
-			request.getParameter("input8")==""||
-			request.getParameter("input9")=="")
-				{
-			model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
-			return "adminMonAnCreate";
-				}		
-		dk.danhMucID = Integer.parseInt(request.getParameter("input1"));
-		dk.tenMonAn = request.getParameter("input2");
-		dk.soLuong = 999;
-		dk.chiTietMA = request.getParameter("input4");
-		dk.gia = Double.parseDouble(request.getParameter("input5"));
-		dk.giaSale = Double.parseDouble(request.getParameter("input6"));
-		dk.imgMA = request.getParameter("input7");
-		dk.slug = request.getParameter("input8");
-		dk.title = request.getParameter("input9");		
-		CTMonAnDAO monan = new CTMonAnDAO();
-		monan.ADD(dk);
-		model.addAttribute("thongbao2","Thêm thành công!");
+		try {
+			CTMonAn dk = new CTMonAn();			
+			if (request.getParameter("input1")==""||
+				request.getParameter("input2")==""||
+				request.getParameter("input4")==""||
+				request.getParameter("input5")==""||
+				request.getParameter("input6")==""||
+				request.getParameter("input7")==""||
+				request.getParameter("input8")==""||
+				request.getParameter("input9")=="")
+					{
+				model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
+				return "adminMonAnCreate";
+					}		
+			dk.danhMucID = Integer.parseInt(request.getParameter("input1"));
+			dk.tenMonAn = request.getParameter("input2");
+			dk.soLuong = 999;
+			dk.chiTietMA = request.getParameter("input4");
+			
+			dk.gia = Double.parseDouble(request.getParameter("input5"));
+			if(dk.gia<=0) {
+				model.addAttribute("thongbao2","Không được để giá âm");
+				return "adminMonAnCreate";
+			}
+			dk.giaSale = Double.parseDouble(request.getParameter("input6"));
+			dk.imgMA = request.getParameter("input7");
+			dk.slug = request.getParameter("input8");
+			dk.title = request.getParameter("input9");		
+			CTMonAnDAO monan = new CTMonAnDAO();
+			monan.ADD(dk);
+			model.addAttribute("thongbao2","Thêm thành công!");
+		} catch (Exception e) {
+			model.addAttribute("thongbao2","Lỗi dữ liệu");
+		}
+
 		return "adminMonAnCreate";
 	}
 
@@ -220,32 +237,64 @@ public class AdminController {
 		if (session == null) {
 			return "admin";
 		}
-		DangKy dk = new DangKy();		
-		Encryption mahoa = new Encryption();
+		List<String> message = new ArrayList<String>();
+		boolean check= true;
+		try {
+			DangKy dk = new DangKy();		
+			Encryption mahoa = new Encryption();
+			
+			if (request.getParameter("input1")==""||
+					request.getParameter("input2")==""||
+					request.getParameter("input3")==""||
+					request.getParameter("input4")==""||
+					request.getParameter("input5")==""||
+					request.getParameter("input6")==""||
+					request.getParameter("input7")=="")
+						{
+					model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
+					return "adminTaiKhoanCreate";
+						}						
+			dk.fullname = request.getParameter("input1");
+			dk.username = request.getParameter("input2");
+			String password = request.getParameter("input3");
+			if (password.length()<7) {
+				message.add("Mật khẩu phải 7 ký tự trở lên");
+				check = false;
+			}
+			dk.password = mahoa.EncryptMD5(request.getParameter("input3"));
+			dk.email = request.getParameter("input4");
+			if (!dk.email.contains("@")) {
+				check=false;
+				message.add("Email bị sai định dạng!");
+			}
+			dk.phone = request.getParameter("input5");
+			if(dk.phone.length()!= 11) {
+				message.add("Số điện thoại phải có 11 số!");
+				check = false;
+			}
+			try {
+				 Double.parseDouble(request.getParameter("Phone"));
+			}catch (Exception e) {
+				message.add("Số điện thoại bị sai");
+				check=false;
+			}
+			dk.address = request.getParameter("input6");
+			dk.roles = Integer.parseInt(request.getParameter("input7"));
+			if (check== true) {
+				UserDAO user = new UserDAO();
+				user.Register(dk);
+				model.addAttribute("thongbao2","Thêm thành công!");
+			}
+			
+			else {
+				message.add("Thêm dữ liệu thất bại");
+				model.addAttribute("message",message);
+			}
+			
+		} catch (Exception e) {
+			model.addAttribute("thongbao2","Lỗi dữ liệu!");
+		}
 		
-		if (request.getParameter("input1")==""||
-				request.getParameter("input2")==""||
-				request.getParameter("input3")==""||
-				request.getParameter("input4")==""||
-				request.getParameter("input5")==""||
-				request.getParameter("input6")==""||
-				request.getParameter("input7")=="")
-					{
-				model.addAttribute("thongbao","Vui lòng nhập đầy đủ thông tin!");
-				return "adminTaiKhoanCreate";
-					}						
-		dk.fullname = request.getParameter("input1");
-		dk.username = request.getParameter("input2");
-		dk.password = mahoa.EncryptMD5(request.getParameter("input3"));
-		dk.email = request.getParameter("input4");
-		dk.phone = request.getParameter("input5");
-		dk.address = request.getParameter("input6");
-		dk.roles = Integer.parseInt(request.getParameter("input7"));
-		
-		UserDAO user = new UserDAO();
-		user.Register(dk);		
-		
-		model.addAttribute("thongbao2","Thêm thành công!");
 		return "adminTaiKhoanCreate";
 	}
 	

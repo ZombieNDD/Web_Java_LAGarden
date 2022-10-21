@@ -112,7 +112,7 @@
 
 						<div class="col-md-offset-2 col-md-10">
 							<input type="submit" value="Đăng ký"
-								class="btn btn-sm btn-success" /> <a href="/dang-nhap/"
+								class="btn btn-sm btn-success" /> <a href="dangnhap"
 								class="btn btn-sm btn-success">Đăng nhập</a>
 						</div>
 					</div>

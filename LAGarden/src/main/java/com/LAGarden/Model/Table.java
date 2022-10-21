@@ -6,16 +6,16 @@ import java.util.Date;
 
 public class Table {
 
-	public Date getNgayDB() {
+	public String getNgayDB() {
 		return ngayDB;
 	}
-	public void setNgayDB(Date ngayDB) {
+	public void setNgayDB(String ngayDB) {
 		this.ngayDB = ngayDB;
 	}
-	public Time getGioDB() {
+	public String getGioDB() {
 		return gioDB;
 	}
-	public void setGioDB(Time gioDB) {
+	public void setGioDB(String gioDB) {
 		this.gioDB = gioDB;
 	}
 	public String getFullName() {
@@ -60,8 +60,8 @@ public class Table {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Date ngayDB;
-	public Time gioDB;
+	public String ngayDB;
+	public String gioDB;
 	public String fullName;
 	public String email;
 	public String phone;

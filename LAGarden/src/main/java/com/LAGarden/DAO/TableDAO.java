@@ -29,8 +29,8 @@ public class TableDAO {
 		while (rs.next()){
 			Table item = new Table();
 			item.username = rs.getString("username");
-			item.ngayDB= rs.getDate("NgayDB");
-			item.gioDB = rs.getTime("GioDB");
+			item.ngayDB= rs.getString("NgayDB");
+			item.gioDB = rs.getString("GioDB");
 			item.fullName = rs.getString("FullName");
 			item.email = rs.getString("email");
 			item.phone = rs.getString("Phone");
