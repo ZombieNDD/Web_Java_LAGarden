@@ -31,7 +31,7 @@
                             <td>${ item.ctMA.idMA}</td>
                             <td>${ item.ctMA.tenMonAn}</td>
                             <td><img src="${pageContext.servletContext.contextPath}/resource/Img${item.ctMA.imgMA}" width="100" /></td>
-                            <td><input type="text" class="txtQuantity" data-id="${item.ctMA.idMA}" value="${item.quantity}" /></td>
+                            <td><input type="text" class="txtQuantity" data-id="${item.ctMA.idMA}" value="${item.quantity}" /> /phần</td>
                             <td>${item.ctMA.gia}</td>
                             <td>${ (item.ctMA.gia) * (item.quantity)}</td>
                             <td><a href="#" data-id="${item.ctMA.idMA}" class="btn-delete">Xoá</a></td>

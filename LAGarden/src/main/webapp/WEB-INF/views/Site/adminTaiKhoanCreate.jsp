@@ -31,7 +31,7 @@
 
 				<div class="form-group">
 					<label><strong>Email: </strong></label> <input
-						name="input4" />
+						 class="form-control  my-background boderText" name="input4" />
 				</div>
 
 				<div class="form-group">
@@ -51,8 +51,8 @@
 				<a href="adminTaiKhoan" class="btn btn-sm btn-success">Quay lại</a>
 				
 				<br>
-				${thongbao}
-				${thongbao2}
+				${message }
+				${thongbao2 }
 			</form>
 		</div>
 	</div>

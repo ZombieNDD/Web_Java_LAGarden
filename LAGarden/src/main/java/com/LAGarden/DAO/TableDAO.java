@@ -29,8 +29,8 @@ public class TableDAO {
 		while (rs.next()){
 			Table item = new Table();
 			item.username = rs.getString("username");
-			item.ngayDB= rs.getDate("NgayDB");
-			item.gioDB = rs.getTime("GioDB");
+			item.ngayDB= rs.getString("NgayDB");
+			item.gioDB = rs.getString("GioDB");
 			item.fullName = rs.getString("FullName");
 			item.email = rs.getString("email");
 			item.phone = rs.getString("Phone");
@@ -49,8 +49,8 @@ public class TableDAO {
 
 	public int addItem(Table tb,String username) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
-
-		String query = "Insert into Table values ('"+tb.ngayDB+"','"+tb.gioDB+"','"+ tb.fullName+"','"+tb.email+"','"+tb.sLNguoiLon+"','"+tb.sLTreEm+"','"+tb.ghiChu+"','"+username+"' )";
+		String query = "Insert into Datban values (N'"+tb.ngayDB+"',N'"+tb.gioDB+"',N'"+ tb.fullName+"','"+tb.email+"','"+tb.phone+"',N'"+tb.sLNguoiLon+"',N'"+tb.sLTreEm+"',N'"+tb.ghiChu+"',N'"+username+"' )";
+		System.out.println(query);
 		stm = conn.createStatement();
 		int i = stm.executeUpdate(query);
 		return i;

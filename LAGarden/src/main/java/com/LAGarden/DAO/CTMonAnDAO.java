@@ -197,7 +197,7 @@ public class CTMonAnDAO {
 	}
 	public int getListCountDanhMuc(String id) throws ClassNotFoundException, SQLException {
 		conn = new MyConnection().getConnection();
-
+		
 		String query = "SELECT count(idMA) FROM CTMONAN Where DanhMucID="+id;
 		int count = 0;
         try {

@@ -68,7 +68,7 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <input style="margin-left:20px" type="submit" value="Thanh toán" class="btn btn-outline-success" />
+                        <button  onclick="showAlert()" style="margin-left:20px" type="submit" class="btn btn-outline-success">Thanh toán</button>
                         <a class="btn btn-outline-danger" style="margin-left:20px" href="giohang">Quay lại</a>
                     </div>
                 </div>
@@ -85,7 +85,6 @@
             </tr>
             
            <c:forEach items="${listThanhToan}" var="item">
-
                 <tr>
                     <td>${item.ctMA.tenMonAn}</td>
                     <td>${item.quantity}</td>
@@ -97,3 +96,8 @@
         <div style="margin-top: 15px"><b class="text-danger">Tổng tiền thanh toán: ${tongtien }</b></div>
     </div>
     </div>
+<script>
+  function showAlert() {
+    alert ("Chức năng hiện đang được phát triển!!");
+  }
+  </script>

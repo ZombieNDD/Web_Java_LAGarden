@@ -8,7 +8,13 @@
                 <img src="${pageContext.servletContext.contextPath}/resource/Img/LogoMenu.png" width="200">
             </li>
             <c:forEach items="${listDanhMuc}" var="i">
-            	<li class="nav-item link-3" id="${i.danhMucID}"><a class="nav-link my-a" href="danhmuc-${i.danhMucName}-${i.danhMucID}-1">${i.danhMucName}</a></li>
+            	<li class="nav-item link-3" id="${i.danhMucID}"><a class="nav-link my-a" href="/LAGarden/danhmuc-${i.tags}-${i.danhMucID}-1">${i.danhMucName}</a></li>
             </c:forEach>
         </ul>
     </div>
+    
+    <script>
+        $(document).ready(function () {
+            $('.nav-item.link-3').find('[href="' + window.location.pathname + '"]').parent().addClass('my-active');
+        });
+    </script>

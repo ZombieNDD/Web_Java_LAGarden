@@ -33,7 +33,7 @@ footer {
 			class="navbar navbar-expand-lg navbar-dark bg-dark w-100 my-bar-margin-nav">
 			<div class="container">
 				<!-- Brand -->
-				<a class="navbar-brand" href="home"> <img
+				<a class="navbar-brand" href="/LAGarden/"> <img
 					src="${pageContext.servletContext.contextPath}/resource/Img/logo2.png" width="220" height="50" alt="Logo" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -68,9 +68,9 @@ footer {
 						class="nav-item my-bar-nav-item my-bar-a"
 						active-color="DarkSlateBlue" id="dangnhap">Đăng nhập</a> <a
 						href="dangky" class="nav-item my-bar-nav-item my-bar-a"
-						active-color="DarkKhaki" id="dangky">Đăng ký</a> <span
+						active-color="DarkKhaki" id="dangky">Đăng ký</a> 
+						<%} %>  <span
 						class="nav-indicator my-bar-nav-indicator"></span>
-						<%} %>  
 
 				</nav>
 			</div>

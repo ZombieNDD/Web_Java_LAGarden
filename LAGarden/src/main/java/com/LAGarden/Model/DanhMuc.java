@@ -1,6 +1,6 @@
 package com.LAGarden.Model;
 
-public class DanhMuc {
+public class DanhMuc implements Comparable<DanhMuc>{
 
 	public int getDanhMucID() {
 		return danhMucID;
@@ -30,4 +30,8 @@ public class DanhMuc {
 	public String danhMucName;
 	public int thuTu;
 	public String tags;
+	
+	public int compareTo(DanhMuc dm) {
+		return this.thuTu - dm.thuTu;
+	}
 }

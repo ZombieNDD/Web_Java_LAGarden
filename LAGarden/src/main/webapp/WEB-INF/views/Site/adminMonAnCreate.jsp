@@ -25,10 +25,6 @@
 				</div>
 
 				<div class="form-group">
-					<label><strong>Số Lượng: </strong></label> <input class="form-control  my-background boderText" name="input3" />
-				</div>
-
-				<div class="form-group">
 					<label><strong>Chi Tiết Món Ăn: </strong></label> <input class="form-control  my-background boderText" name="input4" />
 				</div>
 

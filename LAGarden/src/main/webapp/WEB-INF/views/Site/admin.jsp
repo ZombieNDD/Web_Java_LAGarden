@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 
@@ -24,6 +26,7 @@
 <body>
 	<div class="swapper mt-md-5">
 		<h3 class="text-center text-danger">ĐĂNG NHẬP HỆ THỐNG</h3>
+		
 		<div class="row">
 			<div class="col-md-4">
 				<img
@@ -46,6 +49,7 @@
 				
 				<div class="form-group">
 					<p>(*) Thông tin bắt buộc phải nhập</p>
+					<h4>${message }</h4>
 				</div>
 			</div>
 
