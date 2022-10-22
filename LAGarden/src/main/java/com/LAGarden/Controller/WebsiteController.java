@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -289,7 +290,7 @@ public class WebsiteController {
 					message = ("Vui lòng điền đúng số điện thoại!\n");
 					listMess.add(message);
 				}
-				if (s.length()!=11 && s.indexOf(0)!='0') {
+				if (s.length()!=11 && s.charAt(0)!='0') {
 					check = false;
 					message = "Số điện thoại phải 11 số và bắt đầu từ số 0\n";
 					listMess.add(message);
@@ -312,12 +313,18 @@ public class WebsiteController {
 			String sDate1 = request.getParameter("date");
 			Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
 			Date date2=new SimpleDateFormat("yyyy-MM-dd").parse(dateNow);  
-			 //Chỉnh sửa
+			
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+			String formatDateTime = ldt.format(formatter);
+			Date date3=new SimpleDateFormat("HH:mm:ss").parse(formatDateTime);
 			DateFormat dateFormat = new SimpleDateFormat("hh:mm");
-			Time timeNow = new Time(date2.getTime());
+			Time timeNow = new Time(date3.getTime());
+			//Lấy dữ liệu từ form
 			Date date =dateFormat.parse(request.getParameter("time"));
 			Time time = new Time(date.getTime());
 
+			
 			if (date1.compareTo(date2)<0) {
 				check=false;
 				message = "Ngày phải lớn hơn ngày hiện tại";
@@ -343,6 +350,7 @@ public class WebsiteController {
 			if (i>0) {
 				status = true;
 			}else {
+				
 				message = "Đăng ký thất bại, vui lòng thử lại sau\n";
 				listMess.add(message);
 			}
@@ -354,6 +362,7 @@ public class WebsiteController {
 			listMess.add(message);
 		}
 		}catch (Exception e) {
+			System.out.println(e);
 			message = "Đăng ký thất bại, vui lòng thử lại sau\n";
 			listMess.add(message);
 		}

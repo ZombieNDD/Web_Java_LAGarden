@@ -273,13 +273,14 @@ public class AdminController {
 				check = false;
 			}
 			try {
-				 Double.parseDouble(request.getParameter("Phone"));
+				 Double.parseDouble(request.getParameter("input5"));
 			}catch (Exception e) {
 				message.add("Số điện thoại bị sai");
 				check=false;
 			}
 			dk.address = request.getParameter("input6");
 			dk.roles = Integer.parseInt(request.getParameter("input7"));
+			
 			if (check== true) {
 				UserDAO user = new UserDAO();
 				user.Register(dk);
