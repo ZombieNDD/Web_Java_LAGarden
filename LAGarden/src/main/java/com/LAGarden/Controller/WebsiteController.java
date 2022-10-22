@@ -179,9 +179,10 @@ public class WebsiteController {
 			check=false;
 		}
 		
-		if (s.indexOf(0)!='0') {
+		if (s.charAt(0)!='0') {
 			message.add("Số điện thoại phải bắt đầu là 0");
 			check=false;
+			
 		}
 		String repeatPass = request.getParameter("ConfirmPassword");
 		if (!dk.password.equals(mahoa.EncryptMD5(repeatPass))) {
